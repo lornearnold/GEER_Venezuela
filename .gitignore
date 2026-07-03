@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# cached DEM/slope rasters (re-downloadable, see notebooks/02)
+data/terrain/*.tif
