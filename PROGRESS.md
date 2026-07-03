@@ -94,3 +94,22 @@ Goal: slope layer from a DEM to target steep terrain, plus surface geology.
   with attribution only), but **Esri World Imagery Wayback release 2026-05-28** is the legit
   equivalent: sub-meter public tiles, verified over the Ávila. Added as section 6 of notebook 01
   (`WAYBACK_PRE_EVENT` in the package). Maxar Open Data NOT activated for this event yet — recheck.
+- 12:05 — Notebook 01 restructured per Lorne's feedback: swipe section removed; flicker now has a
+  **persistent one-click "Showing: AFTER/BEFORE" toggle** pinned to each map
+  (`add_flicker_control` in `viewer.py`), on both the Planet and Wayback comparison maps.
+  Kept his `LOCATION = "valencia"` selection. Re-verified headlessly end-to-end.
+- 12:30 — Notebook 01 reworked again per feedback: Planet 4.8 m "before" dropped from the
+  comparison (Wayback sub-meter is now the only BEFORE), and the flicker button became a
+  three-way **BEFORE / AFTER / TOPO** switcher (`add_compare_control` in `viewer.py`).
+  TOPO = Esri World Hillshade tiles (`HILLSHADE` in the package), also now the overview
+  backdrop. Verified headlessly.
+- 12:45 — Bug fix: `save_draw_features(..., indent=2)` crashed (kwarg forwarded to GDAL's
+  GeoJSON writer as unknown option `INDENT`). Removed `indent=2` from every export cell in
+  notebooks 01–03; GeoJSON write path re-verified.
+- 13:00 — Queried Esri's Wayback metadata service for actual capture dates of the BEFORE
+  imagery: mostly 2024 – early 2025 (Maxar WV02/WV03, GeoEye-1 at 0.3–0.5 m) across the
+  corridor; Ocumare de la Costa is the outlier at Aug 2021. Added `wayback_capture_date(lat, lng)`
+  helper for citing per-site before-dates.
+- 14:35 — Added `04_review_sites.ipynb`: gathers every saved candidate GeoJSON onto one
+  BEFORE/TOPO map and builds `site_list.csv` (per-site coordinates + before-image capture
+  dates). Lorne has 44 features marked for La Guaira so far.

@@ -18,12 +18,12 @@ environment as the kernel (VSCode will suggest it). Run cells top to bottom.
 
 The notebook gives you:
 
-1. **Overview map** — post-event scene footprints over the pre-event basemap
+1. **Overview map** — post-event scene footprints over a terrain hillshade
 2. **Scene picker** — table of scenes per location with date, sensor, cloud cover
-3. **Before/after swipe map** — drag a divider between pre and post imagery
-4. **Flicker map** — both layers stacked; toggle the AFTER layer on/off to make new
-   landslide scars pop out
-5. **Draw & export** — mark suspected landslides on the map and save them to
+3. **Compare map** — one map with a pinned **BEFORE / AFTER / TOPO** button bar:
+   sub-meter pre-event imagery (Esri Wayback 2026-05-28), the 50 cm post-event scene,
+   and an Esri World Hillshade terrain view — click BEFORE/AFTER to flicker
+4. **Draw & export** — mark suspected landslides on the map and save them to
    `data/landslide_candidates/*.geojson` to hand to field teams
 
 Nothing is downloaded — imagery streams as tiles from cloud-optimized GeoTIFFs (COGs) on
@@ -91,6 +91,7 @@ ArcGIS Online.
 notebooks/01_compare_imagery.ipynb   before/after imagery comparison
 notebooks/02_terrain_geology.ipynb   slope + geology targeting layers
 notebooks/03_route_planning.ipynb    arterials + watch segments + route export
+notebooks/04_review_sites.ipynb      all marked sites on one map + site list CSV
 src/geer_venezuela/catalog.py        Planet/Source Coop catalog helpers
 src/geer_venezuela/roads.py          OSM arterials + steep-slope watch segments
 src/geer_venezuela/terrain.py        Copernicus DEM fetch, slope, steep areas

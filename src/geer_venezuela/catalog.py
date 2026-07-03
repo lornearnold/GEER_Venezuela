@@ -28,6 +28,61 @@ WAYBACK_PRE_EVENT = (
 
 WAYBACK_ATTRIBUTION = "Esri World Imagery Wayback (2026-05-28) &mdash; Esri, Maxar, Earthstar Geographics"
 
+#: Esri World Hillshade — terrain-relief basemap tiles
+HILLSHADE = (
+    "https://services.arcgisonline.com/ArcGIS/rest/services/"
+    "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}"
+)
+
+HILLSHADE_ATTRIBUTION = "Terrain: Esri World Hillshade &mdash; Esri, Airbus DS, USGS, NGA, NASA, CGIAR"
+
+#: Metadata service for the Wayback 2026-05-28 release (per-tile capture date/resolution)
+_WAYBACK_METADATA = (
+    "https://metadata.maptiles.arcgis.com/arcgis/rest/services/"
+    "World_Imagery_Metadata_2026_r05/MapServer"
+)
+
+
+def wayback_capture_date(lat: float, lng: float) -> dict:
+    """Capture date, resolution, and sensor of the Wayback BEFORE imagery at a point.
+
+    Use this to cite the actual pre-event date for a specific site — the underlying
+    photos are older than the 2026-05-28 release date (2024–early 2025 on most of the
+    affected coast, but as old as 2021 in places).
+    """
+    import datetime
+    import json
+    import urllib.parse
+    import urllib.request
+
+    for layer in (4, 5, 6, 7, 8):  # 30 cm … 4.8 m metadata sublayers, finest first
+        params = urllib.parse.urlencode(
+            {
+                "geometry": f"{lng},{lat}",
+                "geometryType": "esriGeometryPoint",
+                "inSR": 4326,
+                "spatialRel": "esriSpatialRelIntersects",
+                "outFields": "SRC_DATE2,SRC_RES,SRC_DESC",
+                "returnGeometry": "false",
+                "f": "json",
+            }
+        )
+        with urllib.request.urlopen(f"{_WAYBACK_METADATA}/{layer}/query?{params}") as response:
+            features = json.load(response).get("features") or []
+        if features:
+            attrs = features[0]["attributes"]
+            ts = attrs.get("SRC_DATE2")
+            return {
+                "captured": (
+                    datetime.datetime.fromtimestamp(ts / 1000, datetime.UTC).date().isoformat()
+                    if ts
+                    else None
+                ),
+                "resolution_m": attrs.get("SRC_RES"),
+                "sensor": attrs.get("SRC_DESC"),
+            }
+    return {"captured": None, "resolution_m": None, "sensor": None}
+
 
 def load_items(which: str = "post-event") -> gpd.GeoDataFrame:
     """Load the STAC-GeoParquet item index as a GeoDataFrame (EPSG:4326).
