@@ -221,3 +221,20 @@ Goal: slope layer from a DEM to target steep terrain, plus surface geology.
   its cached copy back over the write, and `reload()`/`setDataSource()` kept serving the stale
   cache. Fix: remove all layers referencing the file first (releases OGR's handle), THEN edit on
   disk, THEN re-add a fresh layer. Backup of the 122-feature pre-edit state is in the scratchpad.
+- 2026-07-05 — **Pivoted from notebooks to a QGIS-only workflow** (driven through Claude via the
+  qgis-mcp plugin). Deleted `notebooks/` (01–04 + cache; committed & pushed in `moving to qgis`
+  first). Rewrote README to be QGIS-first (project layout, qgis-mcp setup, marking sites, data
+  refresh via `src/` helpers). The `src/` data helpers (catalog/terrain/geology/roads) stay useful
+  for fetching/updating; **`src/geer_venezuela/viewer.py` is now orphaned** (leafmap/ipywidgets UI,
+  notebook-only) along with its `__init__.py` re-exports and the notebook-only deps in
+  `pyproject.toml` (jupyter, leafmap, ipykernel, ipywidgets, localtileserver, simplekml) — left in
+  place, flagged for a follow-up cleanup. Field-team deliverable format still undecided.
+- 2026-07-05 — Added attribute fields to **Candidate sites** (via QGIS edit-session commit, not a
+  disk edit): `perishability`, `location`, `extent`, `group` (String), `road_dist_m` (Double, empty).
+  Set **Value Map** edit widgets (dropdowns, stored==displayed) on the first three:
+  perishability=high/med/low, location=remote/populated, extent=large/medium/small. `group` is open
+  text for clustering points into drone-flyover "sites" (filter/categorize by it). `road_dist_m` is
+  a placeholder for straight-line distance to the nearest drivable road (walk-in gap for a drone
+  team) — NOT yet populated; the arterials layer is arterials-only (no side streets), so the plan is
+  to re-pull the FULL OSM drivable network (extend `roads.py`), auto-compute nearest-road distance,
+  and hand-refine the remote (>~200 m) sites against the 0.5 m imagery.

@@ -11,7 +11,7 @@ a blocked coastal road between Catia La Mar and Puerto Cruz with isolated commun
 elevated **multi-year debris-flow risk** to Naiguatá, Caraballeda, Macuto, and Puerto Cruz
 (explicitly citing the 1999 Vargas disaster). Their provisional triage grid
 (DOI [10.5066/P1MRLOZ7](https://doi.org/10.5066/P1MRLOZ7)) is cached in `data/usgs/` and
-feeds the route map in notebook 03.
+loaded as the **USGS** layer in the QGIS project.
 
 ## Revised perishability ranking
 
@@ -111,7 +111,7 @@ deformation.
   deliverable format.
 - **Route + watch-list precedent is standard practice**: GEER's daily KML is explicitly for
   planning the next day's routes; Kaikōura's 8-day satellite inventory guided field routes.
-  Notebook 03's watch-segment map is this pattern — seed it with the USGS grid and grow it
+  The QGIS Roads/watch-segment layer is this pattern — seed it with the USGS grid and grow it
   with the crack/dam registers (items 1 and 3).
 - **Archive to DesignSafe with a DOI** when done (the Kaikōura GEER inventory did).
 - **Apps**: EERI LFE uses Fulcrum with standard recon forms; StraboSpot is an open NSF
