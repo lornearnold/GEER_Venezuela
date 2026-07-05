@@ -113,3 +113,111 @@ Goal: slope layer from a DEM to target steep terrain, plus surface geology.
 - 14:35 — Added `04_review_sites.ipynb`: gathers every saved candidate GeoJSON onto one
   BEFORE/TOPO map and builds `site_list.csv` (per-site coordinates + before-image capture
   dates). Lorne has 44 features marked for La Guaira so far.
+- 15:10 — Feature tagging built (`add_tagging_control` / `save_tagged_features` in `viewer.py`):
+  pinned panel sets category + note, stamped onto each drawn feature; deletions untag.
+  Notebook 01's marking flow now uses it. Review map (04) gained the missing AFTER view
+  (scene ids parsed from candidate filenames) and the site table now carries tags.
+  Confirmed: polygons were always saved correctly (CSV centroids caused the confusion).
+- 15:40 — Review notebook gained a **site editor** (click a feature → retag or delete via
+  pinned panel; `add_site_editor` in `viewer.py`) and a save cell that writes edits back to
+  the per-source GeoJSONs **plus a `landslide_candidates.kmz`** (GEER's KML-product
+  convention, via simplekml). Full select→retag→delete→save cycle tested; KMZ opens with
+  44 placemarks named `site NNN — category`.
+- 16:05 — Per Lorne: cleared all stored tags/notes from the candidate datasets (fresh start
+  with his new Confidence/Priority tag scheme in `TAG_CATEGORIES`); KMZ placemarks renamed
+  to site number only, with source/category/note moved to KML ExtendedData (structured
+  metadata in the Google Earth balloon). Outputs regenerated and verified.
+- 16:30 — Verified the two USGS GeoJSONs are the **same grid with identical values** (only a
+  column name differs) — nothing was missing from the route map. Fixed hover metadata: the
+  USGS layer was underneath the steep-area fill, which was eating mouse events; reordered
+  layers and trimmed the attributes to `landslide_extent` + `road_impacts`.
+- 2026-07-03 evening — Built `qgis/geer_venezuela.qgz` via the qgis-mcp plugin (relative
+  paths, EPSG:4326): Basemaps (TOPO hillshade / Wayback 2026-05-28 BEFORE / three 2026-06-26
+  SkySat AFTER COGs by URL), Terrain & Geology, USGS grid, Roads, and labeled candidate
+  sites, all styled to match the notebooks; BEFORE+AFTER+candidates on by default. Verified
+  by rendering the canvas. Two QGIS gotchas hit and solved: (1) QGIS silently re-set the
+  project CRS to the first layer's UTM zone — had to re-apply EPSG:4326 after adding layers;
+  (2) Wayback tile requests 301-redirect (relative `Location`) to the release actually
+  holding each tile, which QGIS-LTR's tile fetcher can't follow — served the BEFORE layer
+  through GDAL's TMS driver (libcurl follows redirects) instead of a QGIS XYZ layer.
+  Candidate labels use `$id`, verified to match `site_no` in `site_list.csv` (0–43).
+- 2026-07-04 — Added NASA Earthdata (Disasters Program) services to `geer_venezuela.qgz`,
+  streamed live from the `DISASTERS_202606_EARTHQUAKE_VENEZUELA` ArcGIS ImageServers via
+  the `arcgismapserver` provider (no download). (1) **Vantor Legion** 0.42 m true-color
+  mosaic (post-event 2026-06-25) into Basemaps, below the SkySat strips so the narrow SkySat
+  swaths render on top and the mosaic fills the coastal gaps around them. Coverage is a
+  ~20×16 km **coastal band only** (lat 10.51–10.65°N): contains 29/44 candidate points and
+  4/18 areas — the inland sites climbing south up the Ávila fall just below its footprint.
+  (2) **Sentinel-1 landslide proxy heatmap** (NASA GSFC, 100 m, Iratio backscatter change
+  pre vs 2026-06-25) into a new "NASA Disasters (Earthdata)" group — covers the whole massif
+  (all 44 points + 18 areas), off by default at 70% opacity; it's the inland-site companion
+  the Vantor mosaic can't provide. Licensing note: Vantor imagery is © Vantor / non-
+  redistributable (NASA CSDA); the S1 heatmap contains modified Copernicus Sentinel data and
+  can throw false positives (mining/construction/deforestation). Then added the remaining
+  Earthdata siblings to the NASA Disasters group (all off by default): sentinel2 (10 m optical,
+  whole region), landsat (30 m optical), sentinel2_buildingDamageLikelihood (10 m), OPERA and
+  NISAR LOS displacement (InSAR ground motion), and Black Marble night lights. Only the slope
+  `.tif` is on disk — every imagery/raster service (SkySat, Vantor, Wayback, hillshade, and the
+  7 NASA ImageServers) streams live via `/vsicurl/`, GDAL TMS, XYZ, or `arcgismapserver`.
+- 2026-07-04 — Basemap sizes / downloadability checked: the two Planet SkySat `visual` COGs are
+  786 MiB and 862 MiB (public HTTPS, directly downloadable / `gdal_translate` a window). Vantor
+  ImageServer capabilities = "Image,Metadata,Catalog" (no Download service) but exportImage works
+  (max 15000×4100 px/request, U16 8-band) — pull it in tiles or via QGIS Export→Save As. Wayback
+  and hillshade are tile services (no source file); "download" = render the AOI to a local GeoTIFF
+  at a chosen zoom. QGIS layer → Export → Save As is the universal path for any remote layer.
+- 2026-07-04 — Cached the AFTER imagery locally to `data/basemaps/` (gitignored) and repointed the
+  QGIS project at the local files (policy: use local COG where we have one, keep "AFTER" in the
+  layer name, stream only what we don't). Standing project convention now.
+  - Two SkySat `visual` COGs curl'd directly (786 / 862 MiB) → layers renamed `AFTER — Planet
+    SkySat … (local)`. Confirmed native 0.5 m with full overview pyramids (an earlier "looks
+    low-res" was just a macOS Preview thumbnail / zoomed-out view).
+  - Vantor mosaic (no Download service) pulled via `exportImage` `f=json`→href tiling at native
+    0.42 m, `format=png` (NOT `tiff`, which returns the raw 8-band U16 analytic ~440 MB/tile),
+    georeferenced from the returned extent. Skipped the 18 open-ocean grid cells (of 60) after
+    reading a full-extent overview — coast runs SW→NE, whole NW is Caribbean. Mosaicked the 42
+    land/coast tiles with `gdalbuildvrt -addalpha` (ocean gap → transparent) into a 251 MiB JPEG
+    COG (`vantor_legion_20260625_mosaic.tif`). Layer: `AFTER — Vantor Legion … (mosaic, local)`.
+  - Gotchas: system GDAL 3.3.3 (Postgres.app) has **no JPEG codec** — can't write *or read* JPEG
+    COGs; used rasterio's bundled GDAL 3.12 to build it (QGIS's own GDAL reads it fine). Python
+    `urllib` fails macOS TLS (no CA bundle) → shelled out to `curl`. NASA ImageServer 503s under
+    sustained load (render times ballooned to 3–7 min/tile); the fetch script is resumable with
+    backed-off retries. `data/basemaps/` totals ~1.9 GB (SkySat 1.6 GB + Vantor 251 MiB).
+- 2026-07-05 — Expanded post-event coverage to the whole **USGS rapid-assessment AOI** (bbox
+  −68.50→−66.61 lon, 10.19→10.63 lat; ~205 km of coast, Puerto Cabello → Independencia-Ocumare).
+  Of the 17 Planet post-event scenes, **15 intersect the AOI** (2 excluded: Yumare far west + one
+  ocean-only La Guaira pass). Added the **13 not already cached** as remote `/vsicurl/` COG layers,
+  grouped by location in a new "AFTER — post-event scenes (AOI)" group, all **off by default**
+  (13 streaming COGs at once is brutal). Sensors: SkySat 0.66–0.87 m + Pelican 0.62–0.65 m — the
+  only post-event sub-meter optical available. **Maxar Open Data still NOT activated** for this
+  event (rechecked their full STAC — no Venezuela/2026-06 entry); no other high-res post-event source.
+- 2026-07-05 — Added a toggleable **"Imagery footprints (toggle)"** layer at the top of the tree
+  (off by default) so imagery coverage is legible without waiting for slow COG/tile loads. One
+  outline-only polygon per imagery layer (15 Planet scene footprints from the catalog geometry +
+  the Vantor land/coast staircase), categorized by sensor (cyan SkySat / magenta Pelican / yellow
+  Vantor), labeled `location · sensor · gsd · date`. Source: `data/basemaps/imagery_footprints.geojson`
+  (gitignored; regenerate with the build_footprints catalog query). Global tile basemaps (Wayback
+  BEFORE, TOPO hillshade) have no footprint — they cover everywhere.
+- 2026-07-05 — Cached **all 15 AOI Planet scenes** locally (8.1 GB new; `data/basemaps/` now ~10 GB)
+  and consolidated the imagery. Fixed a mislabel: the two La Guaira "SkySat" scenes are actually
+  **Pelican** (0.62 m) — corrected both the on-disk filenames (`skysat_*`→`pelican_*`) and the layer
+  names. All post-event imagery (15 scenes + Vantor) now lives in **one flat `AFTER — post-event
+  imagery` group**, all local, uniformly named `AFTER — <location> · <sensor> <gsd>m · <id>`, ordered
+  by location; the old per-location "AOI" subgroups are gone. Basemaps group keeps only the remote
+  context layers (BEFORE Wayback, TOPO hillshade). Per Lorne: the AOI is uniform — no location is
+  "primary" (La Guaira was just first to have data), and layer on/off is his to toggle (don't design
+  around default visibility). Only 4 Pelican scenes exist (2 La Guaira, 2 Caracas) — the finest optical.
+- 2026-07-05 — Candidate sites cleanup + numbering. The site numbers were only `$id` labels
+  (`to_string($id)`), not a field — invisible in the attribute table, and running backwards
+  because uncommitted features get negative decreasing fids. Lorne had also grown the layer to
+  the whole AOI and manually replaced the polygons with points near their centroids. Found the
+  file still held 103 points + 18 polygons + 1 null-geom (122) — his polygon deletions never
+  committed (the two geometry-filtered layers on one GeoJSON is fragile). Checked each polygon
+  for a replacement point: 17/18 had one within 6–60 m; 1 orphan (~263 m) → converted to a point.
+  Result: a real integer `site_no` field, **104 points numbered 1–104** in file order (groups kept
+  together), labeled by `site_no`; dropped the 17 redundant polygons + null; removed the empty
+  polygons layer; renamed the layer to **"Candidate sites"**. (`site_list.csv` is now stale — regen
+  via notebook 04; the file is still misnamed `la-guaira_…_3010.geojson` but holds AOI-wide points.)
+  **Gotcha:** editing the GeoJSON on disk while QGIS had it open got **clobbered** — QGIS flushed
+  its cached copy back over the write, and `reload()`/`setDataSource()` kept serving the stale
+  cache. Fix: remove all layers referencing the file first (releases OGR's handle), THEN edit on
+  disk, THEN re-add a fresh layer. Backup of the 122-feature pre-edit state is in the scratchpad.

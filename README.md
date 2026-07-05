@@ -73,7 +73,51 @@ queried with DuckDB; returns GeoDataFrames).
 
 ## Using QGIS instead
 
-Every COG opens directly in QGIS — no download:
+A ready-made QGIS project lives at **`qgis/geer_venezuela.qgz`** (relative paths, EPSG:4326).
+It bundles the full layer stack, grouped and styled to match the notebooks: Basemaps
+(Esri World Hillshade TOPO, sub-meter Esri Wayback 2026-05-28 BEFORE, the three 2026-06-26
+Planet SkySat AFTER scenes for La Guaira streamed by URL), Terrain & Geology (slope in
+inferno 0–45°, ≥30° steep outlines, geology filled by unit color with name/lithology map
+tips), the USGS rapid assessment grid (extent-class fills, bold red outline where road
+impacts = yes), Roads (arterials by class + magenta watch segments), and the labeled
+landslide-candidate sites. BEFORE + AFTER + candidates are visible by default; toggle the
+rest as needed. Note: the slope raster (`data/terrain/*.tif`) is gitignored — run
+notebook 02 once to regenerate it, or the Slope layer will show as missing.
+
+A **NASA Disasters (Earthdata)** group streams the agency's derived products live from ArcGIS
+ImageServers (nothing downloaded): the **Sentinel-1 landslide proxy heatmap** (100 m, backscatter
+change — coarse but blankets the whole Ávila massif and reaches inland sites the high-res optical
+misses), Sentinel-2 (10 m) and Landsat optical, a Sentinel-2 building-damage likelihood raster,
+OPERA and NISAR InSAR displacement (ground motion from the quake), and Black Marble night lights.
+The **Vantor Legion** 0.42 m post-event mosaic from the same NASA folder is cached locally instead
+(see below), since it's the one sub-meter optical product there. *Licensing:* Vantor imagery is
+© Vantor and **non-redistributable** (NASA CSDA); the Sentinel-1 heatmap uses modified Copernicus
+data and can show false positives (mining/construction/deforestation) — treat both as viewing
+aids, not products to republish.
+
+**All post-event high-res imagery is cached locally** in `data/basemaps/` (gitignored, ~10 GB)
+and the project reads from those files — one flat **`AFTER — post-event imagery`** group holding
+every post-event scene that intersects the USGS assessment extent (Puerto Cabello through
+Independencia-Ocumare): the **15 Planet SkySat/Pelican scenes** across the six impacted locations,
+plus the **Vantor Legion 0.42 m mosaic** (La Guaira, built from the ImageServer at native
+resolution with the open-ocean tiles omitted so its NW corner is transparent). Layers are named
+uniformly `AFTER — <location> · <sensor> <gsd>m · <id>`. Sensors: SkySat 0.66–0.87 m and the finer
+Pelican ~0.62 m (only 4 Pelican scenes exist — 2 La Guaira, 2 Caracas). Maxar Open Data is not
+activated for this event, so Planet + Vantor are the only sub-meter post-event sources.
+
+The BEFORE (Wayback) and TOPO (hillshade) layers in the **Basemaps** group, and the whole NASA
+Disasters group, still stream — they're tile/image services with no single file worth caching.
+If `data/basemaps/` is empty (fresh clone) the AFTER layers show as missing: the SkySat/Pelican
+`visual` COGs are public HTTPS downloads, and the Vantor mosaic is rebuilt by tiling the
+ImageServer's `exportImage` endpoint.
+
+Because streamed imagery can be slow to load, an **"Imagery footprints (toggle)"** layer at the
+top of the tree draws a labeled, color-coded outline for every imagery layer's actual coverage
+(cyan SkySat, magenta Pelican, yellow Vantor) — turn it on to see at a glance which scene covers
+where before waiting for pixels. The two global tile basemaps (Wayback BEFORE, hillshade) cover
+everywhere, so they have no footprint.
+
+To add COGs manually instead — every COG opens directly in QGIS, no download:
 
 1. **Layer → Add Layer → Add Raster Layer**, set *Source type* to **Protocol: HTTP(S)**
 2. Paste a COG URL, e.g. the pre-event mosaic:
@@ -91,7 +135,7 @@ ArcGIS Online.
 notebooks/01_compare_imagery.ipynb   before/after imagery comparison
 notebooks/02_terrain_geology.ipynb   slope + geology targeting layers
 notebooks/03_route_planning.ipynb    arterials + watch segments + route export
-notebooks/04_review_sites.ipynb      all marked sites on one map + site list CSV
+notebooks/04_review_sites.ipynb      review/edit marked sites + KMZ export (GEER-style)
 src/geer_venezuela/catalog.py        Planet/Source Coop catalog helpers
 src/geer_venezuela/roads.py          OSM arterials + steep-slope watch segments
 src/geer_venezuela/terrain.py        Copernicus DEM fetch, slope, steep areas
@@ -100,6 +144,7 @@ data/landslide_candidates/           exported GeoJSON for field teams
 data/terrain/                        cached DEM/slope rasters + geology/steep GeoJSON
 data/routes/                         watch segments, arterials, corridor summaries
 data/usgs/                           USGS rapid landslide assessment (2026-07-01)
+qgis/geer_venezuela.qgz              QGIS project bundling all layers, styled per notebooks
 docs/field_recon_priorities.md       perishable-data priorities + recon best practices
 PROGRESS.md                          running log of setup work
 ```

@@ -25,7 +25,15 @@ from geer_venezuela.roads import (
     watch_segments,
 )
 from geer_venezuela.terrain import compute_slope, fetch_dem, steep_areas
-from geer_venezuela.viewer import add_compare_control, add_flicker_control
+from geer_venezuela.viewer import (
+    TAG_CATEGORIES,
+    add_compare_control,
+    add_flicker_control,
+    add_site_editor,
+    add_tagging_control,
+    save_sites,
+    save_tagged_features,
+)
 
 __all__ = [
     "ATTRIBUTION",
@@ -34,7 +42,12 @@ __all__ = [
     "HILLSHADE",
     "HILLSHADE_ATTRIBUTION",
     "MACROSTRAT_TILE_URL",
+    "TAG_CATEGORIES",
     "add_compare_control",
+    "add_site_editor",
+    "add_tagging_control",
+    "save_sites",
+    "save_tagged_features",
     "PRE_EVENT_MOSAIC",
     "ROAD_COLORS",
     "ROADS_ATTRIBUTION",

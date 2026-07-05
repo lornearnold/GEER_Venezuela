@@ -219,3 +219,10 @@ __marimo__/
 
 # cached DEM/slope rasters (re-downloadable, see notebooks/02)
 data/terrain/*.tif
+
+# locally cached basemap imagery (large, re-streamable; see PROGRESS.md)
+data/basemaps/
+
+# QGIS project backup files
+*.qgz~
+*.qgs~
