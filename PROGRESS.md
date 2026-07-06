@@ -238,3 +238,86 @@ Goal: slope layer from a DEM to target steep terrain, plus surface geology.
   team) — NOT yet populated; the arterials layer is arterials-only (no side streets), so the plan is
   to re-pull the FULL OSM drivable network (extend `roads.py`), auto-compute nearest-road distance,
   and hand-refine the remote (>~200 m) sites against the 0.5 m imagery.
+- 2026-07-05 — **Populated `road_dist_m`** for all 110 candidate sites = straight-line distance to
+  the nearest *drivable* road (the drone walk-in gap for a driving team). The arterials layer was
+  motorway/trunk/primary/secondary only (~4k lines); re-pulled the FULL OSM drivable network via
+  osmnx `features_from_bbox` over the AOI + ~3 km pad — classes motorway…living_street **+ service**
+  (no unpaved `track`, per Lorne), `_link` ramps folded in → **21,653 lines**, saved to
+  `data/routes/la-guaira_drivable.geojson` and added as **"Drivable roads (OSM)"** (thin grey) at the
+  bottom of the Roads group. Distance computed point→nearest-line in **EPSG:32619 (UTM 19N)**, rounded
+  to the nearest **10 m** (per the "no finer than 10 m" spec). Distribution: 38 sites ≤50 m, 19 in
+  51–100, 24 in 101–250, 9 in 251–500, 20 >500 m (max 2230 m — remote hillside sites to hand-refine).
+  Written **through QGIS** (edit-session/provider commit, not a disk edit — the file was open).
+  **Field-type fix:** `road_dist_m` had been created as **String** (not the Double the prior note
+  claimed); converted in place to **Integer** via the OGR provider (delete+add+repopulate) so numeric
+  filters like `road_dist_m > 200` and graduated symbology work. Compute script:
+  `scratchpad/road_dist.py`.
+- 2026-07-05 — **Drafted Typst one-page site-summary template** (`reports/site_summary.typ`, compiles
+  with typst 0.14; output `reports/site_summary.pdf`). One page per group: header (group name +
+  location + site count; GEER banner right), main figure = highest-res AFTER imagery with candidate
+  points labeled by `site_no`, locator inset (hillshade + arterials + red extent box at 1:75k),
+  scale bar + north arrow overlays, then a site table (site_no, perishability, extent, WGS84
+  coords, road_dist_m, notes — `group` lives in the header, not the table) + footnote defining the
+  fields. Figures rendered headlessly from QGIS via `QgsMapRendererParallelJob` (EPSG:32619, 300 dpi,
+  labels on) into `reports/figures/`. Examples: **Trocha** (7 sites; E–W spread 765 m forced
+  **1:6000**, outside the 1:1000–1:5000 spec per the "increase if it doesn't fit" rule) and
+  **site 94** (1:2000 main + 1:3000 alternative page for review). Imagery pick: vantor 0.42m does
+  NOT cover either target; **pelican 0.62m 20260626_150535** covers both (site 94 sits on its scene
+  edge — nodata corner filled by underlaying skysat 0.67m u0002, faint seam). Footprints layer's
+  `already_local` attr is stale (said skysat u0002 not local; it is). Next: pick s94 scale, then
+  script per-group data+figure generation for all 11 groups/60 ungrouped sites.
+- 2026-07-05 — **Site-summary template v2** (`reports/site_summary.typ`): Arial; all layout numbers
+  hoisted to named variables at the top of the file; table content no longer typed in Typst — a new
+  `reports/export_site_data.py` dumps the candidates layer to `reports/site_data.json` (110 sites)
+  and pages reference `group: "Trocha"` / `site-nos: (94,)` only; coordinates are Google-Maps
+  hyperlinks (`maps/search/?api=1&query=lat,lon`). Locator inset switched to **Google Maps tiles at
+  1:300k** (variant H; box offset north so the coast shows; thin 0.4 mm red box; © Google
+  attribution in caption — license check needed before public distribution). **Header-overflow
+  cause found:** Typst draws `header:` inside the top margin; the two-line header (~0.55 in) was
+  taller than the 0.55 in margin minus the default 30% header-ascent, so it spilled toward the
+  paper edge — fixed with `margin-top: 1.05in` + explicit `header-ascent`. Typst gotcha: a
+  multi-line method chain after `#let x = expr` silently stops parsing at the line break (the
+  `.map(...)` never ran → type error downstream); wrap the chain in parentheses. Locator variant
+  review sheet kept at `reports/locator_variants.typ` (A–H).
+- 2026-07-05 — Site summaries: locator inset scale is now **50× the main figure scale**
+  (`locator-mult` variable; caption computes it) — Trocha 1:6000→1:300k unchanged, site 94
+  1:2000→1:100k / 1:3000→1:150k (new centered renders in `reports/figures/`). **Fixed the
+  Google-Maps links:** Typst's `str()` renders negative numbers with a Unicode minus (U+2212),
+  which Google can't parse as a longitude — build URL numbers with an ASCII "-" (`url-dd()`)
+  and encode the comma as %2C. Verified the embedded PDF URIs decode clean (Typst stores them
+  hex-encoded: `/URI <68747470...>`, so grep for hex, not literal strings).
+- 2026-07-05 — **Built the full field packet** (`reports/report.pdf`, 38 pp): cover + 36 priority-
+  ordered unit pages (10 groups + 25 ungrouped singles + 1 bundle). Pipeline: plan built in QGIS
+  (`reports/report_plan.json`) — units classified into sections (2: high perish/populated,
+  3: med/populated by extent, 4: med/remote by extent, 5: rest incl. high/remote, 6: the 35
+  ungrouped low-confidence sites as ONE bundle at 1:150k on Google basemap); per-unit extent →
+  scale ladder (singles 1:2000; groups up to 1:20k); imagery pick = lowest-GSD footprint containing
+  the extent (vantor mosaic verified by 9-pt raster sampling — bbox includes nodata; footprints
+  layer carries a STALE vantor layer_name 'AFTER — Vantor Legion…' needing an alias) + underlay
+  when partial. All figs/locators rendered headlessly (~75 renders; MCP socket times out at 60 s
+  but QGIS keeps executing — poll the output dir). Typst refactored: `template.typ` (defs +
+  `title:`/`locator-scale:` params) imported by `report.typ` (cover: coverage map w/ used-scene
+  footprints + dead zone, aggregated imagery-sources table, notes) and `site_summary.typ`
+  (examples). Caveats: Túnel Boquerón has a high-perish site but lands in §4 via its med/remote
+  sites (high+remote isn't in the user's rules); bundle map shows ALL candidate labels in its
+  extent, not just the 35; no site notes contain "headscarp" yet though the cover note mentions it.
+- 2026-07-05 — Packet fixes: cover note corrected to **"head scarp"** (two words — matches the
+  actual note text on sites 44/60/86). **Vantor mosaic demoted to last-resort imagery** (cloud
+  cover + apparent nighttime collection makes it hard to read): scene picker now sorts vantor
+  behind all other scenes; 18 units re-picked — 17 moved to Pelican 0.62m / SkySat 0.78m, only
+  **site 61** keeps vantor (sole coverage there). Figures re-rendered; credits refreshed;
+  `reports/report.pdf` recompiled (38 pp).
+- 2026-07-05 — **Site 94's packet page was a cloud wall**: the geometric picker chose SkySat u0002
+  (only footprint fully containing the 1:2000 extent) but that scene is 100% cloud there — the
+  picker optimizes coverage+GSD and is blind to cloud. Hand-overrode unit 94 in report_plan.json to
+  pelican 150535 + skysat underlay (the validated combo; underlay corner noted "cloud-obscured" in
+  the credit) and re-rendered. Reviewed ALL 36 figures via a contact sheet (brightness/stddev
+  heuristics were unreliable — grey cloud ≈ dark forest statistically). Remaining imagery-limited
+  pages (no better scene exists): Túnel Boquerón (partial cloud), site 60 (haze), site 61
+  (vantor-only, dark), site 109 (very dark forest). Flagged to Lorne.
+- 2026-07-05 — **KMZ companion for the packet**: `reports/export_kmz.py` (simplekml — the leftover
+  notebook dep earns its keep) → `reports/geer_venezuela_candidate_sites.kmz`. All 110 sites,
+  foldered to mirror the packet: Priority 1–5 folders (= report sections 2–6) in packet order,
+  group sub-folders, points named by site_no, yellow-dot style matching the maps, description
+  balloons with the packet-table attributes. Regenerate after site edits: export_site_data.py →
+  (plan/figures if geometry changed) → export_kmz.py.

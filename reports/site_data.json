@@ -1,0 +1,1106 @@
+{
+ "generated": "2026-07-05",
+ "source": "la-guaira_20260626_150535_17_3010.geojson",
+ "sites": {
+  "1": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.549015,
+   "lon": -66.989994,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "2": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.543535,
+   "lon": -66.987934,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "3": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "large",
+   "lat": 10.536763,
+   "lon": -66.981432,
+   "road_dist_m": 190,
+   "note": "mixed sources"
+  },
+  "4": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.533847,
+   "lon": -66.983632,
+   "road_dist_m": 180,
+   "note": "mixed sources"
+  },
+  "5": {
+   "group": "quarry",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.526221,
+   "lon": -66.996785,
+   "road_dist_m": 110,
+   "note": ""
+  },
+  "6": {
+   "group": "quarry",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "large",
+   "lat": 10.526389,
+   "lon": -66.994221,
+   "road_dist_m": 100,
+   "note": ""
+  },
+  "7": {
+   "group": "quarry",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.524607,
+   "lon": -66.999274,
+   "road_dist_m": 100,
+   "note": ""
+  },
+  "8": {
+   "group": "quarry",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.521115,
+   "lon": -67.002386,
+   "road_dist_m": 410,
+   "note": ""
+  },
+  "9": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.496652,
+   "lon": -66.994715,
+   "road_dist_m": 10,
+   "note": "low confidence"
+  },
+  "10": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.491947,
+   "lon": -66.989404,
+   "road_dist_m": 150,
+   "note": "low confidence"
+  },
+  "11": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.490523,
+   "lon": -66.988374,
+   "road_dist_m": 150,
+   "note": "low confidence"
+  },
+  "12": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.493675,
+   "lon": -66.989761,
+   "road_dist_m": 30,
+   "note": "low confidence"
+  },
+  "13": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "large",
+   "lat": 10.493311,
+   "lon": -66.988068,
+   "road_dist_m": 40,
+   "note": "low confidence"
+  },
+  "14": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.491451,
+   "lon": -66.990536,
+   "road_dist_m": 100,
+   "note": "low confidence"
+  },
+  "15": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.493593,
+   "lon": -66.98662,
+   "road_dist_m": 70,
+   "note": "low confidence"
+  },
+  "16": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.494105,
+   "lon": -66.979045,
+   "road_dist_m": 130,
+   "note": "low confidence"
+  },
+  "17": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.493994,
+   "lon": -66.977704,
+   "road_dist_m": 130,
+   "note": "low confidence"
+  },
+  "18": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.493867,
+   "lon": -66.978348,
+   "road_dist_m": 140,
+   "note": "low confidence"
+  },
+  "19": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.502982,
+   "lon": -67.000669,
+   "road_dist_m": 340,
+   "note": "low confidence"
+  },
+  "20": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.500724,
+   "lon": -66.998883,
+   "road_dist_m": 100,
+   "note": "low confidence"
+  },
+  "21": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.500614,
+   "lon": -66.995525,
+   "road_dist_m": 60,
+   "note": "low confidence"
+  },
+  "22": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.503457,
+   "lon": -66.997102,
+   "road_dist_m": 60,
+   "note": "low confidence"
+  },
+  "23": {
+   "group": null,
+   "perishability": "high",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.515788,
+   "lon": -66.971101,
+   "road_dist_m": 230,
+   "note": ""
+  },
+  "24": {
+   "group": null,
+   "perishability": "high",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.539321,
+   "lon": -66.97522,
+   "road_dist_m": 20,
+   "note": "reactivation"
+  },
+  "25": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.525799,
+   "lon": -66.970339,
+   "road_dist_m": 0,
+   "note": "low confidence"
+  },
+  "26": {
+   "group": "Trocha",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.523204,
+   "lon": -66.966552,
+   "road_dist_m": 70,
+   "note": ""
+  },
+  "27": {
+   "group": "Radiofaro",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.605921,
+   "lon": -66.989478,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "28": {
+   "group": "Radiofaro",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.608387,
+   "lon": -66.987903,
+   "road_dist_m": 30,
+   "note": "low confidence"
+  },
+  "29": {
+   "group": "Radiofaro",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.607322,
+   "lon": -66.986058,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "30": {
+   "group": "Radiofaro",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.609115,
+   "lon": -66.986993,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "31": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.606936,
+   "lon": -66.979917,
+   "road_dist_m": 20,
+   "note": "low confidence"
+  },
+  "32": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.600989,
+   "lon": -66.97043,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "33": {
+   "group": "CRPV",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.61156,
+   "lon": -67.010852,
+   "road_dist_m": 30,
+   "note": ""
+  },
+  "34": {
+   "group": "CRPV",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.611418,
+   "lon": -67.01268,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "35": {
+   "group": "CRPV",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.611342,
+   "lon": -67.013871,
+   "road_dist_m": 30,
+   "note": ""
+  },
+  "36": {
+   "group": "CRPV",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.610986,
+   "lon": -67.009613,
+   "road_dist_m": 30,
+   "note": ""
+  },
+  "37": {
+   "group": "CRPV",
+   "perishability": "high",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.610618,
+   "lon": -67.007702,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "38": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.607798,
+   "lon": -67.003256,
+   "road_dist_m": 50,
+   "note": "low confidence"
+  },
+  "39": {
+   "group": "Radiofaro",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.607565,
+   "lon": -66.994007,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "40": {
+   "group": "Radiofaro",
+   "perishability": "low",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.608401,
+   "lon": -66.992759,
+   "road_dist_m": 60,
+   "note": ""
+  },
+  "41": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.605984,
+   "lon": -67.015869,
+   "road_dist_m": 10,
+   "note": "low confidence"
+  },
+  "42": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.59228,
+   "lon": -66.987828,
+   "road_dist_m": 80,
+   "note": ""
+  },
+  "43": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.591078,
+   "lon": -66.99112,
+   "road_dist_m": 10,
+   "note": "low confidence"
+  },
+  "44": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.583176,
+   "lon": -66.953701,
+   "road_dist_m": 150,
+   "note": "head scarp"
+  },
+  "45": {
+   "group": "CRPV",
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.612157,
+   "lon": -67.019407,
+   "road_dist_m": 40,
+   "note": "low confidence"
+  },
+  "46": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.588678,
+   "lon": -67.041941,
+   "road_dist_m": 130,
+   "note": "low confidence"
+  },
+  "47": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.548911,
+   "lon": -67.008289,
+   "road_dist_m": 90,
+   "note": ""
+  },
+  "48": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "low",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.562043,
+   "lon": -67.001342,
+   "road_dist_m": 50,
+   "note": "low confidence"
+  },
+  "49": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "low",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.560389,
+   "lon": -67.00062,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "50": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "high",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.562323,
+   "lon": -67.008423,
+   "road_dist_m": 320,
+   "note": "landslide dam potential"
+  },
+  "51": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "high",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.560657,
+   "lon": -67.008356,
+   "road_dist_m": 350,
+   "note": "landslide dam potential"
+  },
+  "52": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "large",
+   "lat": 10.570683,
+   "lon": -67.008396,
+   "road_dist_m": 150,
+   "note": "landslide dam potential; reactivation"
+  },
+  "53": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "low",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.574529,
+   "lon": -67.009081,
+   "road_dist_m": 50,
+   "note": "low confidence"
+  },
+  "54": {
+   "group": "T\u00fanel Boquer\u00f3n I, II",
+   "perishability": "low",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.571243,
+   "lon": -67.004175,
+   "road_dist_m": 220,
+   "note": ""
+  },
+  "55": {
+   "group": null,
+   "perishability": "high",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.570604,
+   "lon": -66.971632,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "56": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.572117,
+   "lon": -66.974015,
+   "road_dist_m": 110,
+   "note": "low confidence"
+  },
+  "57": {
+   "group": "A",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.580476,
+   "lon": -66.976736,
+   "road_dist_m": 40,
+   "note": ""
+  },
+  "58": {
+   "group": "A",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.579688,
+   "lon": -66.979543,
+   "road_dist_m": 260,
+   "note": ""
+  },
+  "59": {
+   "group": null,
+   "perishability": "low",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.578602,
+   "lon": -66.957054,
+   "road_dist_m": 240,
+   "note": ""
+  },
+  "60": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.564117,
+   "lon": -67.055987,
+   "road_dist_m": 100,
+   "note": "head scarp"
+  },
+  "61": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.554395,
+   "lon": -67.056013,
+   "road_dist_m": 1160,
+   "note": ""
+  },
+  "62": {
+   "group": "QSGJ",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.588029,
+   "lon": -66.904939,
+   "road_dist_m": 270,
+   "note": ""
+  },
+  "63": {
+   "group": "QSGJ",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.583908,
+   "lon": -66.904576,
+   "road_dist_m": 190,
+   "note": ""
+  },
+  "64": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.588263,
+   "lon": -66.901232,
+   "road_dist_m": 650,
+   "note": ""
+  },
+  "65": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.588677,
+   "lon": -66.898251,
+   "road_dist_m": 980,
+   "note": ""
+  },
+  "66": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.587666,
+   "lon": -66.896255,
+   "road_dist_m": 1130,
+   "note": ""
+  },
+  "67": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.581678,
+   "lon": -66.891459,
+   "road_dist_m": 1020,
+   "note": ""
+  },
+  "68": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.589611,
+   "lon": -66.89374,
+   "road_dist_m": 1140,
+   "note": ""
+  },
+  "69": {
+   "group": "QSGJ",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.593706,
+   "lon": -66.906494,
+   "road_dist_m": 340,
+   "note": ""
+  },
+  "70": {
+   "group": "QSGJ",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.59648,
+   "lon": -66.906883,
+   "road_dist_m": 130,
+   "note": ""
+  },
+  "71": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.592047,
+   "lon": -66.896358,
+   "road_dist_m": 850,
+   "note": ""
+  },
+  "72": {
+   "group": "RM",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.59521,
+   "lon": -66.899469,
+   "road_dist_m": 560,
+   "note": ""
+  },
+  "73": {
+   "group": "QC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.579098,
+   "lon": -66.881018,
+   "road_dist_m": 1620,
+   "note": ""
+  },
+  "74": {
+   "group": "QC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.577003,
+   "lon": -66.883893,
+   "road_dist_m": 1230,
+   "note": ""
+  },
+  "75": {
+   "group": "RCC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.592527,
+   "lon": -66.87149,
+   "road_dist_m": 1280,
+   "note": ""
+  },
+  "76": {
+   "group": "QC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "large",
+   "lat": 10.58148,
+   "lon": -66.884714,
+   "road_dist_m": 1470,
+   "note": ""
+  },
+  "77": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.607629,
+   "lon": -66.875705,
+   "road_dist_m": 70,
+   "note": ""
+  },
+  "78": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.606582,
+   "lon": -66.873335,
+   "road_dist_m": 50,
+   "note": ""
+  },
+  "79": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.602256,
+   "lon": -66.853651,
+   "road_dist_m": 110,
+   "note": "low confidence"
+  },
+  "80": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.603496,
+   "lon": -66.852675,
+   "road_dist_m": 70,
+   "note": "low confidence"
+  },
+  "81": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.601504,
+   "lon": -66.851631,
+   "road_dist_m": 80,
+   "note": "low confidence"
+  },
+  "82": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.514512,
+   "lon": -66.801018,
+   "road_dist_m": 1410,
+   "note": ""
+  },
+  "83": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.558521,
+   "lon": -66.875005,
+   "road_dist_m": 670,
+   "note": "probably more like this in dead zone"
+  },
+  "84": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.485621,
+   "lon": -67.014798,
+   "road_dist_m": 100,
+   "note": "low confidence"
+  },
+  "85": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.490887,
+   "lon": -67.019708,
+   "road_dist_m": 340,
+   "note": "low confidence"
+  },
+  "86": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "large",
+   "lat": 10.493808,
+   "lon": -67.023486,
+   "road_dist_m": 130,
+   "note": "head scarp"
+  },
+  "87": {
+   "group": null,
+   "perishability": "low",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.520583,
+   "lon": -66.995148,
+   "road_dist_m": 730,
+   "note": "reactivation?"
+  },
+  "88": {
+   "group": null,
+   "perishability": "high",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.491745,
+   "lon": -66.983618,
+   "road_dist_m": 0,
+   "note": "low confidence"
+  },
+  "89": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.492604,
+   "lon": -66.988405,
+   "road_dist_m": 120,
+   "note": "low confidence"
+  },
+  "90": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "large",
+   "lat": 10.501991,
+   "lon": -66.97846,
+   "road_dist_m": 180,
+   "note": "reactivation"
+  },
+  "91": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.496164,
+   "lon": -66.97616,
+   "road_dist_m": 60,
+   "note": "low confidence"
+  },
+  "92": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.498839,
+   "lon": -66.976765,
+   "road_dist_m": 80,
+   "note": "low confidence"
+  },
+  "93": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.496251,
+   "lon": -66.962243,
+   "road_dist_m": 220,
+   "note": "low confidence"
+  },
+  "94": {
+   "group": null,
+   "perishability": "high",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.494426,
+   "lon": -66.973014,
+   "road_dist_m": 50,
+   "note": ""
+  },
+  "95": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.499398,
+   "lon": -66.946362,
+   "road_dist_m": 50,
+   "note": "low confidence"
+  },
+  "96": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.513752,
+   "lon": -66.970639,
+   "road_dist_m": 260,
+   "note": "low confidence"
+  },
+  "97": {
+   "group": "Trocha",
+   "perishability": "high",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.525736,
+   "lon": -66.968832,
+   "road_dist_m": 0,
+   "note": "reactivation"
+  },
+  "98": {
+   "group": "Trocha",
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.52456,
+   "lon": -66.964434,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "99": {
+   "group": "Trocha",
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.524087,
+   "lon": -66.963268,
+   "road_dist_m": 20,
+   "note": ""
+  },
+  "100": {
+   "group": "Trocha",
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.523321,
+   "lon": -66.964114,
+   "road_dist_m": 50,
+   "note": ""
+  },
+  "101": {
+   "group": "Trocha",
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.524195,
+   "lon": -66.96215,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "102": {
+   "group": "Trocha",
+   "perishability": "med",
+   "location": "populated",
+   "extent": "medium",
+   "lat": 10.523835,
+   "lon": -66.961844,
+   "road_dist_m": 20,
+   "note": ""
+  },
+  "103": {
+   "group": null,
+   "perishability": "med",
+   "location": "populated",
+   "extent": "small",
+   "lat": 10.520705,
+   "lon": -66.961959,
+   "road_dist_m": 160,
+   "note": "low confidence"
+  },
+  "104": {
+   "group": null,
+   "perishability": "",
+   "location": "",
+   "extent": "",
+   "lat": 10.494759,
+   "lon": -66.993256,
+   "road_dist_m": 70,
+   "note": "low confidence"
+  },
+  "105": {
+   "group": null,
+   "perishability": "low",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.59333,
+   "lon": -66.850688,
+   "road_dist_m": 250,
+   "note": ""
+  },
+  "106": {
+   "group": "RCC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.584125,
+   "lon": -66.87316,
+   "road_dist_m": 2230,
+   "note": ""
+  },
+  "107": {
+   "group": "RCC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.592572,
+   "lon": -66.864748,
+   "road_dist_m": 1320,
+   "note": ""
+  },
+  "108": {
+   "group": "RCC",
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.596138,
+   "lon": -66.871049,
+   "road_dist_m": 890,
+   "note": ""
+  },
+  "110": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.516034,
+   "lon": -66.796802,
+   "road_dist_m": 1510,
+   "note": ""
+  },
+  "109": {
+   "group": null,
+   "perishability": "low",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.59008,
+   "lon": -66.848114,
+   "road_dist_m": 580,
+   "note": ""
+  }
+ }
+}
