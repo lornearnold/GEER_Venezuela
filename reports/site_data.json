@@ -1,5 +1,5 @@
 {
- "generated": "2026-07-05",
+ "generated": "2026-07-07",
  "source": "la-guaira_20260626_150535_17_3010.geojson",
  "sites": {
   "1": {
@@ -1100,6 +1100,136 @@
    "lat": 10.59008,
    "lon": -66.848114,
    "road_dist_m": 580,
+   "note": ""
+  },
+  "111": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.53415,
+   "lon": -66.868444,
+   "road_dist_m": 1570,
+   "note": ""
+  },
+  "112": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.537036,
+   "lon": -66.873387,
+   "road_dist_m": 940,
+   "note": ""
+  },
+  "113": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.540486,
+   "lon": -66.872458,
+   "road_dist_m": 920,
+   "note": ""
+  },
+  "114": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.518621,
+   "lon": -66.852513,
+   "road_dist_m": 570,
+   "note": ""
+  },
+  "115": {
+   "group": null,
+   "perishability": "high",
+   "location": "populated",
+   "extent": "large",
+   "lat": 10.598647,
+   "lon": -66.819472,
+   "road_dist_m": 240,
+   "note": ""
+  },
+  "116": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "medium",
+   "lat": 10.596593,
+   "lon": -66.821319,
+   "road_dist_m": 410,
+   "note": ""
+  },
+  "117": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.597278,
+   "lon": -66.824488,
+   "road_dist_m": 510,
+   "note": ""
+  },
+  "118": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.598695,
+   "lon": -66.825284,
+   "road_dist_m": 510,
+   "note": ""
+  },
+  "119": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.593981,
+   "lon": -66.834951,
+   "road_dist_m": 1040,
+   "note": ""
+  },
+  "120": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.594969,
+   "lon": -66.833118,
+   "road_dist_m": 960,
+   "note": ""
+  },
+  "121": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.595167,
+   "lon": -66.835241,
+   "road_dist_m": 900,
+   "note": ""
+  },
+  "122": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.595852,
+   "lon": -66.836717,
+   "road_dist_m": 830,
+   "note": ""
+  },
+  "123": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "",
+   "lat": 10.596393,
+   "lon": -66.834146,
+   "road_dist_m": 780,
    "note": ""
   }
  }

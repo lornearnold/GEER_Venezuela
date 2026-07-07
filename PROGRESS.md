@@ -321,3 +321,81 @@ Goal: slope layer from a DEM to target steep terrain, plus surface geology.
   group sub-folders, points named by site_no, yellow-dot style matching the maps, description
   balloons with the packet-table attributes. Regenerate after site edits: export_site_data.py →
   (plan/figures if geometry changed) → export_kmz.py.
+- 2026-07-07 — Lorne added **4 new candidate sites (111–114)** in QGIS (layer now 114 features;
+  all med-perishability / remote). **Populated `road_dist_m`** for the 4 = straight-line distance to
+  nearest drivable road, EPSG:32619, rounded to 10 m (same method as before), written through the
+  QGIS edit session: 111=1570, 112=940, 113=920, 114=570 m. Regenerated `reports/site_data.json`
+  (114 sites). Built a **standalone 2-page report for just these 4** (`reports/new_sites.pdf`, from
+  new `reports/new_sites.typ` reusing `template.typ`): p1 = cluster 111/112/113 at 1:6000, p2 =
+  site 114 at 1:3000. Imagery notes: all 4 sit on a steep interior flank S of the coastal cluster
+  where post-event optical is poor — the only scene covering 111–113 is **skysat 0.79 m u0001**,
+  whose east flank is deep terrain-shadow (RGB ~27–40, near-black); recovered it with a **0–110
+  contrast stretch** on a cloned renderer (112/113 show clear tan debris scars, 111 a fainter one).
+  caracas skysat 0.87 m is cloud there; **site 114 uses pelican 0.65 m caracas 145824** (bright,
+  full coverage). Locators = Esri hillshade + OSM arterials + candidate dots + red extent box
+  (added a `basemap-credit` param to `template.typ`, default `© Google`, passed `© Esri` here).
+  Figures rendered headlessly via `QgsMapRendererParallelJob` into `reports/figures/new_*.png`
+  (nodata → dark `#1a1a1a` background). Main packet (`report.pdf`)/KMZ not rebuilt — those still
+  cover 110 sites; regenerate when 111–114 should join the full deliverable.
+- 2026-07-07 — Lorne added **9 more candidate sites (115–123)** (layer now 123 features); computed
+  and committed `road_dist_m` (same method): 115=240, 116=410, 117/118=510, 119=1040, 120=960,
+  121=900, 122=830, 123=780 m. All covered by one scene, **skysat 0.73 m `20260627_112621_ssc2_u0002`**,
+  and here it's **bright** (RGB ~44–114, no cloud/nodata) — just a gentle 0–150 stretch. They form
+  two sub-clusters ~850 m apart (NE of and higher than 111–114): **east 115–118** and **west
+  119–123**. Extended `reports/new_sites.typ` to **4 pages** (`new_sites.pdf`): +p3 east 115–118 @
+  1:6000, +p4 west 119–123 @ 1:6000. 115 is the only high-perishability/populated one (near cleared
+  land at the scene edge); nudged the east figure N so 115 doesn't hide under the top-right locator
+  inset. Regenerated `site_data.json` (123 sites). Report now covers all 13 new sites (111–123).
+- 2026-07-07 — Per Lorne: **labeled `new_sites.pdf` "Supplement 1"** (added a `doc-label` param to
+  `template.typ`, shown bold in the header right-block; default `none` so `report.typ` is unaffected)
+  and **switched its locator insets to the Google Maps roadmap base** (`lyrs=m` XYZ) to match the
+  main report's locators, replacing the interim Esri hillshade — re-rendered all 4 `new_*_loc.png`
+  (Google base + candidate dots + red extent box), credit back to `© Google`. `new_sites.typ` now
+  curries `site-page.with(doc-label: [Supplement 1], basemap-credit: [© Google])`.
+- 2026-07-07 — Per Lorne: (1) **halved the locator candidate-dot size** (2.6 → 1.3 mm) so the dots
+  no longer obscure the red zoom box / each other; re-rendered all 4 `new_*_loc.png`. He likes the
+  dots on the area map (the original report's locators had none). (2) **Refactored the report Typst
+  into stable-template + thin-drafting-file** to stop main/supplement from silently diverging (the
+  Esri-vs-Google locator drift). `template.typ` (rarely touched) now also holds `cover-page()` and a
+  single `packet(doc-label:, cover:, units:)` entry point. **Both** `report.typ` and `new_sites.typ`
+  are now thin drafting files that just set toggles + list pages and call `packet`: cover on/off =
+  pass `plan.cover` or `none`; Supplement badge = `doc-label: [Supplement N]` or `none`. Locator
+  base defaults to `© Google` in `site-page`, so no per-doc credit override. Both PDFs recompiled
+  and verified (main cover intact; Supplement 1 badge + small dots on all 4 pages).
+- 2026-07-07 — Per Lorne: **consolidated to a single report drafting file**. Deleted `new_sites.typ`
+  and the stale examples file `site_summary.typ` (+ their PDFs); `reports/` now holds only
+  `template.typ` (machinery) + `report.typ` (the one drafting file). `report.typ` has a
+  **comment/uncomment BUILD CONFIG block** at the top: block (A) = main packet (cover + all
+  `report_plan.json` units), block (B) = a supplement (no cover, `doc-label: [Supplement 1]`, the
+  111–123 pages hand-listed). Uncomment one, comment the other, then `typst compile report.typ
+  <out>.pdf`. Both configs verified → `report.pdf` (main) and `supplement_1.pdf`. Committed default
+  is block A. Noted TODO in-file: re-render the main packet's `loc_*.png` with candidate dots to
+  match the supplement's region maps (Lorne likes the dots).
+- 2026-07-07 — **Pipeline overhaul (claim-audit + Lorne's architecture).** Ran /claim-audit on the
+  QGIS→report/KMZ pipeline: the checked-in half (site_data→Typst/KMZ) was already deterministic and
+  view-independent, but three steps were un-scripted ad-hoc mcp work — `report_plan.json` (a stale
+  frozen "plan"), `road_dist_m`, and the figure/locator/cover rendering. Per Lorne, rebuilt so the
+  candidate layer is the ONLY source of truth and the sole per-build choices are mode (full/supplement)
+  + a site selection:
+  - **Deleted `report_plan.json`.** Sections/groups/order now derive from attributes at build time via
+    `reports/_classify.py` (shared by report + KMZ; verified it reproduced the old section assignment
+    110/110). Rules: §2 high+populated, §3 med+populated, §4 med+remote, §5 rest (incl. high+remote,
+    low+*), §6 = ungrouped AND note=="low confidence" bundle; a group takes its best member's section.
+  - **`compute_road_dist.py`** — standalone geopandas/shapely, candidate + drivable-roads geojson →
+    `road_dist_m` (EPSG:32619, round 10 m). Reproduces all 123 existing values exactly, idempotent.
+  - **`figures/manifest.json`** replaces the plan's render half: per-unit scene/scale/credit/fig/locator,
+    keyed by `_classify` unit key (backfilled from the old plan's 36 units + cover). Produced by the
+    render step; `build_report.py`/`export_kmz.py` read it.
+  - **`build_report.py`** — classify → join manifest → `build/pages.json` → compile `report.typ` (now a
+    thin renderer, no config block). `--mode full|supplement --sites all|3,4,94|111-123 [--label]`.
+    Unrendered units error with a worklist (the "what needs a figure" signal). Full report rebuilds to
+    38 pp identically.
+  - **`export_kmz.py`** rewritten to classify from attributes (no plan); covers all 123.
+  - **`.claude/skills/geer-report/SKILL.md`** — the one command; orchestrates the python steps + the
+    QGIS-mcp render playbook (scale ladder, imagery pick/stretch, Google locator, 1.3 mm dots, exact-scale
+    trick, view-independent `setLayers`, manifest schema). Invoke `/geer-report full all` etc.
+  - **Only two things still need QGIS-mcp** (by design, per Lorne): the figure/locator/cover PNGs and
+    their manifest entries — everything else is a plain `uv run`.
+  - **Stale:** `supplement_1.pdf` + `new_*.png` grouped 111–123 by *spatial* judgment; under the
+    attribute model they're ungrouped singles (or Lorne sets a `group` attr). Flagged, not deleted —
+    the supplement needs a re-render via /geer-report.

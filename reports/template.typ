@@ -1,5 +1,6 @@
-// GEER Venezuela — shared template for one-page site summaries.
-// Imported by report.typ (the full packet) and site_summary.typ (examples).
+// GEER Venezuela — shared template (machinery: site-page, cover-page, packet).
+// Rarely touched. The one drafting file, report.typ, imports this and picks what
+// to build (main packet vs a supplement) via its comment/uncomment config block.
 //
 // Table content is NOT typed here — it comes from site_data.json, generated from the
 // QGIS candidates layer by:  uv run python reports/export_site_data.py
@@ -124,6 +125,8 @@
   locator-scale: none,  // inset 1:N — defaults to map-scale × locator-mult
   bar-meters: 200,      // scale bar ground length
   imagery: "",          // imagery credit line
+  basemap-credit: [© Google],  // locator-inset basemap attribution
+  doc-label: none,      // document-level label shown in the header (e.g. "Supplement 1")
 ) = {
   let nos = if site-nos != none { site-nos } else { sites-in-group(group) }
   let n = nos.len()
@@ -149,6 +152,7 @@
           #text(fill: muted)[Candidates for landslide reconnaissance (#n #if n == 1 [site] else [sites])]
         ],
         [
+          #if doc-label != none [#text(weight: "bold")[#doc-label] \ ]
           GEER (landslides team) 2026-06-24 Venezuela Earthquakes \
           #text(fill: muted)[Draft · #datetime.today().display("[year]-[month]-[day]")]
         ],
@@ -173,7 +177,7 @@
         #set text(size: size-caption)
         #set align(left)
         Candidate site#if n > 1 [s] at 1:#fmt-thousands(map-scale).
-        Inset: setting at 1:#fmt-thousands(loc-scale) (basemap © Google);
+        Inset: setting at 1:#fmt-thousands(loc-scale) (basemap #basemap-credit);
         red box = figure extent. #imagery
       ],
       supplement: none,
@@ -211,4 +215,93 @@
       - All sites flagged from available pre- and post-event satellite imagery; field verification required.
     ]
   ]
+}
+
+// ==================================================================== cover ===
+
+#let cover-map-width = 5.9in
+#let cover-notes-size = 8pt
+
+// Optional cover page. `cover` is a dict with `fig`, `scale`, `source_rows`
+// (the `cover` block of figures/manifest.json). `doc-label`, if set, prints top-right.
+#let cover-page(cover, doc-label: none) = {
+  page(
+    paper: "us-letter",
+    margin: (x: margin-x, top: 0.65in, bottom: margin-bottom),
+  )[
+    #set text(font: font-family, size: size-body)
+    #if doc-label != none {
+      place(top + right, text(weight: "bold", size: size-header)[#doc-label])
+    }
+
+    #align(center)[
+      #text(size: 15pt, weight: "bold")[GEER — 2026-06-24 Venezuela Earthquakes]
+      #v(1pt)
+      #text(size: 11pt)[Landslide reconnaissance — candidate site packet (landslides team)]
+      #v(0pt)
+      #text(size: 9pt, fill: muted)[Draft · #datetime.today().display("[year]-[month]-[day]")]
+    ]
+
+    #v(4pt)
+
+    #figure(
+      box(stroke: fig-border + luma(60), clip: true, image(cover.fig, width: cover-map-width)),
+      caption: [
+        #set text(size: size-caption)
+        #set align(left)
+        Coverage reviewed, 1:#fmt-thousands(cover.scale). Yellow dots = candidate sites;
+        blue outlines = post-event imagery footprints containing at least one site;
+        red dashed area = dead zone (no post-event imagery reviewed to date).
+        Basemap © Google.
+      ],
+      supplement: none,
+      numbering: none,
+    )
+
+    #v(6pt)
+
+    #text(weight: "bold")[Imagery reviewed]
+    #v(2pt)
+    #table(
+      columns: (3.4fr, 1.1fr, 1.3fr, 0.9fr),
+      align: (left, center, center, center),
+      stroke: (x, y) => if y == 0 { (bottom: table-header-rule + black) } else { (bottom: table-row-rule + luma(200)) },
+      fill: (x, y) => if y == 0 { table-header-fill },
+      inset: 4pt,
+      table.header([*Source*], [*GSD (m)*], [*Acquired*], [*Scenes*]),
+      ..for r in cover.source_rows {
+        (r.source, r.gsd_m, r.date, str(r.scenes))
+      },
+    )
+
+    #v(6pt)
+
+    #text(weight: "bold")[Notes]
+    #v(2pt)
+    #set text(size: cover-notes-size)
+    - The potential landslide sites in this document are listed in approximate priority order.
+    - Local expertise should take precedence over the sites indicated in this package. If perishable
+      evidence of landslide activity exists elsewhere, that is of interest. If some of the sites
+      flagged as potential landslides are actually caused by some other source (e.g., land clearing),
+      cross them off the list. However, there are some sites with apparent landslides in areas with
+      mining activity that may still be valuable to collect data on.
+    - Notes with "head scarp" indicate that mapping crack size, density, and orientation behind the
+      potential landslide is of interest.
+    - A dead zone (no post-event imagery reviewed to date) exists in an area where high landslide
+      concentration is expected, but little built infrastructure is apparent.
+    - Sites with "low confidence" in the notes were initially tagged as potential landslides, but
+      have suspected anthropogenic causes.
+  ]
+}
+
+// =================================================================== packet ===
+
+// Single entry point for a whole document. A drafting file sets:
+//   doc-label — [Supplement N] to badge every page, or none
+//   cover     — a cover dict to include the cover page, or none to omit it
+//   units     — array of dicts, each a set of `site-page` arguments
+//               (title, site-nos, fig, locator, map-scale, bar-meters, imagery, …)
+#let packet(doc-label: none, cover: none, units: ()) = {
+  if cover != none { cover-page(cover, doc-label: doc-label) }
+  for u in units { site-page(doc-label: doc-label, ..u) }
 }
