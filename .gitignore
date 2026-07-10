@@ -217,12 +217,22 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# cached DEM/slope rasters (re-downloadable, see notebooks/02)
+# cached DEM/slope rasters (re-downloadable, see notebooks/02) — but keep the small
+# derived slope raster that a project layer reads directly (see data/manifest.yaml).
 data/terrain/*.tif
+!data/terrain/la-guaira_slope.tif
 
-# locally cached basemap imagery (large, re-streamable; see PROGRESS.md)
-data/basemaps/
+# locally cached basemap imagery (large; re-downloadable — see data/manifest.yaml).
+# Ignore the big COGs but keep the small imagery-footprints vector that the project needs.
+data/basemaps/*
+!data/basemaps/imagery_footprints.geojson
 
 # QGIS project backup files
 *.qgz~
 *.qgs~
+
+# Personal working notes (not shared)
+_temp.md
+
+# Regenerable API-response cache (STAC / geology fetches)
+cache/

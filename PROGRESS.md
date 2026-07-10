@@ -399,3 +399,51 @@ Goal: slope layer from a DEM to target steep terrain, plus surface geology.
   - **Stale:** `supplement_1.pdf` + `new_*.png` grouped 111–123 by *spatial* judgment; under the
     attribute model they're ungrouped singles (or Lorne sets a `group` attr). Flagged, not deleted —
     the supplement needs a re-render via /geer-report.
+
+## Data provenance & shareability (2026-07-10)
+
+Goal: make the repo shareable — every layer either in git, streamable online, or with a recorded
+download link. Built a manifest + tooling and closed two gaps.
+
+- **`data/manifest.yaml`** — source of truth cataloguing all 37 project layers into 3 tiers:
+  **12 repo · 9 stream · 16 download** (15 Planet COGs by public Source Coop URL + 1 Vantor mosaic
+  marked `fetch: rebuild`, non-redistributable). Shared `sources:` block holds license/attribution.
+- **`src/geer_venezuela/manifest.py`** — `check` (parses the .qgz, confirms every project layer is
+  catalogued and every repo/download file is on disk), `fetch` (HTTPS-downloads missing download-tier
+  COGs into data/basemaps/), `list`. Added `pyyaml` to deps.
+- **Layer metadata embedded**: every layer now carries source/download link + license + how-to in its
+  QGIS metadata (Layer Properties → Metadata), written from the manifest and saved into the .qgz.
+- **Two gitignore bugs fixed**: `imagery_footprints.geojson` (was under gitignored data/basemaps/) and
+  `la-guaira_slope.tif` (was under data/terrain/*.tif) are small and layer-critical — now tracked via
+  `data/basemaps/*` + `!` exceptions.
+- **`DATA.md`** — collaborator guide: the tiers, `fetch`/`check` commands, how to add layers, and the
+  **external-drive strategy** (symlink `data/basemaps` → the drive so the .qgz's relative paths stay
+  portable; access is by public re-download so no one needs the physical drive).
+- **Resolved:** the `landslide_candidates` layer pointed at the pre-rename filename
+  `landslide_candidates.csv`; repointed it to `geer_venezuela_candidate_sites.csv` (the name Lorne
+  uploaded to the team OneDrive), reads 123 sites, saved. Deleted the stale `site_list.csv` (0–43,
+  superseded — flagged stale in this log since the layer→"Candidate sites" rename) and the orphaned
+  `landslide_candidates.qmd` metadata sidecar (old filename). One CSV now, the geer_venezuela one.
+  `manifest check` is clean.
+
+## Cleanup / slimming for sharing (2026-07-10)
+
+Dropped the route-planning / interpreted-terrain thread and stale scaffolding; kept slope as a base
+layer per Lorne.
+
+- **Removed layers + files:** WATCH watch-segments and Steep areas (≥30°) layers pulled from the
+  project (saved); deleted `data/routes/la-guaira_watch_{segments.geojson,corridors.csv}` and
+  `data/terrain/la-guaira_steep30.geojson`. Kept: Slope, Geology, Arterials, Drivable roads.
+- **Trimmed dead code:** removed `watch_segments()` from `roads.py` and `steep_areas()` from
+  `terrain.py` (+ their `__init__.py` exports and the now-unused `_UTM`). `fetch_roads`/`fetch_dem`/
+  `compute_slope` remain; package still imports clean.
+- **Untracked cache:** `cache/` (28 MB regenerable STAC/geology API responses) `git rm --cached` +
+  gitignored — was tracked, shouldn't be.
+- **Working notes:** `_temp.md` untracked + gitignored (kept on disk). `bare_bones.md` and the
+  `docs/` folder (`field_recon_priorities.md`) were deleted by Lorne — recorded the removals and
+  scrubbed every reference from README, scripts, and manifest.
+- **README** rewritten where it named removed items; the "Field-team deliverable" section now points
+  to `reports/` (PDF + KMZ via geer-report) instead of the deleted planning notes.
+- `manifest check` clean: 35 layers (10 repo · 9 stream · 16 download).
+- *Note:* earlier Phase 2/3 entries above are kept as historical log; they mention the now-removed
+  watch/steep products.

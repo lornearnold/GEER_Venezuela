@@ -17,6 +17,7 @@ dependencies = [
     "localtileserver>=1.0.0",
     "osmnx>=2.1.0",
     "pystac>=1.15.1",
+    "pyyaml>=6.0.3",
     "rasterio>=1.5.0",
     "rioxarray>=0.22.0",
     "shapely>=2.1.2",

@@ -107,27 +107,3 @@ def compute_slope(dem_file: str | Path, out_file: str | Path) -> Path:
     ) as dst:
         dst.write(slope, 1)
     return out_file
-
-
-def steep_areas(slope_file: str | Path, threshold: float = 30.0, min_area_m2: float = 10_000):
-    """Polygons (GeoDataFrame, EPSG:4326) where slope >= threshold degrees.
-
-    Small patches under min_area_m2 are dropped; geometries lightly simplified.
-    """
-    import geopandas as gpd
-    from rasterio.features import shapes
-    from shapely.geometry import shape
-
-    with rasterio.open(slope_file) as src:
-        slope = src.read(1)
-        mask = (slope >= threshold).astype("uint8")
-        polygons = [
-            shape(geom)
-            for geom, value in shapes(mask, mask=mask.astype(bool), transform=src.transform)
-            if value == 1
-        ]
-        gdf = gpd.GeoDataFrame(geometry=polygons, crs=src.crs)
-    gdf = gdf[gdf.area >= min_area_m2].copy()
-    gdf["geometry"] = gdf.simplify(15)
-    gdf["area_km2"] = (gdf.area / 1e6).round(3)
-    return gdf.to_crs("EPSG:4326").reset_index(drop=True)

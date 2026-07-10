@@ -22,9 +22,8 @@ from geer_venezuela.roads import (
     ROAD_COLORS,
     ROADS_ATTRIBUTION,
     fetch_roads,
-    watch_segments,
 )
-from geer_venezuela.terrain import compute_slope, fetch_dem, steep_areas
+from geer_venezuela.terrain import compute_slope, fetch_dem
 from geer_venezuela.viewer import (
     TAG_CATEGORIES,
     add_compare_control,
@@ -56,7 +55,6 @@ __all__ = [
     "add_flicker_control",
     "asset_href",
     "fetch_roads",
-    "watch_segments",
     "compute_slope",
     "fetch_dem",
     "fetch_geology",
@@ -64,6 +62,5 @@ __all__ = [
     "load_items",
     "locations",
     "scenes_for",
-    "steep_areas",
     "wayback_capture_date",
 ]

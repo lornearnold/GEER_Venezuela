@@ -1,4 +1,4 @@
-"""OpenStreetMap road network: arterials and steep-slope watch segments.
+"""OpenStreetMap road network: arterial and drivable roads.
 
 Roads come from OSM via the Overpass API (osmnx). OSM's `highway` tag encodes
 functional class; arterials here = motorway, trunk, primary, secondary (+ links).
@@ -20,8 +20,6 @@ ROAD_COLORS = {
     "secondary": "#a6cee3",
 }
 
-_UTM = "EPSG:32619"
-
 
 def fetch_roads(
     bounds: tuple[float, float, float, float],
@@ -42,20 +40,3 @@ def fetch_roads(
         lines["name"] = None
     keep = [c for c in ("name", "ref", "highway", "geometry") if c in lines.columns]
     return lines[keep].reset_index(drop=True)
-
-
-def watch_segments(
-    roads: gpd.GeoDataFrame,
-    steep: gpd.GeoDataFrame,
-    distance_m: float = 100,
-) -> gpd.GeoDataFrame:
-    """Road segments within distance_m of steep-slope polygons — where field teams
-    should watch for landslide evidence while driving. Returns EPSG:4326 lines
-    with `length_km` per segment."""
-    roads_utm = roads.to_crs(_UTM)
-    zone = steep.to_crs(_UTM).union_all().buffer(distance_m)
-    segments = gpd.clip(roads_utm, zone).explode(index_parts=False)
-    segments = segments[segments.geometry.geom_type == "LineString"].copy()
-    segments["length_km"] = (segments.length / 1000).round(3)
-    segments = segments[segments["length_km"] >= 0.05]  # drop slivers under 50 m
-    return segments.to_crs("EPSG:4326").reset_index(drop=True)

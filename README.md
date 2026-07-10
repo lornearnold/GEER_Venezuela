@@ -19,8 +19,10 @@ Imagery Wayback — see [Data & licensing](#data--licensing).
    fetch/refresh data need the Python env; QGIS itself does not).
 2. Open **`qgis/geer_venezuela.qgz`**.
 3. If any **`AFTER — post-event imagery`** layers show as missing, the local basemap cache
-   (`data/basemaps/`, gitignored, ~10 GB) hasn't been populated on this machine — see
-   [Refreshing / extending data](#refreshing--extending-the-data).
+   (`data/basemaps/`, gitignored, ~10 GB) hasn't been populated on this machine. Pull it with
+   `uv run python -m geer_venezuela.manifest fetch`. Every layer's provenance and download link is
+   catalogued in **[`DATA.md`](DATA.md) / [`data/manifest.yaml`](data/manifest.yaml)** and in each
+   layer's QGIS metadata; `manifest check` audits that nothing is missing.
 
 ## What's in the project
 
@@ -31,17 +33,17 @@ Layer tree, top to bottom:
   scene covers where *before* waiting for pixels to stream/load.
 - **Candidates → Candidate sites** — the marked landslide points, each with an integer **`site_no`**
   attribute (labeled on the map). Digitize new points here (see [Marking sites](#marking-candidate-sites)).
-- **Roads** — OSM arterials colored by class + magenta **watch segments** (arterial stretches
-  within 100 m of ≥30° slopes, where teams should scan for cracking/rockfall).
+- **Roads** — OSM arterials colored by functional class, plus the drivable road network, for
+  siting field access and context.
 - **NASA Disasters (Earthdata)** — streamed live from ArcGIS ImageServers (nothing downloaded):
   Sentinel-1 landslide proxy heatmap (100 m — coarse but blankets the whole Ávila massif),
   Sentinel-2 (10 m) and Landsat optical, Sentinel-2 building-damage likelihood, OPERA and NISAR
   InSAR displacement (ground motion from the quake), and Black Marble night lights.
 - **USGS** — the [rapid landslide assessment](https://doi.org/10.5066/P1MRLOZ7) triage grid
   (extent-class fills, bold red outline where road impacts = yes). Its extent defines the AOI.
-- **Terrain & Geology** — slope from the Copernicus GLO-30 DEM (inferno 0–45°), ≥30° steep-area
-  outlines, and surface geology from Macrostrat/[USGS 1:750k](https://pubs.usgs.gov/of/2005/1038/)
-  (unit name, lithology, age in the attributes).
+- **Terrain & Geology** — slope from the Copernicus GLO-30 DEM (inferno 0–45°) and surface geology
+  from Macrostrat/[USGS 1:750k](https://pubs.usgs.gov/of/2005/1038/) (unit name, lithology, age in
+  the attributes).
 - **AFTER — post-event imagery** — all **15 Planet SkySat/Pelican scenes** that intersect the AOI
   (six locations, Puerto Cabello → Independencia-Ocumare) plus the **Vantor Legion 0.42 m mosaic**
   (La Guaira). Cached locally as COGs; named uniformly `AFTER — <location> · <sensor> <gsd>m · <id>`.
@@ -106,38 +108,37 @@ The `src/geer_venezuela/` helpers fetch and process the source data — run them
 
 ```
 src/geer_venezuela/catalog.py   Planet/Source Coop STAC catalog — scenes, footprints, COG URLs
-src/geer_venezuela/terrain.py   Copernicus GLO-30 DEM → slope + ≥30° steep areas
+src/geer_venezuela/terrain.py   Copernicus GLO-30 DEM → slope
 src/geer_venezuela/geology.py   Macrostrat / USGS 1:750k geology (fetch + point query)
-src/geer_venezuela/roads.py     OSM arterials + steep-slope watch segments
+src/geer_venezuela/roads.py     OSM arterial + drivable roads
 ```
 
 The SkySat/Pelican `visual` COGs are public HTTPS downloads (catalog helpers give the URLs); the
 Vantor mosaic is rebuilt by tiling the NASA ImageServer's `exportImage` endpoint.
 
-## Field-team guidance & deliverable
+## Field-team deliverable
 
-`docs/field_recon_priorities.md` is a perishable-data priority ranking (landslide dams first,
-corridor debris before clearing, crown cracking, timing attribution, pre-first-rain baselines),
-reviewed against the GEER manual and Kaikōura 2016 response literature, with capture protocols and
-report conventions.
-
-The **shareable product for field teams is still to be decided** — candidate options include a
-QGIS print-layout **atlas → PDF** (one page per site with map + attributes), a **KMZ** for Google
-Earth / mobile, or a **web/PDF report**. `bare_bones.md` and `_temp.md` hold working notes toward it.
+The shareable products for field teams are built under `reports/`: a per-site **PDF report**
+(`report.pdf`, one page per candidate site with map + attributes) and a **KMZ** for Google Earth /
+mobile (`geer_venezuela_candidate_sites.kmz`). Both are (re)generated from the QGIS candidate sites
+via the `geer-report` workflow — see `reports/` and the `.claude/skills/geer-report` skill.
 
 ## Layout
 
 ```
 qgis/geer_venezuela.qgz          the QGIS project — all layers, styled
+DATA.md                          data provenance + how to fetch every layer (collaborator guide)
+data/manifest.yaml               machine-readable layer catalog (repo/stream/download tiers)
+src/geer_venezuela/manifest.py   fetch download-tier imagery + audit project vs manifest
 src/geer_venezuela/catalog.py    Planet/Source Coop catalog helpers
-src/geer_venezuela/roads.py      OSM arterials + steep-slope watch segments
-src/geer_venezuela/terrain.py    Copernicus DEM fetch, slope, steep areas
+src/geer_venezuela/roads.py      OSM arterial + drivable roads
+src/geer_venezuela/terrain.py    Copernicus DEM fetch, slope
 src/geer_venezuela/geology.py    Macrostrat/USGS geology fetch + point query
 data/basemaps/                   local COG cache: post-event AFTER imagery + footprints (gitignored)
 data/landslide_candidates/       marked candidate sites (GeoJSON, KMZ)
-data/terrain/                    cached DEM/slope rasters + geology/steep GeoJSON
-data/routes/                     watch segments, arterials, corridor summaries
+data/terrain/                    cached DEM/slope raster + geology GeoJSON
+data/routes/                     arterial + drivable roads (OSM)
 data/usgs/                       USGS rapid landslide assessment (2026-07-01)
-docs/field_recon_priorities.md   perishable-data priorities + recon best practices
+reports/                         per-site PDF report + KMZ deliverable (geer-report workflow)
 PROGRESS.md                      running log of setup work
 ```

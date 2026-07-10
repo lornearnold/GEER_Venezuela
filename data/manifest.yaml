@@ -1,0 +1,227 @@
+# Data manifest for the GEER Venezuela QGIS project.
+#
+# Every layer in qgis/geer_venezuela.qgz is listed here with its provenance, so a
+# collaborator can account for all data. Regenerate/refresh after adding layers.
+#
+# tier:
+#   repo      committed to git — present after `git clone`, no action needed.
+#   stream    live online service — loads automatically when online, nothing to download.
+#   download  too large for git — fetch with:
+#               uv run python -m geer_venezuela.manifest fetch
+#             or download `url` to `path` by hand. Paths are relative to the repo root.
+#             fetch: http   -> direct HTTPS download from `url`.
+#             fetch: rebuild-> not directly downloadable; see `note` for how it was made.
+#
+# Audit that the project and this file agree:
+#   uv run python -m geer_venezuela.manifest check
+#
+# `source` keys into the `sources:` block below (shared license/attribution).
+
+project: qgis/geer_venezuela.qgz
+crs: EPSG:4326
+sources:
+  planet:
+    name: Planet Crisis Response — Venezuela earthquake 2026-06-24
+    url: https://source.coop/planet/venezuela-earthquake-2026-06-24
+    license: CC BY-NC 4.0, © Planet Labs PBC
+  vantor:
+    name: Vantor Legion (NASA CSDA)
+    url: https://www.earthdata.nasa.gov/data/programs/csda
+    license: © Vantor — NON-redistributable (NASA CSDA). Viewing aid only.
+  nasa_disasters:
+    name: NASA Disasters — Venezuela earthquake 2026-06 ImageServers (Earthdata GIS)
+    url: https://gis.earthdata.nasa.gov/portal/apps/sites/#/disasters
+    license: NASA Earthdata — open; individual products may carry Copernicus/USGS terms.
+  esri_wayback:
+    name: Esri World Imagery Wayback, release 2026-05-28
+    url: https://livingatlas.arcgis.com/wayback/
+    license: Esri, Maxar, Earthstar Geographics — Esri terms of use.
+  esri_hillshade:
+    name: Esri World Hillshade
+    url: https://www.arcgis.com/home/item.html?id=1b243539f4514b6ba35e7d995890db1d
+    license: Esri, Airbus DS, USGS, NGA, NASA, CGIAR — Esri terms of use.
+  osm:
+    name: OpenStreetMap arterial + drivable roads
+    url: https://www.openstreetmap.org/copyright
+    license: © OpenStreetMap contributors, ODbL 1.0.
+  usgs:
+    name: USGS rapid imagery-based landslide assessment
+    url: https://doi.org/10.5066/P1MRLOZ7
+    license: USGS — public domain.
+  copernicus_dem:
+    name: Copernicus GLO-30 DEM → slope
+    url: https://registry.opendata.aws/copernicus-dem/
+    license: Copernicus DEM — free/open (ESA / © DLR e.V. 2010-2014 & © Airbus DS 2014-2018).
+  macrostrat:
+    name: Surface geology (USGS 1:750k Geologic Map of Venezuela, via Macrostrat)
+    url: https://macrostrat.org/
+    license: Macrostrat CC-BY; source map Hackley, Urbani et al. (USGS OFR 2005-1038).
+layers:
+- name: dead_zone
+  tier: repo
+  path: data/landslide_candidates/dead_zone.shp
+- name: Imagery footprints (toggle)
+  tier: repo
+  path: data/basemaps/imagery_footprints.geojson
+- name: triangulation
+  tier: repo
+  path: data/landslide_candidates/triangulation.shp
+- name: landslide_candidates
+  tier: repo
+  path: data/landslide_candidates/geer_venezuela_candidate_sites.csv
+- name: Candidate sites
+  tier: repo
+  path: data/landslide_candidates/la-guaira_20260626_150535_17_3010.geojson
+- name: Arterials (OSM)
+  tier: repo
+  path: data/routes/la-guaira_arterials.geojson
+  source: osm
+- name: Drivable roads (OSM)
+  tier: repo
+  path: data/routes/la-guaira_drivable.geojson
+  source: osm
+- name: Sentinel-1 landslide heatmap (NASA, 06-25)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_sentinel1_landslide_heatmap/ImageServer
+  source: nasa_disasters
+- name: Sentinel-2 optical 10 m (NASA)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_sentinel2/ImageServer
+  source: nasa_disasters
+- name: Landsat optical (NASA)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_landsat/ImageServer
+  source: nasa_disasters
+- name: Sentinel-2 building-damage likelihood (NASA)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_sentinel2_buildingDamageLikelihood/ImageServer
+  source: nasa_disasters
+- name: OPERA displacement — InSAR (NASA)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_opera_displacement/ImageServer
+  source: nasa_disasters
+- name: NISAR LOS displacement — InSAR (NASA)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_nisar_losDisplacement/ImageServer
+  source: nasa_disasters
+- name: Black Marble night lights (NASA)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_blackmarble_brdf_cloud/ImageServer
+  source: nasa_disasters
+- name: USGS rapid assessment (2026-07-01)
+  tier: repo
+  path: data/usgs/VenezuelaEarthquake_rapid_imagery_landslide_assessment_20260701.geojson
+  source: usgs
+- name: Geology (USGS 1:750k via Macrostrat)
+  tier: repo
+  path: data/terrain/la-guaira_geology.geojson
+  source: macrostrat
+- name: Slope (degrees)
+  tier: repo
+  path: data/terrain/la-guaira_slope.tif
+  source: copernicus_dem
+- name: AFTER — caracas · skysat 0.87m · 20260626_123541_ssc5_u0001
+  tier: download
+  path: data/basemaps/skysat_20260626_123541_ssc5_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260626_123541_ssc5_u0001/20260626_123541_ssc5_u0001_visual.tif
+  source: planet
+- name: AFTER — caracas · pelican 0.65m · 20260627_145824_88_300d
+  tier: download
+  path: data/basemaps/pelican_20260627_145824_88_300d_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260627_145824_88_300d/20260627_145824_88_300d_visual.tif
+  source: planet
+- name: AFTER — caracas · pelican 0.65m · 20260627_145826_40_300d
+  tier: download
+  path: data/basemaps/pelican_20260627_145826_40_300d_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260627_145826_40_300d/20260627_145826_40_300d_visual.tif
+  source: planet
+- name: AFTER — catia-la-mar · skysat 0.81m · 20260626_112057_ssc4_u0001
+  tier: download
+  path: data/basemaps/skysat_20260626_112057_ssc4_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/catia-la-mar/items/20260626_112057_ssc4_u0001/20260626_112057_ssc4_u0001_visual.tif
+  source: planet
+- name: AFTER — independencia-ocumare · skysat 0.82m · 20260628_122047_ssc1_u0001
+  tier: download
+  path: data/basemaps/skysat_20260628_122047_ssc1_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/independencia-ocumare/items/20260628_122047_ssc1_u0001/20260628_122047_ssc1_u0001_visual.tif
+  source: planet
+- name: AFTER — la-guaira · vantor 0.42m · 20260625 mosaic
+  tier: download
+  path: data/basemaps/vantor_legion_20260625_mosaic.tif
+  fetch: rebuild
+  note: Non-redistributable; rebuilt by tiling the NASA CSDA Vantor ImageServer exportImage endpoint (see
+    src/geer_venezuela/catalog.py notes).
+  source: vantor
+- name: AFTER — la-guaira · pelican 0.62m · 20260626_150535_17_3010
+  tier: download
+  path: data/basemaps/pelican_20260626_150535_17_3010_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260626_150535_17_3010/20260626_150535_17_3010_visual.tif
+  source: planet
+- name: AFTER — la-guaira · pelican 0.62m · 20260626_150536_68_3010
+  tier: download
+  path: data/basemaps/pelican_20260626_150536_68_3010_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260626_150536_68_3010/20260626_150536_68_3010_visual.tif
+  source: planet
+- name: AFTER — la-guaira · skysat 0.66m · 20260627_112651_ssc2_u0001
+  tier: download
+  path: data/basemaps/skysat_20260627_112651_ssc2_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112651_ssc2_u0001/20260627_112651_ssc2_u0001_visual.tif
+  source: planet
+- name: AFTER — la-guaira · skysat 0.67m · 20260627_112651_ssc2_u0002
+  tier: download
+  path: data/basemaps/skysat_20260627_112651_ssc2_u0002_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112651_ssc2_u0002/20260627_112651_ssc2_u0002_visual.tif
+  source: planet
+- name: AFTER — la-guaira · skysat 0.73m · 20260627_112621_ssc2_u0002
+  tier: download
+  path: data/basemaps/skysat_20260627_112621_ssc2_u0002_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112621_ssc2_u0002/20260627_112621_ssc2_u0002_visual.tif
+  source: planet
+- name: AFTER — la-guaira · skysat 0.78m · 20260627_112621_ssc2_u0001
+  tier: download
+  path: data/basemaps/skysat_20260627_112621_ssc2_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112621_ssc2_u0001/20260627_112621_ssc2_u0001_visual.tif
+  source: planet
+- name: AFTER — la-guaira · skysat 0.79m · 20260627_112722_ssc2_u0001
+  tier: download
+  path: data/basemaps/skysat_20260627_112722_ssc2_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112722_ssc2_u0001/20260627_112722_ssc2_u0001_visual.tif
+  source: planet
+- name: AFTER — puerto-cabello · skysat 0.70m · 20260626_114759_ssc12_u0002
+  tier: download
+  path: data/basemaps/skysat_20260626_114759_ssc12_u0002_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/puerto-cabello/items/20260626_114759_ssc12_u0002/20260626_114759_ssc12_u0002_visual.tif
+  source: planet
+- name: AFTER — puerto-cabello · skysat 0.71m · 20260626_114759_ssc12_u0001
+  tier: download
+  path: data/basemaps/skysat_20260626_114759_ssc12_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/puerto-cabello/items/20260626_114759_ssc12_u0001/20260626_114759_ssc12_u0001_visual.tif
+  source: planet
+- name: AFTER — valencia · skysat 0.72m · 20260626_191038_ssc8_u0001
+  tier: download
+  path: data/basemaps/skysat_20260626_191038_ssc8_u0001_visual.tif
+  fetch: http
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/valencia/items/20260626_191038_ssc8_u0001/20260626_191038_ssc8_u0001_visual.tif
+  source: planet
+- name: TOPO — Esri World Hillshade
+  tier: stream
+  url: https://services.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}
+  source: esri_hillshade
+- name: BEFORE — Esri Wayback 2026-05-28
+  tier: stream
+  url: https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10842/{z}/{y}/{x}
+  source: esri_wayback
