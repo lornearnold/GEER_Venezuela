@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "r5_endpoints",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "trip": "R5 — Airport Loop", "role": "start", "label": "Simón Bolívar Airport" }, "geometry": { "type": "Point", "coordinates": [ -66.986, 10.599 ] } },
+{ "type": "Feature", "properties": { "trip": "R5 — Airport Loop", "role": "end", "label": "Simón Bolívar Airport" }, "geometry": { "type": "Point", "coordinates": [ -66.986, 10.599 ] } }
+]
+}

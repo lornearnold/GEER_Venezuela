@@ -1,0 +1,138 @@
+{
+ "note": "Route-map report figures. Rendered from field-trip route layers + trip_sites POIs over Google roadmap; start/end point labels removed. Built by the QGIS render step in build_route_report workflow.",
+ "units": {
+  "r1": {
+   "kind": "route",
+   "poi_nos": [
+    93,
+    94,
+    86
+   ],
+   "scale": 50000,
+   "bar_m": 2000,
+   "locator_scale": 2500000,
+   "fig": "figures/route_r1_main.png",
+   "locator": "figures/route_r1_loc.png",
+   "ext_utm": [
+    716616.0928918644,
+    1157540.9113025682,
+    725082.7595585311,
+    1164102.5779692347
+   ]
+  },
+  "r2": {
+   "kind": "route",
+   "poi_nos": [
+    25,
+    4
+   ],
+   "scale": 40000,
+   "bar_m": 1000,
+   "locator_scale": 2000000,
+   "fig": "figures/route_r2_main.png",
+   "locator": "figures/route_r2_loc.png",
+   "ext_utm": [
+    719920.177994857,
+    1161183.8605182648,
+    726693.5113281902,
+    1166433.1938515983
+   ]
+  },
+  "r3": {
+   "kind": "route",
+   "poi_nos": [
+    125
+   ],
+   "scale": 25000,
+   "bar_m": 1000,
+   "locator_scale": 1250000,
+   "fig": "figures/route_r3_main.png",
+   "locator": "figures/route_r3_loc.png",
+   "ext_utm": [
+    725499.6363502402,
+    1170284.8886982657,
+    729732.9696835735,
+    1173565.7220315991
+   ]
+  },
+  "r4": {
+   "kind": "route",
+   "poi_nos": [
+    124,
+    105,
+    79,
+    80,
+    81,
+    78
+   ],
+   "scale": 40000,
+   "bar_m": 1000,
+   "locator_scale": 2000000,
+   "fig": "figures/route_r4_main.png",
+   "locator": "figures/route_r4_loc.png",
+   "ext_utm": [
+    731812.613510544,
+    1170584.182248389,
+    738585.9468438772,
+    1175833.5155817226
+   ]
+  },
+  "r5": {
+   "kind": "route",
+   "poi_nos": [
+    57,
+    58,
+    55,
+    49,
+    1,
+    2,
+    4,
+    24,
+    48
+   ],
+   "scale": 60000,
+   "bar_m": 2000,
+   "locator_scale": 3000000,
+   "fig": "figures/route_r5_main.png",
+   "locator": "figures/route_r5_loc.png",
+   "ext_utm": [
+    715077.1481757184,
+    1164823.7773700503,
+    725237.1481757184,
+    1172697.7773700503
+   ]
+  },
+  "r5alt": {
+   "kind": "route",
+   "poi_nos": [
+    57,
+    58,
+    55,
+    49,
+    1,
+    2,
+    4,
+    25,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    24,
+    48
+   ],
+   "scale": 60000,
+   "bar_m": 2000,
+   "locator_scale": 3000000,
+   "fig": "figures/route_r5alt_main.png",
+   "locator": "figures/route_r5alt_loc.png",
+   "ext_utm": [
+    715989.7094088084,
+    1164335.938911852,
+    726149.7094088084,
+    1172209.938911852
+   ]
+  }
+ }
+}

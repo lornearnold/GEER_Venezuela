@@ -1,0 +1,403 @@
+{
+ "routes": [
+  {
+   "key": "r1",
+   "trip": "R1 — El Junquito Ridge",
+   "start": "Caracas (Catia)",
+   "end": "near site 86",
+   "km": 20.7,
+   "poi_nos": [
+    93,
+    94,
+    86
+   ],
+   "pois": [
+    {
+     "site_no": 93,
+     "lat": 10.496251,
+     "lon": -66.962243,
+     "location": null,
+     "slope_deg": 27.2,
+     "aspect_dir": "N"
+    },
+    {
+     "site_no": 94,
+     "lat": 10.494426,
+     "lon": -66.973014,
+     "location": "populated",
+     "slope_deg": 29.1,
+     "aspect_dir": "S"
+    },
+    {
+     "site_no": 86,
+     "lat": 10.493808,
+     "lon": -67.023486,
+     "location": "remote",
+     "slope_deg": 29.6,
+     "aspect_dir": "NW"
+    }
+   ]
+  },
+  {
+   "key": "r2",
+   "trip": "R2 — Autopista + Trocha",
+   "start": "Caracas (Catia)",
+   "end": "site 4",
+   "km": 9.8,
+   "poi_nos": [
+    25,
+    4
+   ],
+   "pois": [
+    {
+     "site_no": 25,
+     "lat": 10.525799,
+     "lon": -66.970339,
+     "location": "populated",
+     "slope_deg": 29.3,
+     "aspect_dir": "S"
+    },
+    {
+     "site_no": 4,
+     "lat": 10.533847,
+     "lon": -66.983632,
+     "location": "populated",
+     "slope_deg": 23.8,
+     "aspect_dir": "SW"
+    }
+   ]
+  },
+  {
+   "key": "r3",
+   "trip": "R3 — Forum Stadium → 125",
+   "start": "Forum La Guaira Stadium",
+   "end": "site 125",
+   "km": 6.4,
+   "poi_nos": [
+    125
+   ],
+   "pois": [
+    {
+     "site_no": 125,
+     "lat": 10.583776,
+     "lon": -66.906341,
+     "location": null,
+     "slope_deg": null,
+     "aspect_dir": null
+    }
+   ]
+  },
+  {
+   "key": "r4",
+   "trip": "R4 — La Guaira Coast",
+   "start": "site 124",
+   "end": "site 78",
+   "km": 13.5,
+   "poi_nos": [
+    124,
+    105,
+    79,
+    80,
+    81,
+    78
+   ],
+   "pois": [
+    {
+     "site_no": 124,
+     "lat": 10.607475,
+     "lon": -66.827416,
+     "location": "populated",
+     "slope_deg": null,
+     "aspect_dir": null
+    },
+    {
+     "site_no": 105,
+     "lat": 10.59333,
+     "lon": -66.850688,
+     "location": "remote",
+     "slope_deg": 53.0,
+     "aspect_dir": "E"
+    },
+    {
+     "site_no": 79,
+     "lat": 10.602256,
+     "lon": -66.853651,
+     "location": null,
+     "slope_deg": 25.0,
+     "aspect_dir": "NE"
+    },
+    {
+     "site_no": 80,
+     "lat": 10.603496,
+     "lon": -66.852675,
+     "location": null,
+     "slope_deg": 31.9,
+     "aspect_dir": "NE"
+    },
+    {
+     "site_no": 81,
+     "lat": 10.601504,
+     "lon": -66.851631,
+     "location": null,
+     "slope_deg": 30.1,
+     "aspect_dir": "E"
+    },
+    {
+     "site_no": 78,
+     "lat": 10.606582,
+     "lon": -66.873335,
+     "location": "populated",
+     "slope_deg": 27.4,
+     "aspect_dir": "NE"
+    }
+   ]
+  },
+  {
+   "key": "r5",
+   "trip": "R5 — Airport Loop",
+   "start": "Simón Bolívar Airport",
+   "end": "Simón Bolívar Airport",
+   "km": 33.1,
+   "poi_nos": [
+    57,
+    58,
+    55,
+    49,
+    1,
+    2,
+    4,
+    24,
+    48
+   ],
+   "pois": [
+    {
+     "site_no": 57,
+     "lat": 10.580476,
+     "lon": -66.976736,
+     "location": "remote",
+     "slope_deg": 38.0,
+     "aspect_dir": "W"
+    },
+    {
+     "site_no": 58,
+     "lat": 10.579688,
+     "lon": -66.979543,
+     "location": "remote",
+     "slope_deg": 41.8,
+     "aspect_dir": "NE"
+    },
+    {
+     "site_no": 55,
+     "lat": 10.570604,
+     "lon": -66.971632,
+     "location": "remote",
+     "slope_deg": 35.8,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 49,
+     "lat": 10.560389,
+     "lon": -67.00062,
+     "location": "remote",
+     "slope_deg": 19.0,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 1,
+     "lat": 10.549015,
+     "lon": -66.989994,
+     "location": "remote",
+     "slope_deg": 25.8,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 2,
+     "lat": 10.543535,
+     "lon": -66.987934,
+     "location": "remote",
+     "slope_deg": 26.5,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 4,
+     "lat": 10.533847,
+     "lon": -66.983632,
+     "location": "populated",
+     "slope_deg": 23.8,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 24,
+     "lat": 10.539321,
+     "lon": -66.97522,
+     "location": "populated",
+     "slope_deg": 37.8,
+     "aspect_dir": "W"
+    },
+    {
+     "site_no": 48,
+     "lat": 10.562043,
+     "lon": -67.001342,
+     "location": "remote",
+     "slope_deg": 26.8,
+     "aspect_dir": "S"
+    }
+   ]
+  },
+  {
+   "key": "r5alt",
+   "trip": "R5alt — Airport Loop (via Trocha)",
+   "start": "Simón Bolívar Airport",
+   "end": "Simón Bolívar Airport",
+   "km": 42.8,
+   "poi_nos": [
+    57,
+    58,
+    55,
+    49,
+    1,
+    2,
+    4,
+    25,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    24,
+    48
+   ],
+   "pois": [
+    {
+     "site_no": 57,
+     "lat": 10.580476,
+     "lon": -66.976736,
+     "location": "remote",
+     "slope_deg": 38.0,
+     "aspect_dir": "W"
+    },
+    {
+     "site_no": 58,
+     "lat": 10.579688,
+     "lon": -66.979543,
+     "location": "remote",
+     "slope_deg": 41.8,
+     "aspect_dir": "NE"
+    },
+    {
+     "site_no": 55,
+     "lat": 10.570604,
+     "lon": -66.971632,
+     "location": "remote",
+     "slope_deg": 35.8,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 49,
+     "lat": 10.560389,
+     "lon": -67.00062,
+     "location": "remote",
+     "slope_deg": 19.0,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 1,
+     "lat": 10.549015,
+     "lon": -66.989994,
+     "location": "remote",
+     "slope_deg": 25.8,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 2,
+     "lat": 10.543535,
+     "lon": -66.987934,
+     "location": "remote",
+     "slope_deg": 26.5,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 4,
+     "lat": 10.533847,
+     "lon": -66.983632,
+     "location": "populated",
+     "slope_deg": 23.8,
+     "aspect_dir": "SW"
+    },
+    {
+     "site_no": 25,
+     "lat": 10.525799,
+     "lon": -66.970339,
+     "location": "populated",
+     "slope_deg": 29.3,
+     "aspect_dir": "S"
+    },
+    {
+     "site_no": 97,
+     "lat": 10.525736,
+     "lon": -66.968832,
+     "location": "populated",
+     "slope_deg": 45.4,
+     "aspect_dir": "S"
+    },
+    {
+     "site_no": 98,
+     "lat": 10.52456,
+     "lon": -66.964434,
+     "location": "populated",
+     "slope_deg": 21.0,
+     "aspect_dir": "SE"
+    },
+    {
+     "site_no": 99,
+     "lat": 10.524087,
+     "lon": -66.963268,
+     "location": "populated",
+     "slope_deg": 23.5,
+     "aspect_dir": "NW"
+    },
+    {
+     "site_no": 100,
+     "lat": 10.523321,
+     "lon": -66.964114,
+     "location": "populated",
+     "slope_deg": 26.4,
+     "aspect_dir": "NW"
+    },
+    {
+     "site_no": 101,
+     "lat": 10.524195,
+     "lon": -66.96215,
+     "location": "populated",
+     "slope_deg": 26.5,
+     "aspect_dir": "N"
+    },
+    {
+     "site_no": 102,
+     "lat": 10.523835,
+     "lon": -66.961844,
+     "location": "populated",
+     "slope_deg": 25.0,
+     "aspect_dir": "N"
+    },
+    {
+     "site_no": 24,
+     "lat": 10.539321,
+     "lon": -66.97522,
+     "location": "populated",
+     "slope_deg": 37.8,
+     "aspect_dir": "W"
+    },
+    {
+     "site_no": 48,
+     "lat": 10.562043,
+     "lon": -67.001342,
+     "location": "remote",
+     "slope_deg": 26.8,
+     "aspect_dir": "S"
+    }
+   ]
+  }
+ ]
+}

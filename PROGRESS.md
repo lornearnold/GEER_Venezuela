@@ -447,3 +447,134 @@ layer per Lorne.
 - `manifest check` clean: 35 layers (10 repo · 9 stream · 16 download).
 - *Note:* earlier Phase 2/3 entries above are kept as historical log; they mention the now-removed
   watch/steep products.
+
+## New data: vegetation + 1999 Vargas mosaics (2026-07-15)
+
+Two datasets from `data/temp_to_sort/` sorted into the project.
+
+- **Vegetation formations (national, 2010):** translated the Spanish shapefile
+  `101231_Formaciones_vegetales_2010_WGS84` (23 polygons, Huber & Alarcón formations, EPSG:4326)
+  to `data/terrain/vegetation_formations_2010.geojson`. Original Spanish `FV_VE` kept intact;
+  English added as `veg_en`. Added under **Terrain & Geology**, categorized by `veg_en`, off by
+  default. GeoJSON + git-tracked (sits next to the geology layer).
+- **1999 Vargas aerial mosaics (post-disaster, flown 21–27 Dec 1999, ~1:15,000):** scanned photo
+  mosaics of the Camurí→Caraballeda→Tanaguarena→Macuto coast — none were georeferenced (pixel-space,
+  no CRS). Moved all 10 files to `data/basemaps/historical_1999_vargas/` (gitignored, not tracked).
+  Georeferenced the two best via QGIS Georeferencer (Lorne placed GCPs against the BEFORE layer),
+  then GDAL TPS + cubic warp to EPSG:4326:
+  - `Camuri_Chco-Cerro_Grande.jpg` (17 GCPs) → `BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27.tif`
+  - `Mosvar.tif` (48 GCPs, wide strip) → `BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27.tif`
+  Both ~2.8 m/px, overviews built, added under **Basemaps** (off by default). The `.points` files
+  are kept alongside the sources so either warp can be re-run. Remaining 8 files are redundant
+  crops/versions (`Mosvargas Camuri-Naiguata.jpg` == `Mosvar2r.jpg`, byte-identical) left un-warped.
+  These are a valuable historical BEFORE-analog: they show the 1999 debris fans and channel scour.
+
+## Imagery expansion: Satellogic, Maxar, PlanetScope + border fixes (2026-07-21)
+
+Added three streams of post-event imagery and fixed opaque-border problems on two of them.
+
+- **Satellogic (NASA Earthdata) — streaming.** From the Web Map item `3edc2b4ea24e…` pulled two
+  ImageServers (`202611_satellogic` true color, `202611_satellogic_ndvi`). Added under **NASA
+  Disasters (Earthdata)** via the `arcgismapserver` provider (EPSG:3857, jpgpng), matching the other
+  NASA layers. Partial swaths over the La Guaira/Caracas coast, off by default. Verified live with a
+  direct `exportImage` (QGIS render times out on the slow Earthdata TLS — a known quirk, not a fault).
+
+- **Maxar/Vantor WorldView deliveries → clipped visual GeoTIFFs.** 6 unique scenes (25–26 Jun 2026,
+  WV-2/WV-3, ~0.46 m) live on the external One Touch drive as raw 8-band/16-bit R#C# tiles. Built a
+  VRT per delivery (absolute paths, in `data/basemaps/maxar_external/`), then translated to 8-bit RGB
+  (natural color R=band5/G=band3/B=band2) and **clipped to each scene's XML footprint** via
+  `gdalwarp -cutline` → JPEG/YCbCr GeoTIFFs with a lossless internal mask (clean transparent border,
+  no collar). Output in `data/basemaps/maxar_visual/` (gitignored), ~100 MB–1 GB each, added as
+  **AFTER** layers off by default. 5 of 6 done; **puerto-cabello (`S3DS_362958`) still to regenerate**
+  from its VRT (first clip came out empty from a bled-JPEG source; needs the drive reconnected).
+  Full recipe + the GDAL-codec/PROJ gotcha are in the `maxar-external-drive-imagery` memory.
+  Footprint layer: `data/basemaps/maxar_visual/maxar_footprints.geojson` (from the XML corners).
+
+- **PlanetScope post-event time series — on the drive.** 63 scenes (`*_3B_AnalyticMS_SR.tif`, 4-band
+  B/G/R/NIR, 16-bit, 3 m, EPSG:32619, LZW + internal overviews) in
+  `/Volumes/One Touch/satellite_imagery/post_earthquake`, spanning 15 dates 2026-06-25→07-17. Added
+  in place (not copied) under a **"PlanetScope post-event (external)"** group with a per-date
+  subgroup, chronologically ordered, off by default. True color R=3/G=2/B=1. Rendering: after testing
+  per-scene cumulative cuts (which made water-heavy/hazy scenes look inconsistent), settled on a
+  **shared fixed stretch min=200/max=3500 on all RGB bands across all 63** for a consistent look
+  (Lorne confirmed). Band 4 is NIR — available for CIR false-color / NDVI-difference work later.
+
+- **1999 BEFORE mosaics — border fix.** An automated edge flood-fill was tried to drop the scanned-
+  paper margins but it removed interior content, so it was reverted: both mosaics were **regenerated
+  from the original scans + saved `.points` GCPs** (clean, `-dstalpha` for the warp collar only).
+  The proper trim is a hand-drawn crop polygon per mosaic → `gdalwarp -cutline`; step-by-step
+  instructions saved in `docs/trimming-1999-mosaics.md` (includes the rebuild-from-points recipe).
+  Lorne to draw the polygons when ready.
+
+- **GDAL note:** the `gdal_translate` on PATH is GDAL 3.3 (Postgres.app) with no JPEG codec — use the
+  QGIS-bundled GDAL 3.12 at `/Applications/QGIS-LTR.app/Contents/MacOS/` with `GDAL_DATA`/`PROJ_LIB`
+  pointing under `Contents/Resources/qgis/` (the `/qgis/` segment is required or PROJ drops the CRS).
+
+## GeoSyntec geomorphic aerial interpretation (2026-07-21)
+
+Colleague shared two shapefiles via OneDrive (`GeomorphAerials_07192026`, `GeomorphAerials_07202026`).
+Checked: the 07-20 file is a clean **superset** of 07-19 (all 424 of the 19th's IDs present, plus 92
+new = 516 features; identical schema/extent/CRS). So only the newer 07-20 was imported.
+
+Converted the 07-20 shapefile to `data/geosyntec/geosyntec_geomorph_aerials_20260720.geojson`
+(EPSG:4326, git-tracked). Added under a new **GeoSyntec** group, categorized by `Type`
+(452 Landslide, 41 Liquefaction, 16 Ground Rupture, 7 Ground Settlement), off by default.
+Attributes include Confidence, subtype (LS/LQ/GR), Impact, Source, Comments. Manifest updated
+(new `geosyntec` source; 110 layers, audit clean apart from the stray Avila KML).
+
+## Slope & aspect characterization + Avila line inventory (2026-07-21)
+
+Characterized slope magnitude and orientation (aspect) for the earthquake landslide datasets from
+the 30 m Copernicus DEM (`data/terrain/la-guaira_dem.tif`), reprojected to UTM 19N so slope is
+computed in meters. Aspect uses a **circular mean** (vector average) throughout, so a north-facing
+feature never wrongly averages to south.
+
+- **Candidate points (123):** sampled slope/aspect at each point; added `slope_deg`, `aspect_deg`,
+  `aspect_dir` to the Candidate sites layer. Median slope 27.8°; strong N/NE/NW aspect bias.
+- **GeoSyntec polygons (516):** zonal stats (all_touched, so sub-cell polygons still get values;
+  0 needed centroid fallback). Added `slope_mean/min/max`, `aspect_deg`, `aspect_R`, `aspect_dir`,
+  `n_cells`. Types separate as expected: Landslide 33.8° mean, Liquefaction 2.2°, Settlement 3.1°,
+  Ground Rupture 5.9° — validates the mapping. 452 landslides face dominantly NE.
+- **Ávila line inventory (640 lines):** the actual landslide-line dataset (was loaded from
+  `~/Downloads/VenLS_AvilaDRAFT_15July2026.kml`). Imported to
+  `data/usgs_avila/venls_avila_inventory_line_20260715.geojson` (EPSG:4326, git-tracked); layer
+  re-pointed at the repo file under the **USGS** group. Slope/aspect sampled every ~15 m along each
+  line: `slope_mean/max`, `aspect_deg`, `aspect_R`, `length_m`, `aspect_dir`. Total mapped length
+  52.4 km, median slope 37.1°. Note: the earlier `USGS rapid assessment` polygon layer is a uniform
+  ~2.45 km assessment grid (335 identical cells rated minor/localized/major), NOT landslide shapes —
+  not suitable for a slope/aspect rose.
+
+**Consistent finding across all three datasets:** landslides concentrate on **NE-facing, steep
+(≥40–50°) slopes** — the seaward face of the coastal range. Area/length weighting strengthens the NE
+signal further (NE = 37% of GeoSyntec landslide count but 44% of area; 35% of Ávila line count but
+41% of length).
+
+- **Notebooks** (`notebooks/`, Jupyter; env has geopandas+matplotlib+rasterio): stacked slope-roses
+  (aspect × count/area/length × slope class) + companion plots.
+  - `candidate_slope_aspect.ipynb`
+  - `geosyntec_slope_aspect.ipynb` (landslide-only; count + area roses)
+  - `avila_lines_slope_aspect.ipynb` (count + length roses)
+- Manifest updated (`geosyntec`, `avila_inventory` sources; 111 layers, audit clean — the stray
+  Downloads KML is now a tracked repo layer).
+
+## Route-map report (field trips)
+
+New report type alongside the candidate-site packet: **one page per field-trip route**
+(`reports/routes/`), for the 6 planned trips (R1–R5, R5alt). Parallel pipeline, separate from
+the site report so neither touches the other:
+
+- `build_route_data.py` → `route_data.json`: per-route ordered POI list (site→route mapping
+  transcribed from `_temp.md` as `ROUTE_POIS`) joined to `trip_sites.geojson` attributes
+  (coords, setting, slope, aspect).
+- `template_routes.typ` (imports the shared `../template.typ` knobs/helpers) + thin
+  `report_routes.typ`; `build_route_report.py` joins `route_data.json` to
+  `figures/manifest.json` → `route_pages.json` → `typst compile --root reports` (root must be
+  `reports/` so the cross-dir import + `site_data.json` both resolve).
+- Figures rendered from QGIS: route line (blue) + that route's POIs (yellow numbered dots) over
+  **Google roadmap**, with the start/end **point labels removed** (start = green triangle, end =
+  red triangle, unlabeled — the start → end text lives in the page header instead). Locator inset,
+  scale bar, north arrow as on the site pages. Loop routes (R5/R5alt) rendered at 1:60000 to fit
+  the airport→south loop; R1 1:50000, R2/R4 1:40000, R3 1:25000.
+- Each page carries a POI table (site · coords link · setting · slope · aspect).
+
+Output: `reports/routes/report_routes.pdf` (6 pages).

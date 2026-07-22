@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "r5alt_endpoints",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "trip": "R5alt — Airport Loop (via Trocha)", "role": "start", "label": "Simón Bolívar Airport" }, "geometry": { "type": "Point", "coordinates": [ -66.986, 10.599 ] } },
+{ "type": "Feature", "properties": { "trip": "R5alt — Airport Loop (via Trocha)", "role": "end", "label": "Simón Bolívar Airport" }, "geometry": { "type": "Point", "coordinates": [ -66.986, 10.599 ] } }
+]
+}

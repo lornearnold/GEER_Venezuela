@@ -1,22 +1,3 @@
-# Data manifest for the GEER Venezuela QGIS project.
-#
-# Every layer in qgis/geer_venezuela.qgz is listed here with its provenance, so a
-# collaborator can account for all data. Regenerate/refresh after adding layers.
-#
-# tier:
-#   repo      committed to git — present after `git clone`, no action needed.
-#   stream    live online service — loads automatically when online, nothing to download.
-#   download  too large for git — fetch with:
-#               uv run python -m geer_venezuela.manifest fetch
-#             or download `url` to `path` by hand. Paths are relative to the repo root.
-#             fetch: http   -> direct HTTPS download from `url`.
-#             fetch: rebuild-> not directly downloadable; see `note` for how it was made.
-#
-# Audit that the project and this file agree:
-#   uv run python -m geer_venezuela.manifest check
-#
-# `source` keys into the `sources:` block below (shared license/attribution).
-
 project: qgis/geer_venezuela.qgz
 crs: EPSG:4326
 sources:
@@ -24,6 +5,12 @@ sources:
     name: Planet Crisis Response — Venezuela earthquake 2026-06-24
     url: https://source.coop/planet/venezuela-earthquake-2026-06-24
     license: CC BY-NC 4.0, © Planet Labs PBC
+  geosyntec:
+    name: GeoSyntec geomorphic aerial interpretation — Venezuela earthquake 2026
+    license: © GeoSyntec — shared by collaborator; internal use.
+  avila_inventory:
+    name: Ávila landslide inventory (draft) — Venezuela earthquake 2026, shared by collaborator
+    license: Draft inventory — shared by collaborator; internal use.
   vantor:
     name: Vantor Legion (NASA CSDA)
     url: https://www.earthdata.nasa.gov/data/programs/csda
@@ -154,8 +141,7 @@ layers:
   tier: download
   path: data/basemaps/vantor_legion_20260625_mosaic.tif
   fetch: rebuild
-  note: Non-redistributable; rebuilt by tiling the NASA CSDA Vantor ImageServer exportImage endpoint (see
-    src/geer_venezuela/catalog.py notes).
+  note: Non-redistributable; rebuilt by tiling the NASA CSDA Vantor ImageServer exportImage endpoint (see src/geer_venezuela/catalog.py notes).
   source: vantor
 - name: AFTER — la-guaira · pelican 0.62m · 20260626_150535_17_3010
   tier: download
@@ -225,3 +211,484 @@ layers:
   tier: stream
   url: https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10842/{z}/{y}/{x}
   source: esri_wayback
+- name: AFTER — Satellogic true color 0.5–1 m (NASA, 06-26/27)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_satellogic/ImageServer
+  source: nasa_disasters
+- name: Satellogic NDVI (NASA, 06-26/27)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_satellogic_ndvi/ImageServer
+  source: nasa_disasters
+- name: Vegetation formations 2010 (Huber & Alarcón)
+  tier: repo
+  path: data/terrain/vegetation_formations_2010.geojson
+- name: BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27
+  tier: download
+  path: data/basemaps/historical_1999_vargas/BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27.tif
+  fetch: rebuild
+  note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
+- name: BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27
+  tier: download
+  path: data/basemaps/historical_1999_vargas/BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27.tif
+  fetch: rebuild
+  note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
+- name: Maxar/Vantor delivery footprints (external drive)
+  tier: download
+  path: data/basemaps/maxar_visual/maxar_footprints.geojson
+  fetch: rebuild
+  note: Footprint polygons parsed from each delivery product XML corner coordinates.
+- name: AFTER — la-guaira · worldview-2 0.46m · 20260625_212928 (Maxar)
+  tier: download
+  path: data/basemaps/maxar_visual/AFTER_la-guaira_wv2_20260625_212928.tif
+  fetch: rebuild
+  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
+  source: vantor
+- name: AFTER — la-guaira · worldview-2 0.46m · 20260625_212947 (Maxar)
+  tier: download
+  path: data/basemaps/maxar_visual/AFTER_la-guaira_wv2_20260625_212947.tif
+  fetch: rebuild
+  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
+  source: vantor
+- name: AFTER — la-guaira-west · worldview-2 0.46m · 20260625_142038 (Maxar)
+  tier: download
+  path: data/basemaps/maxar_visual/AFTER_la-guaira-west_wv2_20260625_142038.tif
+  fetch: rebuild
+  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
+  source: vantor
+- name: AFTER — valencia-west · worldview-2 0.46m · 20260626_140331 (Maxar)
+  tier: download
+  path: data/basemaps/maxar_visual/AFTER_valencia-west_wv2_20260626_140331.tif
+  fetch: rebuild
+  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
+  source: vantor
+- name: AFTER — valencia-west · worldview-3 0.46m · 20260626_140407 (Maxar)
+  tier: download
+  path: data/basemaps/maxar_visual/AFTER_valencia-west_wv3_20260626_140407.tif
+  fetch: rebuild
+  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
+  source: vantor
+- name: PS 2026-06-25 150337 · 254f
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260625_150337_05_254f_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 145711 · 2558
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145711_05_2558_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 145718 · 2558
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145718_09_2558_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 150246 · 2563
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150246_34_2563_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 150347 · 2555
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150347_71_2555_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 150352 · 2555
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150352_46_2555_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 150354 · 2555
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150354_84_2555_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 152834 · 2538
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152834_56_2538_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 152836 · 2538
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152836_55_2538_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-26 153510 · 253a
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_153510_89_253a_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-27 145729 · 24d8
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145729_28_24d8_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-27 145730 · 2553
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145730_42_2553_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-27 145731 · 24d8
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145731_64_24d8_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-27 150903 · 254c
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_150903_45_254c_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-27 153106 · 2530
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153106_40_2530_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-27 153535 · 251e
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153535_90_251e_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150034 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150034_30_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150036 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150036_68_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150039 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150039_05_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150315 · 255c
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150315_73_255c_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150825 · 257a
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150825_56_257a_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150937 · 256e
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150937_37_256e_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150939 · 256e
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150939_71_256e_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 150942 · 256e
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150942_06_256e_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 153406 · 253b
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153406_58_253b_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 153607 · 2539
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153607_08_2539_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 153611 · 2539
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153611_06_2539_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 153952 · 2504
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153952_18_2504_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 153954 · 2504
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153954_17_2504_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-29 153956 · 2504
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153956_16_2504_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-30 150344 · 2544
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150344_18_2544_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-06-30 150452 · 254f
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150452_43_254f_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-05 150014 · 2575
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150014_98_2575_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-05 150133 · 2560
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150133_96_2560_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-05 150455 · 2570
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150455_58_2570_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-05 150550 · 254f
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150550_25_254f_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-06 150526 · 2563
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_150526_96_2563_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-06 155030 · 250b
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_155030_67_250b_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-08 145518 · 2520
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260708_145518_70_2520_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-10 153643 · 253d
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_153643_59_253d_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-10 155427 · 24de
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_155427_15_24de_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-12 145757 · 255a
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145757_21_255a_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-12 145759 · 255a
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145759_33_255a_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-12 150259 · 2555
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_150259_04_2555_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-13 154828 · 24fa
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260713_154828_90_24fa_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-14 153957 · 2530
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_153957_69_2530_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-14 154732 · 24db
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_154732_46_24db_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 145459 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145459_33_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 145504 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145504_05_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 145506 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145506_40_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 145508 · 2510
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145508_76_2510_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 145740 · 255c
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145740_96_255c_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 150440 · 2562
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150440_15_2562_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 150442 · 2562
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150442_26_2562_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 150444 · 2562
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150444_37_2562_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 150650 · 254f
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150650_41_254f_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 153425 · 2531
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_153425_37_2531_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-15 154417 · 2534
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_154417_98_2534_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-16 145436 · 2565
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260716_145436_44_2565_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-17 145651 · 254b
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_145651_14_254b_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-17 153553 · 251d
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153553_15_251d_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-17 153555 · 251d
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153555_01_251d_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: PS 2026-07-17 153558 · 251d
+  tier: download
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153558_75_251d_3B_AnalyticMS_SR.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+  source: planet
+- name: GeoSyntec geomorph aerials (2026-07-20)
+  tier: repo
+  path: data/geosyntec/geosyntec_geomorph_aerials_20260720.geojson
+  source: geosyntec
+- name: Avila landslide inventory — lines (2026-07-15 draft)
+  tier: repo
+  path: data/usgs_avila/venls_avila_inventory_line_20260715.geojson
+  source: avila_inventory
+- name: R1 — El Junquito Ridge — route
+  tier: repo
+  path: data/routes/field_trips/r1_line.geojson
+- name: R1 — El Junquito Ridge — start/end
+  tier: repo
+  path: data/routes/field_trips/r1_endpoints.geojson
+- name: R2 — Autopista + Trocha — route
+  tier: repo
+  path: data/routes/field_trips/r2_line.geojson
+- name: R2 — Autopista + Trocha — start/end
+  tier: repo
+  path: data/routes/field_trips/r2_endpoints.geojson
+- name: R3 — Forum Stadium → 125 — route
+  tier: repo
+  path: data/routes/field_trips/r3_line.geojson
+- name: R3 — Forum Stadium → 125 — start/end
+  tier: repo
+  path: data/routes/field_trips/r3_endpoints.geojson
+- name: R4 — La Guaira Coast — route
+  tier: repo
+  path: data/routes/field_trips/r4_line.geojson
+- name: R4 — La Guaira Coast — start/end
+  tier: repo
+  path: data/routes/field_trips/r4_endpoints.geojson
+- name: R5 — Airport Loop — route
+  tier: repo
+  path: data/routes/field_trips/r5_line.geojson
+- name: R5 — Airport Loop — start/end
+  tier: repo
+  path: data/routes/field_trips/r5_endpoints.geojson
+- name: R5alt — Airport Loop (via Trocha) — route
+  tier: repo
+  path: data/routes/field_trips/r5alt_line.geojson
+- name: R5alt — Airport Loop (via Trocha) — start/end
+  tier: repo
+  path: data/routes/field_trips/r5alt_endpoints.geojson
+- name: Trip sites (from _temp.md)
+  tier: repo
+  path: data/routes/field_trips/trip_sites.geojson
