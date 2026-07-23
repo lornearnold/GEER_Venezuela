@@ -50,9 +50,7 @@ def main() -> None:
         units.append({
             "key": r["key"],
             "fig": m["fig"],
-            "locator": m["locator"],
             "map_scale": m["scale"],
-            "locator_scale": m.get("locator_scale"),
             "bar_m": m["bar_m"],
         })
 

@@ -1,5 +1,5 @@
 {
- "generated": "2026-07-07",
+ "generated": "2026-07-22",
  "source": "la-guaira_20260626_150535_17_3010.geojson",
  "sites": {
   "1": {
@@ -30,7 +30,7 @@
    "lat": 10.536763,
    "lon": -66.981432,
    "road_dist_m": 190,
-   "note": "mixed sources"
+   "note": ""
   },
   "4": {
    "group": null,
@@ -40,7 +40,7 @@
    "lat": 10.533847,
    "lon": -66.983632,
    "road_dist_m": 180,
-   "note": "mixed sources"
+   "note": ""
   },
   "5": {
    "group": "quarry",
@@ -90,7 +90,7 @@
    "lat": 10.496652,
    "lon": -66.994715,
    "road_dist_m": 10,
-   "note": "low confidence"
+   "note": ""
   },
   "10": {
    "group": null,
@@ -100,7 +100,7 @@
    "lat": 10.491947,
    "lon": -66.989404,
    "road_dist_m": 150,
-   "note": "low confidence"
+   "note": ""
   },
   "11": {
    "group": null,
@@ -110,7 +110,7 @@
    "lat": 10.490523,
    "lon": -66.988374,
    "road_dist_m": 150,
-   "note": "low confidence"
+   "note": ""
   },
   "12": {
    "group": null,
@@ -120,7 +120,7 @@
    "lat": 10.493675,
    "lon": -66.989761,
    "road_dist_m": 30,
-   "note": "low confidence"
+   "note": ""
   },
   "13": {
    "group": null,
@@ -130,7 +130,7 @@
    "lat": 10.493311,
    "lon": -66.988068,
    "road_dist_m": 40,
-   "note": "low confidence"
+   "note": ""
   },
   "14": {
    "group": null,
@@ -140,7 +140,7 @@
    "lat": 10.491451,
    "lon": -66.990536,
    "road_dist_m": 100,
-   "note": "low confidence"
+   "note": ""
   },
   "15": {
    "group": null,
@@ -150,7 +150,7 @@
    "lat": 10.493593,
    "lon": -66.98662,
    "road_dist_m": 70,
-   "note": "low confidence"
+   "note": ""
   },
   "16": {
    "group": null,
@@ -160,7 +160,7 @@
    "lat": 10.494105,
    "lon": -66.979045,
    "road_dist_m": 130,
-   "note": "low confidence"
+   "note": ""
   },
   "17": {
    "group": null,
@@ -170,7 +170,7 @@
    "lat": 10.493994,
    "lon": -66.977704,
    "road_dist_m": 130,
-   "note": "low confidence"
+   "note": ""
   },
   "18": {
    "group": null,
@@ -180,7 +180,7 @@
    "lat": 10.493867,
    "lon": -66.978348,
    "road_dist_m": 140,
-   "note": "low confidence"
+   "note": ""
   },
   "19": {
    "group": null,
@@ -190,7 +190,7 @@
    "lat": 10.502982,
    "lon": -67.000669,
    "road_dist_m": 340,
-   "note": "low confidence"
+   "note": ""
   },
   "20": {
    "group": null,
@@ -200,7 +200,7 @@
    "lat": 10.500724,
    "lon": -66.998883,
    "road_dist_m": 100,
-   "note": "low confidence"
+   "note": ""
   },
   "21": {
    "group": null,
@@ -210,7 +210,7 @@
    "lat": 10.500614,
    "lon": -66.995525,
    "road_dist_m": 60,
-   "note": "low confidence"
+   "note": ""
   },
   "22": {
    "group": null,
@@ -220,7 +220,7 @@
    "lat": 10.503457,
    "lon": -66.997102,
    "road_dist_m": 60,
-   "note": "low confidence"
+   "note": ""
   },
   "23": {
    "group": null,
@@ -240,7 +240,7 @@
    "lat": 10.539321,
    "lon": -66.97522,
    "road_dist_m": 20,
-   "note": "reactivation"
+   "note": ""
   },
   "25": {
    "group": null,
@@ -250,7 +250,7 @@
    "lat": 10.525799,
    "lon": -66.970339,
    "road_dist_m": 0,
-   "note": "low confidence"
+   "note": ""
   },
   "26": {
    "group": "Trocha",
@@ -280,7 +280,7 @@
    "lat": 10.608387,
    "lon": -66.987903,
    "road_dist_m": 30,
-   "note": "low confidence"
+   "note": ""
   },
   "29": {
    "group": "Radiofaro",
@@ -310,7 +310,7 @@
    "lat": 10.606936,
    "lon": -66.979917,
    "road_dist_m": 20,
-   "note": "low confidence"
+   "note": ""
   },
   "32": {
    "group": null,
@@ -380,7 +380,7 @@
    "lat": 10.607798,
    "lon": -67.003256,
    "road_dist_m": 50,
-   "note": "low confidence"
+   "note": ""
   },
   "39": {
    "group": "Radiofaro",
@@ -410,7 +410,7 @@
    "lat": 10.605984,
    "lon": -67.015869,
    "road_dist_m": 10,
-   "note": "low confidence"
+   "note": ""
   },
   "42": {
    "group": null,
@@ -430,7 +430,7 @@
    "lat": 10.591078,
    "lon": -66.99112,
    "road_dist_m": 10,
-   "note": "low confidence"
+   "note": ""
   },
   "44": {
    "group": null,
@@ -440,7 +440,7 @@
    "lat": 10.583176,
    "lon": -66.953701,
    "road_dist_m": 150,
-   "note": "head scarp"
+   "note": ""
   },
   "45": {
    "group": "CRPV",
@@ -450,7 +450,7 @@
    "lat": 10.612157,
    "lon": -67.019407,
    "road_dist_m": 40,
-   "note": "low confidence"
+   "note": ""
   },
   "46": {
    "group": null,
@@ -460,7 +460,7 @@
    "lat": 10.588678,
    "lon": -67.041941,
    "road_dist_m": 130,
-   "note": "low confidence"
+   "note": ""
   },
   "47": {
    "group": null,
@@ -480,7 +480,7 @@
    "lat": 10.562043,
    "lon": -67.001342,
    "road_dist_m": 50,
-   "note": "low confidence"
+   "note": ""
   },
   "49": {
    "group": "T\u00fanel Boquer\u00f3n I, II",
@@ -500,7 +500,7 @@
    "lat": 10.562323,
    "lon": -67.008423,
    "road_dist_m": 320,
-   "note": "landslide dam potential"
+   "note": ""
   },
   "51": {
    "group": "T\u00fanel Boquer\u00f3n I, II",
@@ -510,7 +510,7 @@
    "lat": 10.560657,
    "lon": -67.008356,
    "road_dist_m": 350,
-   "note": "landslide dam potential"
+   "note": ""
   },
   "52": {
    "group": "T\u00fanel Boquer\u00f3n I, II",
@@ -520,7 +520,7 @@
    "lat": 10.570683,
    "lon": -67.008396,
    "road_dist_m": 150,
-   "note": "landslide dam potential; reactivation"
+   "note": ""
   },
   "53": {
    "group": "T\u00fanel Boquer\u00f3n I, II",
@@ -530,7 +530,7 @@
    "lat": 10.574529,
    "lon": -67.009081,
    "road_dist_m": 50,
-   "note": "low confidence"
+   "note": ""
   },
   "54": {
    "group": "T\u00fanel Boquer\u00f3n I, II",
@@ -560,7 +560,7 @@
    "lat": 10.572117,
    "lon": -66.974015,
    "road_dist_m": 110,
-   "note": "low confidence"
+   "note": ""
   },
   "57": {
    "group": "A",
@@ -790,7 +790,7 @@
    "lat": 10.602256,
    "lon": -66.853651,
    "road_dist_m": 110,
-   "note": "low confidence"
+   "note": ""
   },
   "80": {
    "group": null,
@@ -800,7 +800,7 @@
    "lat": 10.603496,
    "lon": -66.852675,
    "road_dist_m": 70,
-   "note": "low confidence"
+   "note": ""
   },
   "81": {
    "group": null,
@@ -810,7 +810,7 @@
    "lat": 10.601504,
    "lon": -66.851631,
    "road_dist_m": 80,
-   "note": "low confidence"
+   "note": ""
   },
   "82": {
    "group": null,
@@ -830,7 +830,7 @@
    "lat": 10.558521,
    "lon": -66.875005,
    "road_dist_m": 670,
-   "note": "probably more like this in dead zone"
+   "note": ""
   },
   "84": {
    "group": null,
@@ -840,7 +840,7 @@
    "lat": 10.485621,
    "lon": -67.014798,
    "road_dist_m": 100,
-   "note": "low confidence"
+   "note": ""
   },
   "85": {
    "group": null,
@@ -850,7 +850,7 @@
    "lat": 10.490887,
    "lon": -67.019708,
    "road_dist_m": 340,
-   "note": "low confidence"
+   "note": ""
   },
   "86": {
    "group": null,
@@ -870,7 +870,7 @@
    "lat": 10.520583,
    "lon": -66.995148,
    "road_dist_m": 730,
-   "note": "reactivation?"
+   "note": ""
   },
   "88": {
    "group": null,
@@ -880,7 +880,7 @@
    "lat": 10.491745,
    "lon": -66.983618,
    "road_dist_m": 0,
-   "note": "low confidence"
+   "note": ""
   },
   "89": {
    "group": null,
@@ -890,7 +890,7 @@
    "lat": 10.492604,
    "lon": -66.988405,
    "road_dist_m": 120,
-   "note": "low confidence"
+   "note": ""
   },
   "90": {
    "group": null,
@@ -900,7 +900,7 @@
    "lat": 10.501991,
    "lon": -66.97846,
    "road_dist_m": 180,
-   "note": "reactivation"
+   "note": ""
   },
   "91": {
    "group": null,
@@ -910,7 +910,7 @@
    "lat": 10.496164,
    "lon": -66.97616,
    "road_dist_m": 60,
-   "note": "low confidence"
+   "note": ""
   },
   "92": {
    "group": null,
@@ -920,7 +920,7 @@
    "lat": 10.498839,
    "lon": -66.976765,
    "road_dist_m": 80,
-   "note": "low confidence"
+   "note": ""
   },
   "93": {
    "group": null,
@@ -930,7 +930,7 @@
    "lat": 10.496251,
    "lon": -66.962243,
    "road_dist_m": 220,
-   "note": "low confidence"
+   "note": ""
   },
   "94": {
    "group": null,
@@ -950,7 +950,7 @@
    "lat": 10.499398,
    "lon": -66.946362,
    "road_dist_m": 50,
-   "note": "low confidence"
+   "note": ""
   },
   "96": {
    "group": null,
@@ -960,7 +960,7 @@
    "lat": 10.513752,
    "lon": -66.970639,
    "road_dist_m": 260,
-   "note": "low confidence"
+   "note": ""
   },
   "97": {
    "group": "Trocha",
@@ -970,7 +970,7 @@
    "lat": 10.525736,
    "lon": -66.968832,
    "road_dist_m": 0,
-   "note": "reactivation"
+   "note": ""
   },
   "98": {
    "group": "Trocha",
@@ -1030,7 +1030,7 @@
    "lat": 10.520705,
    "lon": -66.961959,
    "road_dist_m": 160,
-   "note": "low confidence"
+   "note": ""
   },
   "104": {
    "group": null,
@@ -1040,7 +1040,7 @@
    "lat": 10.494759,
    "lon": -66.993256,
    "road_dist_m": 70,
-   "note": "low confidence"
+   "note": ""
   },
   "105": {
    "group": null,
@@ -1230,6 +1230,26 @@
    "lat": 10.596393,
    "lon": -66.834146,
    "road_dist_m": 780,
+   "note": ""
+  },
+  "124": {
+   "group": null,
+   "perishability": "low",
+   "location": "populated",
+   "extent": "large",
+   "lat": 10.607475,
+   "lon": -66.827416,
+   "road_dist_m": 10,
+   "note": ""
+  },
+  "125": {
+   "group": null,
+   "perishability": "med",
+   "location": "remote",
+   "extent": "small",
+   "lat": 10.583764,
+   "lon": -66.906345,
+   "road_dist_m": 10,
    "note": ""
   }
  }

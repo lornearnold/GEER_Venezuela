@@ -1,51 +1,33 @@
 {
  "units": [
   {
-   "key": "r1",
-   "fig": "figures/route_r1_main.png",
-   "locator": "figures/route_r1_loc.png",
-   "map_scale": 50000,
-   "locator_scale": 2500000,
+   "key": "r4",
+   "fig": "figures/route_r4_main.png",
+   "map_scale": 33500,
    "bar_m": 2000
-  },
-  {
-   "key": "r2",
-   "fig": "figures/route_r2_main.png",
-   "locator": "figures/route_r2_loc.png",
-   "map_scale": 40000,
-   "locator_scale": 2000000,
-   "bar_m": 1000
   },
   {
    "key": "r3",
    "fig": "figures/route_r3_main.png",
-   "locator": "figures/route_r3_loc.png",
-   "map_scale": 25000,
-   "locator_scale": 1250000,
-   "bar_m": 1000
-  },
-  {
-   "key": "r4",
-   "fig": "figures/route_r4_main.png",
-   "locator": "figures/route_r4_loc.png",
-   "map_scale": 40000,
-   "locator_scale": 2000000,
+   "map_scale": 22000,
    "bar_m": 1000
   },
   {
    "key": "r5",
    "fig": "figures/route_r5_main.png",
-   "locator": "figures/route_r5_loc.png",
-   "map_scale": 60000,
-   "locator_scale": 3000000,
-   "bar_m": 2000
+   "map_scale": 68000,
+   "bar_m": 5000
   },
   {
-   "key": "r5alt",
-   "fig": "figures/route_r5alt_main.png",
-   "locator": "figures/route_r5alt_loc.png",
-   "map_scale": 60000,
-   "locator_scale": 3000000,
+   "key": "r1",
+   "fig": "figures/route_r1_main.png",
+   "map_scale": 68500,
+   "bar_m": 5000
+  },
+  {
+   "key": "r2",
+   "fig": "figures/route_r2_main.png",
+   "map_scale": 36000,
    "bar_m": 2000
   }
  ]

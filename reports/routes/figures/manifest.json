@@ -1,5 +1,5 @@
 {
- "note": "Route-map report figures. Rendered from field-trip route layers + trip_sites POIs over Google roadmap; start/end point labels removed. Built by the QGIS render step in build_route_report workflow.",
+ "note": "Route-map report figures. Full route line + start/end symbols (no labels) + this route's candidate-site POIs (numbered, labels offset off the dots) over Google roadmap. Extent fit to the whole route. No locator inset. Rendered by the QGIS render step (scratchpad/render_routes.py) in the build_route_report workflow.",
  "units": {
   "r1": {
    "kind": "route",
@@ -8,16 +8,14 @@
     94,
     86
    ],
-   "scale": 50000,
-   "bar_m": 2000,
-   "locator_scale": 2500000,
+   "scale": 68500,
+   "bar_m": 5000,
    "fig": "figures/route_r1_main.png",
-   "locator": "figures/route_r1_loc.png",
    "ext_utm": [
-    716616.0928918644,
-    1157540.9113025682,
-    725082.7595585311,
-    1164102.5779692347
+    715049.7595585311,
+    1156471.9946359014,
+    726649.0928918644,
+    1165171.4946359014
    ]
   },
   "r2": {
@@ -26,16 +24,14 @@
     25,
     4
    ],
-   "scale": 40000,
-   "bar_m": 1000,
-   "locator_scale": 2000000,
+   "scale": 36000,
+   "bar_m": 2000,
    "fig": "figures/route_r2_main.png",
-   "locator": "figures/route_r2_loc.png",
    "ext_utm": [
-    719920.177994857,
-    1161183.8605182648,
-    726693.5113281902,
-    1166433.1938515983
+    720258.8446615236,
+    1161526.2552284165,
+    726354.8446615236,
+    1166098.2552284165
    ]
   },
   "r3": {
@@ -43,16 +39,14 @@
    "poi_nos": [
     125
    ],
-   "scale": 25000,
+   "scale": 22000,
    "bar_m": 1000,
-   "locator_scale": 1250000,
    "fig": "figures/route_r3_main.png",
-   "locator": "figures/route_r3_loc.png",
    "ext_utm": [
-    725499.6363502402,
-    1170284.8886982657,
-    729732.9696835735,
-    1173565.7220315991
+    725753.6363502402,
+    1170528.3053649324,
+    729478.9696835735,
+    1173322.3053649324
    ]
   },
   "r4": {
@@ -65,16 +59,14 @@
     81,
     78
    ],
-   "scale": 40000,
-   "bar_m": 1000,
-   "locator_scale": 2000000,
+   "scale": 33500,
+   "bar_m": 2000,
    "fig": "figures/route_r4_main.png",
-   "locator": "figures/route_r4_loc.png",
    "ext_utm": [
-    731812.613510544,
-    1170584.182248389,
-    738585.9468438772,
-    1175833.5155817226
+    732363.2842379153,
+    1171175.0913122667,
+    738035.950904582,
+    1175429.5913122667
    ]
   },
   "r5": {
@@ -90,16 +82,14 @@
     24,
     48
    ],
-   "scale": 60000,
-   "bar_m": 2000,
-   "locator_scale": 3000000,
+   "scale": 68000,
+   "bar_m": 5000,
    "fig": "figures/route_r5_main.png",
-   "locator": "figures/route_r5_loc.png",
    "ext_utm": [
-    715077.1481757184,
-    1164823.7773700503,
-    725237.1481757184,
-    1172697.7773700503
+    714399.814842385,
+    1164442.7773700503,
+    725914.4815090518,
+    1173078.7773700503
    ]
   },
   "r5alt": {
@@ -122,16 +112,14 @@
     24,
     48
    ],
-   "scale": 60000,
-   "bar_m": 2000,
-   "locator_scale": 3000000,
+   "scale": 77000,
+   "bar_m": 5000,
    "fig": "figures/route_r5alt_main.png",
-   "locator": "figures/route_r5alt_loc.png",
    "ext_utm": [
-    715989.7094088084,
-    1164335.938911852,
-    726149.7094088084,
-    1172209.938911852
+    714550.376075475,
+    1163383.438911852,
+    727589.0427421418,
+    1173162.438911852
    ]
   }
  }
