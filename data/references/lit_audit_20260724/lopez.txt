@@ -1,0 +1,596 @@
+AN INTEGRATED APPROACH FOR DEBRIS-FLOW RISK MITIGATION IN
+         THE NORTH COASTAL RANGE OF VENEZUELA
+
+                       Jose L. Lopez and Francois Courtel
+
+Institute of Fluids Mechanics, Universidad Central de Venezuela, C.P. 4725, Caracas
+1041-A, Venezuela; Tel. +58 212 605 3131/3041; Fax. +58 212 605 3040.
+jlopez@imf.ing.ucv.ve; fcourtel@imf.ing.ucv.ve;
+
+
+
+INTRODUCTION
+Venezuela is located in the northern part of South America between 1º and 12º North.
+The north coastal range of Venezuela runs parallel to the Caribbean Sea attaining
+elevations of up to 2,800 m above sea level. Mountains are very steep descending to sea
+level in a horizontal distance between 6 and 10 km. In the coastal areas, urban and
+tourist developments have taken place within the State of Vargas, a very narrow land
+strip whose width varies between 200 m and 2,000 m. Alluvial fans, canyons and steep
+slopes at the foot of the mountain range have been urbanized over the past 50 years.
+Population was estimated to 300,000 before the December 1999 disaster. Most of the
+upper parts of the catchments are well protected by vegetation and belong to the Avila
+National Park.
+
+  In December 1999, thousands of landslides were triggered by heavy rainfalls along
+the north coastal range of Venezuela. These landslides generated large debris flows and
+flash floods in about 24 streams that washed away many towns settled on the alluvial
+fans, along 50 km of the coastal zone, killing an estimate of 15.000 people and
+destroying properties estimated at more than $2 billion in the State of Vargas. The
+disaster was aggravated by man’s unregulated occupation and urban development on the
+alluvial fans, canyons and slopes of the coastal range. The people living at these
+locations were not sufficiently aware of the potential dangers and the authorities were
+not aware of the need to have any evacuation or emergency plans. Starting in the year
+2000, government authorities initiated a plan of structural measures for management of
+the debris flow risk. Structural protection works do not guarantee a full safety for the
+population. An integrated approach that takes into account structural and non-structural
+measures for flood mitigation is described in this paper. Some of these measures are
+presently being implemented in the Sate of Vargas, Venezuela, and are described in this
+paper.
+
+
+THE 1999 DEBRIS-FLOW FLOODING
+Many landslides, floods and inundations have been reported during the last 200 years in
+this region, like the storms of 1798, 1938, 1948 and 1951. However, only a few of these
+events seem to have been large enough to have generated debris flows. A steady but
+low intensity rainfall started in the coastal and mountain area during the beginning of
+December 1999.
+Figure 1. Satellite image of the north coastal range of Venezuela showing the Avila
+Mountain and small towns developed on the alluvial fans (image was taken a few days
+after the event of December 1999).
+
+Fourteen days of continuous rainfall saturated the soils and prepared the conditions for
+the occurrence of massive landslides triggered by the heavy precipitation that took place
+from 14 to 16/12/99. The 900 mm of rainfall that were recorded in these three days
+(mean annual rainfall is about 500 mm) with the help of the steep slopes in the channels
+and valley sides of the mountain, generated debris flows in 24 streams of the State of
+Vargas. Large quantity of sediments, woody debris and fractured rocks were eroded
+and transported by the flows down the valleys causing a massive destruction in the
+urban areas developed on the alluvial fans (Lopez et al., 2003). Figure 1 presents a
+satellite image of the area affected by the debris flows, taken in December 1999. White
+colors in the valleys and along the coastline indicate sedimentation. The large amount of
+white spots in the mountain indicates landslides and mass movements that produced the
+sediment transported to the downstream reaches. Observe also sedimentation plumes in
+the sea water.
+
+Figure 2 shows two aerial photos of the town of Caraballeda, taken before and after the
+disaster. Complete blocks or sections of the town were totally destroyed by the debris
+flows generated in the San Julian River. The main damages were due to flooding,
+sediment deposition and destruction by boulder impacts. Some of the buildings
+collapsed by the direct impact of debris flows (Figure 3). One and two-story houses
+located near these buildings were washed away by the mud flows. Observe the large
+amount of boulders deposited in what used to be streets and houses of Los Corales
+residential area.
+
+
+
+
+                                                                                       2
+Figure 2. Aerial photos of the alluvial fan of San Julian River taken in 1998 (left) and
+a few days after the December 1999 disaster (right).
+
+
+
+
+ Figure 3. Damages by debris flows to two buildings on the alluvial fan of San Julian
+                                      River.
+
+
+AN INTEGRATED APPROACH FOR RISK MITIGATION
+A modern approach for risk mitigation of debris flows must include structural and non-
+structural measures. Total or maximum safety can not be reached; we only can mitigate
+part of the risk and assume the residual one. Risk reduction can be attained by means of
+measures which point to reduce the hazard and the vulnerability. Figure 4 shows an
+integral approach for risk mitigation of debris flows. Structural measures refer to control
+works in the basin. Erosion control works in the upper part of the catchments (slopes
+and hillsides), reforestation, and stabilization works in the upper stream reaches have
+the purpose of suppressing the cause of the problem. Interception and retention dams in
+the middle and lower part of the catchments (canyons) and channel works tend to limit
+or suppress the consequences of the phenomena. Nonstructural measures include many
+aspects that try to reduce the vulnerability by land use regulations, warning systems,
+contingency plans, and by improving the education and people awareness, and the
+institutional empowerment. Some of the measures that are currently being implemented
+in the State of Vargas are described in the following sections.
+
+
+
+
+                                                                                         3
+                                                         Erosion control works in slopes and
+                                                         hillsides
+
+                                                         Stabilization works in streams
+                                                         (consolidation check dams)
+                             Structural Measures
+                                                         Interception and retention dams for
+                                                         sediment trap
+
+ Debris-flow Mitigation                                  Channel works
+ Measures
+                                                         Conditioning of buildings
+
+
+                                                         Rainfall monitoring network
+
+                                                         Hazard and risk mapping
+
+                                                         Land use regulation
+
+
+                            Non-Structural Measures      Early warning systems
+
+                                                         Contingency plans
+
+                                                         Insurance plans
+
+
+                                                         Community preparedness
+
+                                                         Institutional empowerment
+
+
+          Figure 4. An integrated approach for debris-flow mitigation measures.
+
+
+
+ STRUCTURAL MEASURES
+ In spite of floods and inundations of sediment that had occurred in the past in the north
+coastal range of Venezuela, only a very few (2) dams for sediment control purposes
+were present in the Avila Mountain, previous to 1999. One was completely destroyed
+by the debris flows and the other was severely damaged. After the 1999 event,
+government authorities initiated an intensive program to canalize the water courses in
+the alluvial fans and to build sediment control dams in the canyons of the main streams.
+Control works were designed for protection against a 100 year flood event. By
+December 2007 thirty five (35) sediment retention dams had been built in the torrents of
+Vargas. Table 1 shows the main characteristics of the dams built in the Avila Mountain.
+Basically, 23 of the structures are of the closed-type dam and 7 are of the open-type.
+Five of the dams were made in concrete, two in steel and all the others (33) in gabion.
+The maximum height of the dams is 11 m, and the minimum is 3 m. Figure 5 illustrates
+different types of retention dams that have been constructed in the State of Vargas.
+
+
+
+
+                                                                                               4
+   Table 1. Main characteristics of the sediment control dams in the State of Vargas.
+                  Stream          Number    Closed        Open      Type of material
+                                  of dams   dams          dams
+            Tacagua                   3          1          2     Steel (2), Gabion (1)
+            El Piache                 1          1          0            Gabion
+            Mamo                      2          2          0            Gabion
+            Curucuti                 4          3          1     Gabion (3), Concrete (1)
+            Piedra Azul             3           2          1          Gabion (3)
+            Dos Comadres            2           0          2           Gabion (2)
+            Osorio                  2           2          0           Gabion (2)
+            Guanape                 1           0          1            Concrete
+            Alcantarilla            2           2          0          Gabion (2)
+            San Jose de Galipan     1           1          0             Gabion
+            El Cojo                 2           1          1          Gabion (2)
+            Camuri Chico            1           0          1             Gabion
+            San Julián              3           0          3          Concrete (3)
+            Quebrada Seca           1           1          0          Gabion (2)
+            Camurí Grande           2           2          0           Gabion (2)
+            Miquelena               2           2          0          Gabion (2)
+            Anare                   2           2          0          Gabion (2)
+            La Zorra                1           1          0            Gabion
+
+
+
+
+     a)                                              b)
+
+
+
+
+     c)                                              d)
+
+
+Figure 5. Different types of sediment control dams in the State of Vargas: a) a 4 m high
+reinforced-concrete slit dam in Quebrada Guanape; b) a 4 m high cyclopean-concrete slit dam in
+Quebrada Curucuti; c) a 3 m high gabion slit dam in Quebrada El Cojo; and d) a 7 m high gabion
+closed dam in Quebrada San Jose de Galipan.
+
+
+
+                                                                                            5
+In February 7-10th, 2005, an extraordinary precipitation occurred in the same region as
+the 1999 flood. About 400 mm were recorded in several stations during the 4-day storm.
+The predominant morphological process in this storm seems to have been the
+remobilization of sediment deposits left by the 1999 flows in the upstream reaches of
+the Avila Mountain. A large amount of sediment material and woody debris was
+transported downstream, and the damage to the urban areas was minimized due to the
+presence of the dams. Figure 6 shows the stage of two dams after the 2005 flood. The
+Camuri Chico dam is a gabion type open dam, six meters high, built in 2004, whose
+construction had not been completed by the time of the 2005 flood, lacking a central
+section provided of a gate for maintenance purposes. However the open dam acted
+adequately, retaining a large amount of cobbles and boulders that were accumulated in
+the lateral side channels, blocking partially some of the windows, and allowing a
+portion of the finer sediment load to be transported downstream. The El Cojo dam
+(Figure 5-c) is a slit gabion dam, 3 m high, built in 2002. The slit dam was almost
+filled up with coarse and fine sediment due to the obstruction of the slits by logs and
+boulders during the 2005 flood (Figure 6).
+
+
+
+
+Figure 6. View from upstream of Camurí Chico window dam (left) and El Cojo dam
+(right).
+
+Canalization of some of the main streams has also been accomplished. Figure 7 shows a
+gabion channel built in the San Jose de Galipan stream and a concrete channel in the
+Tacagua stream.
+
+
+
+
+Figure 7. Canalization of San Jose de Galipan stream (left) and Tacagua stream (right)
+in the State of Vargas..
+
+
+
+                                                                                     6
+HAZARD MAPS
+Hazard maps have been delineated for 12 alluvial fans that were severely damaged
+during the December 1999 disaster in the State of Vargas. A methodology was proposed
+based on the application of mathematical models (FLO-2D), for the simulation of mud
+and debris flows, combined with Geographic Information Systems (GIS) (Garcia et al.,
+2003). The methodology includes criteria to define potential flood hazard zones
+depending on the event frequency and intensity. The intensity of the event is a function
+of the flow depth and velocity, which is obtained from the FLO-2D simulation model
+(O´Brien, 2003). The flood hazard level is then defined as a discrete combined function
+of the event intensity and the return period. This methodology is based on Swiss and
+Austrian standards (see OFEE et al. 1997, Fiebiger 1997). Several processor programs
+complement the use of the FLO-2D model and automate the process of generating the
+hazard maps.
+
+Figure 8 shows the hazard map generated for the alluvial fan of San Julian River in the
+town of Caraballeda (squares in the map are 500 x 500 m). For most of the town the
+degree of hazard is high. The method involves establishing three different zones to
+identify the hazard level in a particular place. The red, orange and yellow colors indicate
+a high, medium and low hazard level, respectively. The implication of these hazard
+levels for people and properties is shown in Table 2. The final hazard delineation map
+can be adjusted in ArcView based on field knowledge and experience of actual flood
+events. Table 3 summarizes the affected areas in the final hazard map for the San Julian
+River.
+
+Application of this method to other basins in the State of Vargas showed that large areas
+of the urbanized alluvial fans are located in high hazard level areas. These maps were
+developed for the existing conditions after the 1999 flood, without any structural
+measure or control works in the basin. At present, 3 slit-type concrete dams have been
+built in the canyon of San Julian River, so the hazard map has to be adjusted for this
+new condition. The same applies for other alluvial fans in Vargas, and new hazard maps
+have to be developed due to the implementation of a set of control works in the basins.
+The Ministry of Science and Technology is extending this methodology to evaluate
+other flood hazard regions in Venezuela.
+
+                          Table 2. Definition of hazard levels.
+     Hazard     Map          Description
+     level      color
+     High       Red          Persons are in danger both inside and outside their
+                             houses. Buildings are in danger of being destroyed.
+                             Persons are in danger outside their houses.
+     Medium Orange           Buildings may suffer damage, and possible
+                             destruction depending on construction
+                             characteristics.
+                             Danger to persons is low or non-existent. Buildings
+     Low        Yellow       may suffer little damages, but flooding or
+                             sedimentation may affect houses interiors.
+
+
+
+
+                                                                                         7
+            Table 3. Summary of hazard areas for San Julian alluvial fan.
+                                      Hazard area (ha)
+           High                Medium                Low                    Total
+           (Red)               (Orange)              (Yellow)               area
+                                                                            (ha)
+           148,1               29,3                    34,3                 211,7
+
+
+
+
+               Figure 8. Hazard map for the alluvial fan of San Julian.
+
+
+
+EARLY WARNING SYSTEM
+During the years 2006 and 2007, a network of 19 rainfall and flow stations have been
+instrumented in three basins (Tacagua, La Zorra and Mamo) to allow monitoring the
+main hydrometeorological variables, in order to, on one hand, acquire a better
+knowledge of these basins, and on the other hand to generate inputs for an Early
+Warning System (EWS) with the purpose of protecting the town of Catia La Mar in
+Vargas, with a population of 100.000 people. The PREDERES project, funded by the
+European Union and the Reconstruction Agency of the State of Vargas
+(CORPOVARGAS), is the first effort to implement such a system in the area affected
+by the 1999 event, and virtually the first in Venezuela, as formers attempts were
+unsuccessful. The system has been designed and implemented by researchers from the
+Institute of Fluid Mechanics and the Department of Hydrometeorology, at the Central
+University of Venezuela (UCV).
+
+
+
+
+                                                                                    8
+Figure 9 shows a map of the basins where the observation system was implemented.
+The drainage basin of Mamo (beige color) is 141 km2, Tacagua (green color) is 93.5
+km2, and La Zorra (purple color) is 6.2 km2.
+
+
+
+
+Figure 9. Location map of the monitoring network system in the drainage basins of
+Tacagua, Mamo and La Zorra (squares are 4 x 4 km).
+
+
+The data generated by the stations network is currently received by a “Technical Room”
+at the Maritime Caribbean University (UMC) in Catia La Mar, and by another one at the
+Central University of Venezuela (UCV) in Caracas, which is working as a technical
+advisor of the first one. In normal times, the Technical Room uses these data and other
+information sources (satellite images, global meteorological models, etc.) in order to: a)
+elaborate regional meteorological forecasts in association with the National Weather
+Forecast Center (CENAPH); b) send routine bulletins to relevant stakeholders; c) feed a
+webpage; and d) feed a database. When the occurrence of an extreme event is
+considered possible due to the global meteorological evaluation, recipients will be
+advised by a special bulletin, and a “Operational Room” will be activated, with
+representatives of Civil Defense, local government and “risk committees” formed by the
+inhabitants of the area. It must be noticed that all past debris-flow events in Vargas did
+occur between the months of December and April, out of the normal rainy season, due
+to special meteorological circumstances (cold fronts) that experts could identify in
+principle with several hours of anticipation. Further on, on the basis of the real time
+measures of rainfall, the Technical Room will send warning advices to the Operational
+Room in order to prevent floods in the urban areas, caused either by water flows, mud
+flows or debris flows.
+
+To reach this objective a Data Interpretation System was implemented, whose principal
+components are a rainfall-runoff hydrologic model, running in real time, and a
+
+
+                                                                                        9
+permanent graphic evaluation of debris-flow initiation risk. The hydrologic model
+calculates continuously the effective rainfall, either from forecasted or real rainfalls,
+using the Curve Number methodology and a kinematic-wave model approach to
+estimate the peak flow at the entrance of the urban area for the subsequent time periods.
+If the flow is expected to reach a predetermined level, it generates an alert advice,
+transmitted to the Operational Room. The level in the channel at the same point is also
+directly controlled by a water level gage, so that the alert might be generated if the alert
+level is reached too, what allows a double security check. The model is currently
+working just with measured rainfalls transmitted by the gaging network, and due to the
+small size of the basins, could only forecast inundations with anticipation times of 40
+minutes, approximately, in the largest basin (Mamo). Nevertheless the use of the
+Jeremba Doppler radar, recently installed in the study area, could permit in the future to
+forecast the precipitation with several hours of anticipation by extrapolation of
+precipitation patterns from radar images. Then the hydrologic model, working with the
+forecasted rainfalls, will be able to emit a preliminary flood alert with similar
+anticipation times.
+
+CRITICAL RAINFALL EVALUATION
+The other component of the Data Interpretation System compares two rainfall indicators
+with predetermined critical values (thresholds) in order to identify the possibility of
+debris-flow occurrence. Specifically it checks the position of a representative point in an
+“Evaluation Graphic” built with these indicators as coordinates, where a critical line
+separates a safe zone from a risky zone. In case that the point approaches or passes this
+line, a special alert is emitted by the Technical Room.
+
+Methodologies attempting to establish a relation between debris flows and previous
+rainfall are commonly used in several parts of the world to forecast such kind of
+phenomenon. There is a virtual consensus that one indicator have to be representative of
+the short-term rainfall (recent hours) and the other of the long-term rainfall (recent days),
+but they are different ways to choose the periods of the computation and the form of the
+indicators. The indicators used for the Early Warning System in Catia La Mar are
+weighted sums of past rainfalls, where the weight decreases exponentially with time, so
+that the influence of a specific rainfall on the indicator decreases with its oldness. It is
+similar to the “Committee Method” used in Japan, a country with a large experience in
+this field (IDI, 2004). The “half-life time” of the short-time indicator (that is the time for
+which the weight is 0.5) is 1.5 hour, and 72 hours for the long-time indicator. It means
+in short that rainfall of more than 10 hours and 20 days oldness has virtually no more
+influence on short-time and long-time indicators, respectively. To determinate the
+critical line in the Evaluation Graphic, a historic investigation was necessary as to
+represent both debris-flow events occurred in the past (causing rainfalls) and extreme
+past rainfalls that didn’t cause debris flows (non-causing rainfalls). The difficulty rose
+from the few number of documented debris-flow events and the lack of rainfall records,
+especially hourly ones. To overcome this last inconvenient, a relation between hourly
+and daily maximum rainfall was established from stations with complete records.
+Finally a critical line was drawn, managing to separate the two groups of events, even
+though some points inevitably remain in the “wrong” zone. The graphic currently in use
+in the Catia La Mar EWS is shown in Figure 10. It must be considered as a first attempt
+that will be improved in the future with the further monitoring of the watersheds.
+
+
+
+
+                                                                                          10
+                                        120
+
+
+
+
+ Short-time acumulated rainfall in mm
+                                        100
+                                                                    Critical Line
+
+                                         80
+                                                                                      Causing rainfall         Non-causing rainfall
+                                         60
+
+
+
+
+          (half-time life =1.5h)
+                                         40
+
+
+                                         20
+
+
+                                          0
+                                              0   50     100      150       200     250       300        350        400       450     500
+
+                                                       Long-time acumulated rainfall in mm (half-life time= 72 h)
+
+
+
+
+                          Figure 10. Critical line for debris flow initiation in the region of Catia La Mar.
+
+INSTITUTIONAL EMPOWERMENT
+As part of the PREDERES project, oriented to risk mitigation in Catia La Mar, activities
+were carried out with the objective of empowering the organizations directly or
+indirectly involved in risk management in this area, namely the Vargas Municipal
+Services, the Ministry of Environment, the Ministry of Education, the Maritime
+Caribbean University and the Central University of Venezuela, in order to improve
+personal capacities and favor information and experiences exchange between these
+organizations. The municipal services and authorities involved were the Urban Planning
+Office, the Land Registration Office and more especially the Civil Protection Office,
+with the improvement of communication and office equipments, and the organization of
+workshops and lectures by national and international experts.
+
+
+COMMUNITY PREPAREDNESS
+Another program is aimed to improve community preparedness against natural hazards,
+especially flood hazards. In each community, the program began by a “participative
+assessment” of the hazards existing in the community that included: a) information
+about the global project and its components, as prevention works and the EWS; b)
+establishment of a Risk Committee; c) elaboration of a Risk and Emergency Plans for
+the local area; d) definition of the role of the community in the EWS; and e) training in
+risk topics. As a complementary program there was a search for a solution to dwellings
+affected by the construction of prevention works, including indemnities and relocation
+
+The preparedness program dealt also with topics related with residential garbage and
+wastewater disposal, as the PREDERES project included these issues in its component
+of civil works. It must be noticed that disposing garbage and wastewater in natural or
+artificial channels is a very common practice in this area, which would reduce the
+usefulness of the mitigation works in construction.
+
+
+                                                                                                                                        11
+CONCLUSIONS
+An integrated strategy including structural and non-structural measures for management
+the risk of debris flows is currently under way in the State of Vargas, Venezuela, in the
+region that was stricken by the catastrophic debris flows of 1999. Structural measures
+have concentrated in the middle and lower part of the basins, by the construction of
+dams and channels to trap the sediment and conduct the overflows to the sea. At present,
+35 retention dams have been completed (23 closed dams and 12 open dams). Field
+observations indicate that approximately 50% of the dams are filled up with sediment.
+All closed dams (12) built between years 2002 and 2004 are completely sedimented.
+The rapid process of sedimentation is associated to the large sediment yield capacity of
+the basins. Sedimentation of closed dams is also due to the lack of windows or openings
+in the body of the dam, to allow passing of normal sediment laden flows.
+
+Regarding structural measures, attention must be given to the following aspects: a)
+dredging and maintenance of the existing dams to keep them emptied for the incoming
+new floods; b) construction of new dams to increase the sediment retention capacity of
+the system to accommodate for the sediment production of the basins; c) construction of
+new dams in cases where dredging of sediment material is not possible; and c) use of
+open-type retention dams instead of close-type to increase the useful life of the
+structures.
+
+Structural measures do not guarantee total safety for the State of Vargas. Therefore,
+several nonstructural measures were implemented to complement the structural ones.
+They have to be implemented for alarm and evacuation purposes in cases when
+extraordinary rainfalls exceed the design event.
+
+a) Hazard maps have been developed for most of the highly urbanized alluvial fans in
+the State of Vargas. This is the first time that such a hazard delineation mapping effort
+is undertaken in Venezuela. However, they were delineated without taking into account
+any structural measures. A task remaining implies the adjustment of the hazard maps to
+the recent constructed control works. These maps will be helpful in creating new land
+use regulations and in enforcing the law to prevent reoccupation of areas subjected to
+high level of hazard.
+
+b) A monitoring network of 19 rainfall and flow stations has been instrumented in three
+basins (Tacagua, La Zorra and Mamo) in order to protect the town of Catia La Mar,
+with a population of 100.000 people. The PREDERES project, funded by
+CORPOVARGAS and the European Union, is the first effort to implement an early
+warning system in the area affected by the 1999 event. The project required the
+development and instrumentation of forecasting models and rainfall thresholds values.
+A critical rainfall line for debris flow initiation in the region of Catia La Mar has been
+obtained which provides a primary tool for the implementation of the warning system.
+As future requirements, due to the small size of the basins, it is necessary to develop a
+rainfall forecasting model which is indispensable to emit an alert with sufficient
+anticipation.
+
+c) Institutional empowerment and community preparedness are two other aspects where
+local authorities are paying attention. The inhabitants of Catia La Mar are more aware
+now of the existing hazards, risks and measures that are being taken for its protection,
+and are able to participate in the different stages of risk management.
+
+
+                                                                                       12
+At 8 years after the Vargas tragedy, many uncertainties still remain. More research is
+needed for studying natural processes, like the erosion, transport and sedimentation
+processes in the hillslopes and channels of the Avila Mountain. This is required to
+obtain better estimates of sediment volumes produced by the debris flows and also to
+define sediment hydrographs in the alluvial fans. A combined effort by hydrologists,
+geologists, hydraulic engineers, and urban planners is required for a better planning and
+design of hydraulic works and for the definition of residential areas to be reoccupied or
+prohibited. If it is not possible to prevent land slides, flash floods and debris flows from
+happening again in the State of Vargas, it is certain that we can be much better prepared
+to prevent these natural hazards from becoming disasters.
+
+Acknowledgements
+CORPVARGAS and the European Union funded the project for the development and
+implementation of the warning system. Part of this research has also been supported by
+FONACIT and CDCH-UCV. Their contribution is greatly appreciated.
+
+
+References
+
+Fiebiger, G., 1997, “Hazard Mapping in Austria”, Journal of Torrent, Avalanche,
+
+Landslides and Rockfall Engineering, 61(134), 121-133.
+
+Garcia, R., Lopez, J.L. Noya, M., Bello, M.E., Bello, M.T., Gonzalez, N., Paredes, G.,
+
+Vivas, M.I., and O´Brien, J.S., 2003, “Hazard Mapping for Debris Flow Events in the
+
+Alluvial Fans of Northern Venezuela”, 3rd. International Conference on Debris-Flow
+
+Hazards, Mitigation: Mechanics, Prediction, and Assessment, Davos, Switzerland, Sept.
+
+13-15, 2003.
+
+IDI, 2004, Infrastructure Development Institute, “Development of warning and
+
+evacuation system against sediment disasters in developing countries”, Ministry of Land,
+
+Infrastructure and Transport of Japan, March 2004.
+
+Lopez, J.L., Perez, D., and Garcia, R., 2003, “Hydrologic and Geomorphologic
+
+Evaluation of the 1999 Debris flow Event in Venezuela”, 3rd. International Conference
+
+on Debris-Flow Hazards, Mitigation: Mechanics, Prediction, and Assessment, Davos,
+
+Switzerland, Sept.13-15, 2003.
+
+
+
+
+                                                                                         13
+O'Brien, J.S. (2003) FLO-2D Users Manual, Version 2003.06, Nutrioso, Arizona.
+
+OFEE, OFAT, ODEFP (Switzerland) Ed. 1997. “Prise en compte des dangers dus aux
+
+crues dans le cadre des activités de l’aménagement du territoire“. Bienne, 1997. Office
+
+fédéral de l’économie des eaux (OFEE), Office fédéral de l’aménagement du territoire
+
+(OFAT), Office fédéral de l’environnement, des forets et du paysage (OFEFP) (in
+
+French).
+
+
+
+
+                                                                                    14
+

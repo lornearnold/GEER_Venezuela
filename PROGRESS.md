@@ -578,3 +578,53 @@ the site report so neither touches the other:
 - Each page carries a POI table (site · coords link · setting · slope · aspect).
 
 Output: `reports/routes/report_routes.pdf` (6 pages).
+
+## Working draft §6.2: GEER-style rewording, Intro + Background (2026-07-24)
+
+Reworked `06_Landslides/working_draft.md` Introduction and Background against the wording style of
+three reference GEER reports (2018 Hokkaido Ver.1, GEER-082 Türkiye 2023, GEER-ATC Ecuador 2016;
+style evidence pulled per-report: inventory-led openings, past-passive observations, "appeared
+to"-class hedges on interpretation but not measurements, present tense for standing geology):
+
+- **Introduction**: count/area moved to the opening paragraph (Hokkaido pattern); failure-character
+  sentence now its own paragraph; preliminary-inventory caveat reordered (topic sentence → methods →
+  limitations → how to read the numbers). Still open: XX count/area, partner attribution, imagery
+  table (Patricia), optional event magnitudes in sentence 1.
+- **Background**: placeholders resolved with numbers from `lit_review_1999.md` / `geology_note.md`
+  (911 mm storm, ~24 catchments / 50 km coast, 100,000 m³/km² yield, ~1.25 M m³ Caraballeda fan,
+  15,000–30,000 deaths; San Julián schist/gneiss, 0.5–2 m regolith, 30–60° slopes). TODO comment in
+  draft: confirm López et al. yield wording + year.
+- **Background-rate analog corrected then dropped**: Lorne corrected the Puerto Rico figure
+  (0.8–2.6 slides/km²/decade, Larsen & Torres-Sánchez 1998 — not the 0.011 %/yr turnover
+  paraphrase), then flagged the lithologic mismatch; verified from the paper that its three study
+  areas have **no metamorphic bedrock**. Lit search (Serra do Mar; metamorphic belts; lithology-
+  stratified compilations) → new note `06_Landslides/background_rate_note.md`. Key: no chronic rate
+  published for Serra do Mar (the closest gneiss-escarpment analog) or the region; lithology is a
+  second-order control. **Report handles background qualitatively** (pre-event slides screened out
+  as "tricky true negatives" during mapping; coseismic observably more extensive); the rate
+  compilation is reserved for a future paper. `lit_review_1999.md` §4 updated accordingly.
+
+Next: Trends (subsection names appear swapped vs. their content/figures), Compounding hazard,
+Site observations. Opportunities section was completed in a prior session.
+
+## Literature review audit + consolidation (2026-07-24)
+
+Lorne flagged unreliable attributions in the lit notes (claims cited to Larsen et al. 2001 that
+aren't in the paper). Ran a claim-by-claim provenance audit: read Larsen et al. 2001 (FISC), USGS
+OFR 01-0144, Map I-2772 pamphlet, FS-103-01, and López & Courtel 2008 in full; re-verified
+Larsen & Torres-Sánchez 1998, Larsen 2012 (PP 1789-F), and Broeckx 2019 from on-disk extracts.
+
+- **New single document `06_Landslides/lit_review.md`** replaces `geology_note.md`,
+  `lit_review_1999.md`, `background_rate_note.md` (deleted). Every citation carries a URL and a
+  read-status code (FULL / FULL-A / PARTIAL / ABSTRACT); read sources are quoted verbatim; a
+  25-row claims-audit table records verdicts and fixes.
+- **Key verdicts**: lithology (Tacagua/San Julián/Peña de Mora), soil 0.5–3 m, failure depth
+  0.5–2 m, slopes 30–>60° are all OFR 01-0144, not Larsen 2001 or FS-103 (recited). "~24 streams"
+  is López & Courtel 2008. Two figures were in NO source read and were removed from the draft:
+  "sediment yield 100,000 m³/km²" and "~200 km² contributing area" (also "uplift 2–5 mm/yr").
+  Event-total deposition is 20 M m³ (López et al. 2000, secondhand via I-2772). Sources conflict
+  on: death toll (15–30k vs ~19k), Caraballeda fan volume (1.25 vs 1.8–1.9 vs ~2 M m³), coast
+  length (50/40/20 km) — the review records all; the draft reports ranges.
+- Source PDFs/extracted texts archived in `data/references/lit_audit_20260724/` (gitignore
+  status: data/basemaps is ignored; check whether to track these).
+- Working draft Background rewritten against verified quotes only.

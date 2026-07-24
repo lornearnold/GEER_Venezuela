@@ -1,0 +1,1359 @@
+Original Paper
+Landslides
+DOI 10.1007/s10346-018-1085-y
+Received: 27 June 2018
+Accepted: 9 October 2018
+© Springer-Verlag GmbH Germany
+part of Springer Nature 2018
+
+Jente Broeckx I Michiel Maertens I Moses Isabirye I Matthias Vanmaercke I Betty Namazzi I
+Jozef Deckers I Joseph Tamale I Liesbet Jacobs I Wim Thiery I Matthieu Kervyn I Liesbet
+Vranken I Jean Poesen
+
+Landslide susceptibility and mobilization rates
+in the Mount Elgon region, Uganda
+
+Abstract Mount Elgon in Eastern Uganda is one of the most
+landslide-prone regions in Africa. This extinct shield volcano is
+characterized by steep slopes, intense precipitation, and fertile
+lands supporting a dense human population. As a result, landslides frequently cause damage and many fatalities. Apart from the
+need for a landslide susceptibility assessment, insight into the
+landslide mobilization rates [ton/km2/y] is required to assess the
+geomorphological importance of landslides. Such quantitative information is scarce for many regions around the world and particularly for Africa. We therefore compiled a calibration dataset of
+653 landslides (514 slides and 139 rockfalls). Additionally, a second
+dataset of over 400 landslides was independently collected for
+validation purposes. To determine a logistic landslide susceptibility model, we used Monte Carlo simulations that selected different
+subsets of the calibration dataset to test the significance of the
+considered environmental variables. Susceptibility maps for all
+landslide types and for rockfalls were constructed for the Mount
+Elgon region in Uganda. In both maps, topography is by far the
+most significant factor controlling landslide susceptibility. Including lithology and soil moisture, further improved the model predictions. The models explain about 55% and 85% of the observed
+variance in landslide occurrence for all landslide types and for
+rockfalls respectively. The average calculated landslide frequency
+and mobilization rate for the landslide affected area are respectively 0.04 landslides/km2/y and 750 ton/km2/y. Landslide size is
+only weakly positively correlated with landslide susceptibility.
+Therefore, observed larger landslide mobilization rates correlating
+with higher landslide susceptibilities result from larger landslide
+numbers rather than from larger landslides. Our research highlights the relevance of detailed and long-term landslide mapping at
+the regional scale in data-scarce areas for regional planning and
+risk reduction strategies, as an improvement to continental and
+global susceptibility models, but also to assess the geomorphological importance of landslides as an erosion process.
+Keywords Mass movement . Rockfall . Landslide
+inventory . Landslide susceptibility . Landslide mobilization
+rate . Landslide risk . East Africa
+
+Introduction
+Landslides are among the most damaging natural hazards in
+mountainous areas around the world and are considered to be
+an important cause of fatalities and economic loss worldwide
+(Blahut et al. 2010; Petley 2012; Corominas et al. 2014). Most
+fatalities occur in Global South countries (Kirschbaum et al. 2015;
+Froude and Petley 2018). In these countries, the impact of landslides on the population and their livelihood can be large due to
+
+their economic, social, political, and cultural vulnerability
+(Alcántara-Ayala 2002; Mertens et al. 2016). Recently, the Sendai
+Framework for disaster risk reduction has revived international
+attention to the negative consequences of landslides among other
+natural hazards (UNISDR 2015). The main goals of the Sendai
+Framework are a better understanding of disaster risk and
+strengthening of disaster risk governance (UNISDR 2015). As to
+landslides, detailed landslide inventories and landslide susceptibility (LSS) maps are a first key step for further disaster risk
+reduction measures. Despite their importance, detailed landslide
+studies are still lacking in many tropical regions, especially in
+Africa (Maes et al. 2017; Broeckx et al. 2018; Reichenbach et al.
+2018).
+Mt. Elgon in east Uganda, which is part of the East African
+Highlands that is one of the most landslide prone regions in Africa
+(Broeckx et al. 2018), stands as an example of such regions. This
+area is characterized by steep slopes, intense precipitation, high
+weathering rates and a dense population (Knapen et al. 2006). This
+translates into frequent landsliding that often claim casualties and
+affect the livelihood of the inhabitants (e.g., damage to houses,
+cropland and public infrastructure; Fig. 1a, b). One of the largest
+recent landslides in the region (on March 1, 2010 in Nametsi) killed
+365 people (Mugagga et al. 2012a). Rockfalls, a specific landslide
+type generated at the steep cliffs located along the lower flanks of
+Mt. Elgon volcano, pose an additional threat resulting in property
+damage and fatalities (Fig. 1c, d). Mt. Elgon region has received
+limited research attention, for instance in terms of geology (e.g.,
+Simonetti and Bell 1995), soils (Van Eynde et al. 2017), land use
+change and biodiversity (e.g., Sassen et al. 2013). Studies on
+landsliding mainly consist of case studies focusing on the influence of soil properties on landslide occurrence (Kitutu et al. 2009;
+Mugagga et al. 2012a), the relationship between landslides and
+land use changes (Mugagga et al. 2012b) and landslide risk reduction through preventive resettlement (Vlaeminck et al. 2016).
+However, a comprehensive landslide inventory and a LSS map
+for the Mt. Elgon region are currently lacking. Only for Bududa
+district (Fig. 2), Knapen et al. (2006) produced a first landslide
+inventory and based on their findings, Claessens et al. (2007)
+modeled the landslide hazard for this district.
+Also from a geomorphological point of view, no or limited
+quantitative data on landslides are available in Africa. Studies by
+Vanmaercke et al. (2014) and Broeckx et al. (2018) underline the
+role of landslides in explaining spatial patterns of sediment yield
+across the continent. Nevertheless, the importance of landslides in
+catchment sediment yield budget remains poorly understood,
+especially in tropical environments. Broeckx et al. (2016, 2018)
+demonstrated the potential of LSS maps as a tool to assess the
+importance of landsliding for sediment yield. However, these
+studies assess the geomorphological importance of landslides in
+Landslides
+
+Original Paper
+
+Fig. 1 Examples of landslides and their impact in the Mount Elgon region. a Deep translational landslide (03-09-2015; 1.061° N, 34.379° E). b Several houses and
+agricultural plots destroyed by a landslide (10-08-2015; 1.105° N, 34.335° E). c Rockfalls originating from steep cliffs (4-10-2016; 1.357° N, 34.370° E). d Rockfalls
+threatening villages and local communities in (21-08-2015; 1.292° N, 34.374° E)
+
+an indirect way. A missing element in this type of analyses is the
+fact that LSS does not provide information on landslide frequency
+[#landslides/km2/y] and certainly not on landslide mobilization
+
+Fig. 2 Location of the study area: a Africa, b Uganda, c Mount Elgon (DEM: USGS)
+
+Landslides
+
+rates [LMR, ton/km2/y], whereby also the landslide sizes are considered. No studies have investigated the linkages between LSS,
+landslide numbers, landslide sizes, and LMR. Data on landslide
+
+frequency and size are scarce (especially for Africa and tropical
+environments), but crucial to move from LSS to landslide hazard
+and risk assessment and LMR to quantify the importance of
+landslides in total erosion and catchment sediment export
+budgets.
+To address the identified research gaps, this research aims (1) to
+produce a first regional landslide inventory for the entire Mt. Elgon
+region in Uganda, (2) to construct logistic landslide (all types) and
+rockfall-specific susceptibility models, and (3) to investigate the relationship between landslide susceptibility and landslide mobilization
+rates. These results will contribute to a better understanding of
+landsliding in the area and its geomorphic relevance, but will also be
+valuable for assessing landslide risk and for guiding policy regarding
+land use planning, infrastructure and agriculture.
+Study area
+Mt. Elgon is an extinct shield volcano located at the border of
+Uganda and Kenya (Fig. 2a, b) and rises to an elevation of
+4321 m a.s.l. (Scott et al. 1998; Knapen et al. 2006). Our study area
+encompasses the Ugandan part of the mountain and consists of
+eight districts (Bukwo, Kween, Bulambuli Kachorwa, Sironko,
+Mbale, Bududa, and Manafwa) making up the Mt. Elgon region
+(Fig. 2c). The region covers an area of 4200 km2 and has a total
+population of 1.7 million inhabitants (UBOS 2017). Mbale is the
+major city in the region, located in the western part of the study
+area (Fig. 2b).
+The geomorphology of the volcano is characterized by steep
+cliffs (Fig. 1c), mainly along the lower flanks, interspersed with
+gently sloping areas and incising rivers (Scott et al. 1998). Above
+2300 m, the volcano is covered by natural vegetation
+(Afromontane forest, heather, high altitude moorland) which
+forms the protected Mount Elgon National Park. Outside the
+national park, cropland is the most dominant land use (Sassen
+et al. 2013). Mean annual precipitation in the region is ca.
+1800 mm/year, distributed over two wet seasons (March to June
+and August to November) (Knapen et al. 2006). However, regional
+climate model simulations (Thiery et al. 2015) indicate that the
+wettest parts of the region receive more than 3000 mm/year
+(southeastern part of the study area). The oldest rocks in the
+region are gneiss and granite belonging to the Precambrian Congo
+craton which are characterized by a strong foliation (Westerhof
+et al. 2014). Carbonatite intrusions, of Oligocene to early Miocene
+age, can be found on the lower southern slopes of the mountain in
+these gneisses and granites (King et al. 1972). These carbonatite
+intrusions induced an extensive zone of sheared and fenitised
+basement granite in their surroundings, called the metasomatic
+halo. According to Knapen et al. (2006), this lithological setting
+possibly contributes to increased slope instability, through intense
+rock weathering. Mt. Elgon was formed during the Miocene and is
+one of the oldest volcanoes in East Africa. The volcano is built up
+from lava flows (nephelinite, basalt) and pyroclasts (agglomerate,
+tuff). The last major eruption occurred around 12 million years ago
+(Scott et al. 1998; Westerhof et al. 2014).
+Material and methods
+Landslide data collection
+Reliable landslide inventories are the first step towards LSS assessments. They can be prepared using different techniques, each
+
+having its advantages and limitations (Guzzetti et al. 2012). In this
+study, landslides and non-landslide locations were mainly mapped
+during field surveys and further complemented with landslide
+recognition in Google Earth. The first field survey in the region
+was conducted in the Bududa district by Knapen et al. (2006) in
+2002. To obtain landslide data for the entire region, two major
+complementary landslide field surveys were conducted in 2015 and
+2016. For most landslides, GPS points at the main scarp or in the
+depletion zone of the landslide were taken and dimensions were
+measured with a tape meter. At some locations, for instance within
+the borders of the national park, it was not possible to reach the
+landslides, so observations were made from a distance and mapping of these landslides was facilitated by using Google Earth
+imagery. Google Earth was further used to map landslides elsewhere in the national park, since these were not accessible in the
+field. The age of landslides was assessed through interviews with
+local guides and inhabitants. It was not possible to obtain the exact
+date of occurrence for every landslide but for most of the landslides, local inhabitants could remember at least the year of occurrence, or it was at least clear whether landslides occurred
+before or after 1997, which was most relevant for our LMR analysis
+(see further).
+If landslide inventories are correct and complete, they also
+indicate the locations in the study area where landslides are absent
+(Guzzetti et al. 2012). However, although we consider our inventory representative, we do not consider it to be complete for the
+entire study area for the past decades, since some areas were never
+or only once covered in detail by our field surveys. Consequently,
+this assumption could lead to the selection of false negatives.
+Therefore, we also paid attention to older and revegetated landslides based on landslide-indicators, during our field campaigns.
+These are environmental factors which are supposed to be directly
+or indirectly correlated with slope instability (Van Den Eeckhaut
+et al. 2006). Examples of such landslide-indicators are scarps,
+concave-convex irregular and bumpy terrain, drunken trees, disturbed soil profiles containing many or large rock fragments (Van
+Eynde et al. 2017) and disturbed drainage networks due to landslide blocking. Mapping these indicators was especially important
+to avoid the selection of potential past landslide locations as nonlandslide locations. Additionally, we focused our field mapping of
+non-landslide locations on steeper terrain, to avoid trivial flat
+locations for model calibration (cf. Steger and Glade 2017).
+Apart from our mapping efforts, an independent dataset of
+over 400 landslides was available. This dataset was constructed
+by local authorities and staff of Busitema university. During multiple field campaigns, landslides were mapped at locations indicated by local inhabitants, mostly lacking information on the
+dimensions and timing of the events. Given the less detailed
+information in this dataset and the partial overlap with the calibration data, we only used these data to validate our LSS model.
+Environmental variables
+After consulting two literature reviews on considered environmental factors for LSS modeling (Pourghasemi and Rossi 2017;
+Reichenbach et al. 2018) and based on the geomorphic/
+environmental setting of the study area (as well as the available
+environmental data), we selected four different environmental
+factors that might help to discriminate patterns of landslide susceptibility: i.e., topography, lithology, precipitation, and soil
+Landslides
+
+Original Paper
+moisture. For the logistic regression analyses, ten quantitative and
+five categorical variables that describe these factors were derived
+(Table 1). The categorical variables represent the most common
+lithological classes in the study area and were transformed into
+five dummy variables, indicating the presence or absence of a
+particular lithology. The five lithological classes were derived from
+georeferencing and digitizing copies of the region’s lithological
+maps (at a resolution of 50 m), obtained from the Department of
+Geological Survey and Mines, Entebbe (DGSM).
+Four different topographic variables were considered at 30 m
+resolution (SRTM, USGS, Table 1): slope (SLO), local relief (LR)
+within a radius of 2000 m, plan curvature (CUR) and stream power
+index (SPI). SPI is a measure to describe the erosive power of
+flowing water:
+SPI ¼ lnðtanðαÞ*AsÞ
+
+ð1Þ
+
+where As is the specific catchment area [m2 m−1] and α is the slope
+gradient [°]. Duman et al. (2006) showed that this variable can be
+significant in explaining the spatial pattern of landslides. To avoid
+giving disproportionate weight to As, we capped the value for SPI.
+More specifically, very high SPI values generally correspond to permanent drainage pixels (rivers) with large upstream areas and often very
+low slope gradients that are not susceptible to landsliding. We therefore sampled the region for points where permanent drainage starts
+and found that these points typically have an SPI above 1.9. Hence, 1.9
+was used as the maximum value for all pixels with higher SPI.
+Because detailed field measurements of rainfall and soil moisture are not available for the region, both were obtained by
+modeling techniques. Earlier studies already showed that in remote areas with limited field measurements, modeled rainfall can
+be a reliable proxy (Jacobs et al. 2016a, b). Thiery et al. (2015, 2016)
+applied the regional climate model COSMO-CLM2 to the African
+Great Lakes region to assess the climatic impact of the lakes. Mean
+annual precipitation and mean annual soil moisture (modeled up
+to 2.86 m depth, Oleson et al. 2008) were used from these model
+results. Both factors were modeled for a 10-year period (1999–
+2008) at a horizontal resolution of ca. 7 km (P10 and SW10) and
+for a 1-year period (2015) at a resolution of ca. 2.8 km (P1 and
+SW1). Although simulations for 1 year are less representative for
+long-term annual means, we considered these variables because of
+the higher spatial resolution at which they are available.
+Land cover was not considered in our analyses as mapping of
+landslides and landslide free-locations is biased towards cultivated
+areas, while forested areas (national park) were less accessible. Within
+these cultivated areas, no distinction could be made between different
+crops in a GIS. Moreover, previous LSS analyses in a similar region in
+Uganda and for Africa show that the impact of land cover is not clear
+or can be ambiguous (Broeckx et al. 2018; Jacobs et al. 2018). For
+similar reasons of mapping biases and inadequate data availability, soil
+type was not considered as a LSS factor.
+For the rockfall susceptibility model, we considered two additional topographic variables: maximum slope (SLOM) and local
+relief in a small area (LRS), which replace SLO and LR. SLOM is the
+maximum slope within a radius of 100 m. This variable was
+introduced because rockfalls were sometimes mapped with lower
+accuracy than other landslides as locations on the cliffs are often
+Landslides
+
+not accessible. By applying a buffer of 100 m, we can account for
+this spatial uncertainty. LRS is the maximum elevation difference
+within a circle with a radius of 200 m. LRS was introduced to
+better represent the escarpments in the landscape, that develop
+abruptly over much shorter horizontal distances than 2000 m (the
+radius used to compute LR). Given the concentrated occurrence of
+rockfalls at sites with a particular lithology, only two lithological
+classes were considered for the rockfall susceptibility model, i.e.,
+pyroclastic rocks and all other classes (granite, gneiss, lava,
+carbonatite).
+Logistic landslide susceptibility models
+A pixel-based (30 m resolution) logistic regression approach was
+used to assess the LSS of the Mt. Elgon region. Logistic regression
+is most commonly applied to model LSS (Reichenbach et al. 2018).
+Logistic models describe the relationship between a set of independent variables and a dichotomous dependent variable, in our
+case the presence or absence of a landslide. The logistic function
+can be written as (Kleinbaum and Klein 2010):
+
+pðy ¼ 1Þ ¼
+
+1
+1 þ e−ðb0 þb1 x1 þb2 x2 …þbn xn Þ
+
+ð2Þ
+
+with p the probability of landslide occurrence, xi the dependent
+variables, and bi the regression coefficients. The output of this
+equation is a probability value between 0 and 1, which can be
+interpreted as the likelihood for a landslide to occur under the
+given set of variable values (Kleinbaum and Klein 2010).
+Final variable selection was based on the minimization of the
+Akaike information criterion (AIC), which penalizes model complexity (more variables) and a poor model fit. Forward-backward
+stepwise variable selection starting from the null model was applied 100 times for both LSS models (all landslide types and only
+rockfalls). Each time this selection was based on a randomly
+generated subset containing 2/3 of the calibration dataset. Although, like any other statistical technique, this selection procedure is not perfect (e.g., the inclusion of variables that only slightly
+improves the model), it provides an objective framework for
+variable selection, often used in logistic LSS modeling (e.g., Goetz
+et al. 2011; Petschko et al. 2014; Jacobs et al. 2018). Moreover, we
+obtained similar results when P values and MCFadden’s pseudo R2
+(R2McF , a measure of goodness-of-fit for logistic regression models)
+were considered (e.g., Broeckx et al. 2018). After selection of the
+final model variables, we also used Monte Carlo simulations to
+determine the final set of corresponding variable coefficients. In
+each iteration, 2/3 of the dataset was randomly selected for model
+calibration and 1/3 for internal model validation. This procedure
+was repeated 101 times for both models, a sufficient number to
+capture the full range of model variation (Broeckx et al. 2018).
+From these simulations, the median coefficient of the most significant variable together with the corresponding coefficients of the
+other variables was selected.
+Evaluation of model performance
+Reichenbach et al. (2018) recommend using multiple metrics to
+evaluate the model skill and prediction performance of LSS
+models, since they all have their specific advantages and
+
+Table 1 overview of the considered variables. All variables were rescaled to a resolution of 30 m for the analyses. Variables with a * are only considered for rockfalls, na
+indicates not applicable
+
+Variable
+
+Description
+
+SLO
+
+Slope gradient calculated based on SRTM 1″ DEM
+
+%
+
+30 m
+
+USGS
+
+SLOM*
+
+Maximum slope gradient within a radius of 100 m,
+calculated based on SRTM 1″ DEM
+
+%
+
+30 m
+
+USGS
+
+LR
+
+Local relief: maximum elevation difference within a circle with radius of 2 km
+
+m
+
+30 m
+
+USGS
+
+LRS*
+
+Small local relief: maximum elevation difference within a circle with radius of 200 m
+
+m
+
+30 m
+
+USGS
+
+CUR
+
+Plan curvature: change in slope perpendicular to the steepest slope
+
+na
+
+30 m
+
+USGS
+
+SPI
+
+Stream power index: natural logarithm of the slope tangent multiplied by the specific
+catchment area
+
+na
+
+30 m
+
+USGS
+
+P10
+
+Mean annual precipitation, modeled for the period 1999–2008 with COSMO-CLM2
+
+mm
+
+7 km
+
+Thiery et al.
+2015
+
+SW10
+
+Mean annual soil moisture, modeled to 2.86 m depth,
+for the period 1999–2008 with COSMO-CLM2
+
+mm
+
+7 km
+
+Thiery et al.
+2015
+
+P1
+
+Mean annual precipitation, modeled for 2015 with COSMO-CLM2
+
+mm
+
+2.8 km
+
+Thiery et al.
+2016
+
+SW1
+
+Mean annual soil moisture, modeled to 2.86 m depth, for 2015 with COSMO-CLM2
+
+mm
+
+2.8 km
+
+Thiery et al.
+2016
+
+GRA
+
+Granite: lithological class applied as a dummy variable
+
+na
+
+50 m
+
+DGSM
+
+GNE
+
+Gneiss: lithological class applied as a dummy variable
+
+na
+
+50 m
+
+DGSM
+
+PYR
+
+Pyroclastic rock: lithological class applied as a dummy variable
+
+na
+
+50 m
+
+DGSM
+
+LAV
+
+Lava: lithological class applied as a dummy variable
+
+na
+
+50 m
+
+DGSM
+
+CAR
+
+Carbonatite: lithological class applied as a dummy variable
+
+na
+
+50 m
+
+DGSM
+
+limitations and combined give a better insight in the model performance. Therefore, we constructed receiver operation characteristic (ROC), sensitivity and success/prediction rate curves for the
+calibration dataset. These curves were also used to select class
+boundaries, based on natural breaks and aiming to include as
+many landslides as possible in the highest susceptibility classes
+covering areas as small as possible (e.g., Van Den Eeckhaut et al.
+2012; Broeckx et al. 2018). Additionally, to evaluate local versus
+large-scale LSS maps, we compared our landslide inventory to
+recently produced global (Stanley and Kirschbaum 2017) and continental (Broeckx et al. 2018) LSS maps. Furthermore, Reichenbach
+et al. (2018) indicate that only few studies also assess model
+uncertainty and its spatial distribution (e.g., Guzzetti et al. 2006).
+Therefore, we used the standard deviation of the 101 Monte Carlo
+simulations with the final model variables (BLogistic landslide
+susceptibility models^) as a metric to assess the LSS uncertainty
+at each pixel. We then mapped these standard deviations, to
+identify areas with large and small uncertainties in estimated LSS
+across the Mt. Elgon region.
+Relation between landslide susceptibility and landslide mobilization
+rate
+Some of the landslides that were collected in the field originated
+several decades ago, but most of the mapped landslides occurred
+between 1997 and 2016. Similarly, the dataset spans the entire study
+area of 4200 km2, but can be considered to be mostly complete in only
+part of this area (639 km2, Fig. 3). Given this relatively long-term
+landslide dataset, we delineated part of the study area that was most
+frequently covered during our field campaigns and for which probably
+
+Unit
+
+Resolution
+
+Source
+
+nearly all landslides occurring in the period 1997–2016 were mapped.
+This dataset allows to assess the relationship between LSS and landslide mobilization rate (LMR), which depends on both the frequency
+and size of the landslides. Rockfalls were excluded in our LMR analysis, since we only have few data on their volumes and timing and
+since their mapping was more incomplete. However, based on our
+field work, we expect that most of the mobilized landslide masses,
+resulted from other landslide types.
+First, we constructed frequency-area curves to compare our
+landslide inventory with theoretical curves proposed by Malamud
+et al. (2004). Next, we investigated the relationship between individual landslide size and LSS at the pixel registered as the landslide
+point location, for all landslides of which we had information on
+the landslide length and width. Landslide areas were calculated
+based on these dimensions. The global relationship between landslide area and volume, proposed by Larsen et al. (2010), was
+applied to calculate landslide volumes:
+V ¼ 10−0:836 *A1;332
+
+ð3Þ
+
+In a last step, we calculated the number of landslides and LMR
+[ton/km2/y] for each susceptibility class within the area that was
+most completely mapped. To obtain LMR, we converted landslide
+volumes to landslide masses. We assumed a dry bulk density of 1.6
+ton/m3, given the rock content of the soil (Poesen and Lavee 1994).
+The sum of all individual landslide masses was then divided by the
+observation period (20 years) and considered area (639 km2)) to
+obtain an average LMR for this region.
+Landslides
+
+Original Paper
+
+Fig. 3 Spatial overview of mapped landslide (rockfalls and other landslides of the slide type) and non-landslide locations in the Mt. Elgon region. The region within the
+blue polygon can be considered to be the most completely mapped. Insets show landslides (upper left, with the squares indicating the mapped landslide locations) and
+rockfalls (lower right, with the square indicating the mapped rockfall location and the white arrows indicating large individual rock fragments, ca. 20 m diameter) that can
+be seen on Google Earth imagery
+
+Results and discussion
+Landslide datasets
+Figure 3 displays all landslide and non-landslide locations,
+mapped during the past 15 years in the Mt. Elgon region. Our
+inventory consists of 653 landslides and 260 non-landslide locations for calibration. An additional 413 landslides were independently collected (by other researchers from Busitema University,
+with a partial spatial overlap) during field campaigns in 2014 and
+2015 and were used for external model validation. The calibration
+dataset of 653 landslides, mostly translational and rotational slides,
+also includes 139 rockfalls. All 8 districts of the Mt. Elgon region
+are affected by landslides, also the forested areas in the national
+park. However, mapped landslides are not homogenously distributed across the region. On the one hand, this can be attributed to a
+Landslides
+
+mapping focus on the southwestern provinces during multiple
+field campaings (cf. blue polygon in Fig. 3). On the other hand,
+landslides and casualties are also more frequently reported in this
+part of the study area. Field observations confirmed these reports,
+with considerably less observed (recent) landslides in the northeast of the Mount Elgon region. Although our data do not allow to
+assess exact landslide frequencies across the entire region, they do
+suggest that landslide frequencies are higher in the southwest
+compared to the northeast of the Mt. Elgon region.
+Landslide and rockfall susceptibility
+The ratio between landslide (653) and non-landslide (260) locations is 2.5. The ratio between rockfalls (139) and non-landslide
+locations is 0.53. For both ratios, this is within the suggested range
+of 0.2 to 5 by King and Zeng (2001). However, these ratios in our
+
+Fig. 4 Boxplots of explained variance (R2McF ) for 101 simulations with the model for all landslide types (left) and with the model considering only
+
+rockfalls (right). The different predictor variables are explained in Table 1. For all simulations the calibration dataset (Fig. 3) was
+randomly divided in a calibration (2/3) and an internal validation (1/3) part (see section BLogistic landslide susceptibility models^)
+dataset do not necessarily represent the true landslide versus nonlandslide proportion across the study area (Fig. 3). Hence, the LSS
+values (between 0 and 1) do not represent the relative frequency of
+landslide occurrences between different locations, but only indicate whether a location is less or more susceptible to landsliding
+compared to other locations in the Mt. Elgon region.
+Multivariate logistic regression analysis with a minimization of
+the AIC selected 20 out of 100 times the following set of variables
+for the model of all landslide types: slope gradient (SLO), local
+relief (LR), plan curvature (CUR), mean annual soil moisture
+(SW10) and the carbonatite (CAR) lithology class. Apart from this
+selection, 30 other variable combinations were generated, of which
+only 4 were selected more than 3 out of 100 times. In 100% of the
+simulations, SLO, LR, and CAR were selected. CUR and SW10 are
+respectively selected in 73 and 94% of the Monte Carlo simulations. This confirms that the five retained variables are in most
+cases relevant for explaining landslide occurrence. The same analyses for the rockfall susceptibility model resulted 39 out of 100
+times in the following variable combination: maximum slope
+(SLOM), SW10, and pyroclastic rocks (PYR). Apart from this model, 20 other variable combinations were generated, of which only 4
+were selected more than 3 out of 100 times. SLOM, SW10 and PYR
+were respectively selected in 100%, 85%, and 98% of the simulations. These results indicate that rockfalls can be more consistently
+predicted. This can be expected since one type of landslides spans
+a smaller range of environmental conditions under which this
+landslide type can be triggered. In the case of rockfalls, these
+specific conditions are cliffs, which are widespread across the Mt.
+Elgon region.
+
+Figure 4 shows the range of explained variance of the selected
+LSS models, based on 101 Monte Carlo simulations. For both
+models, the performance during internal validation (using 1/3 of
+the data) is only slightly less than the performance during calibration (using 2/3 of the data). More striking is the difference in
+performance between both models. The model considering all
+landslide types explains 50–60% of the variance in landslide occurrence and the model considering only rockfalls explains 80–
+90%. Rockfall locations can simply be more accurately predicted
+since their occurrence is strongly restricted to very steep
+(subvertical) terrain or cliffs and are thus more strongly
+constrained by the topographic variables. Although our results
+suggest that we can almost perfectly predict rockfalls, the considered environmental variables are too general to describe intra cliff
+variability. It is likely that other factors, such as the local rock
+properties and characteristics (size, orientation, density) of
+offloading cracks near cliffs, further control the susceptibility
+and especially the frequency of rockfall occurrences (e.g.,
+Messenzehl et al. 2017). Therefore, our rockfall model is especially
+useful for a first prediction of the susceptibility threshold to
+indicate all cliffs in the region that can be affected by rockfalls.
+This then can be used for more detailed investigations of these
+cliffs across the region in terms of local cliff conditions and
+rockfall frequencies.
+The LSS model for all landslide types and the LSS model for
+rockfalls are given by Eqs. 4 and 5 and explain about 55% and 85%
+of the variance in landslide occurrence, respectively.
+pðy ¼ 1Þ ¼
+
+1
+1 þ e−logit ðpÞ
+
+ð4Þ
+
+Landslides
+
+Fig. 5 Classified landslide susceptibility maps for all landslide types (left, Eq. 4) and for rockfalls (right, Eq. 5). Percentages indicate the fraction of the study area covered by each class
+
+Original Paper
+
+Landslides
+
+1
+
+fraction true positives
+
+0.8
+
+0.6
+
+0.4
+
+ROC landslides, AUC = 0.94
+ROC rockfalls, AUC = 0.99
+ROC LSS Africa, AUC = 0.84
+
+0.2
+
+ROC LSS world, AUC = 0.77
+LSS map class boundaries
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+fraction false positives
+Fig. 6 ROC curves of the total calibration datasets (Fig. 3) for the models based on
+all landslide types and rockfalls (Eqs. 4 and 5) and for the African (Broeckx et al.
+2018) and global (Stanley and Kirschbaum 2017) landslide susceptibility models.
+The class boundaries of the landslide susceptibility maps (Fig. 5) are shown as well
+
+logit ðpÞ ¼ −12:26 þ 0:11*SLO þ 0:0036*LR−0:37*CUR
+þ 0:0064*SW10−0:43*GRA−
+−0:80*GNE−0:90*LAV−4:97*CAR
+pðy ¼ 1Þ ¼
+
+1
+1 þ e−ð5:15þ0:11*SLOM−0:013*SW10þ2:88*LAH Þ
+
+ð5Þ
+
+1
+
+1
+
+0.8
+
+0.8
+
+fraction true positives
+
+fraction true positives
+
+The model for all landslide types shows an increase of LSS with slope,
+local relief, plan concavity (i.e., negative curvature), and soil moisture.
+All lithological variables in the model negatively correlate with LSS,
+compared to the reference class of pyroclastic rocks. Although only
+the carbonatite lithology significantly reduces LSS, all dummy variables
+
+should be considered in the final model to correctly represent lithology
+(e.g., Jacobs et al. 2018). However, in order not to artificially increase the
+AIC threshold a priori, which would potentially prevent other variables
+to be included, it is recommended to insert the other dummy variables a
+posteriori (Bursac et al. 2008).
+For the rockfall model, LSS increases with maximum slope
+(SLOM) and the occurrence of pyroclastic rocks, but decreases
+with soil moisture. The physical reason for effect of soil moisture
+on rockfalls is not clear and might be the result of spurious
+correlation or intercorrelation. We also tested mean annual precipitation and soil moisture at 2.8 km resolution, notably better
+representing patterns of local topography, but modeled for only
+1 year. As individual predictors, these variables score almost as
+good as their 10-year counterparts at 7 km resolution. These
+results suggest that the LSS model could benefit and be improved
+by using a combination of high-resolution and long-term modeled
+precipitation and soil moisture data, as factors enhancing
+weathering of soil and bedrock, which accumulate over time,
+making them more susceptible to landsliding.
+In Fig. 5, we present a general landslide susceptibility map considering all landslide types (Eq. 4) and one specifically focussing on
+rockfalls (Eq. 5). Our maps show that places most susceptible to
+rockfalls are also the areas that are most susceptible to all landslide
+types. This simply results from the dominance of topography in
+explaining patterns of LSS across the region: steeper slopes inherently
+result in higher susceptibility for all observed landslide types. A large
+fraction of the area is highly susceptible to landsliding, while rockfall
+susceptibility occurs in a linear pattern, i.e., at escarpments around the
+volcano. In accordance with the more frequent landslide and casualty
+reports in the southwestern part of the Mt. Elgon region, we observe
+that this part of the study area is also more susceptible to landsliding.
+A comparison of Figs. 2 and 5 shows that a large fraction of the
+highly susceptible terrain is located within the national park. As
+explained above, we did not consider land use in our models,
+because of a mapping bias towards cultivated terrain outside the
+national park (section BEnvironmental variables^). Consequently,
+the actual susceptibility in this dominantly forested terrain could
+be lower, resulting from the reinforcing effect of vegetation on
+
+0.6
+
+0.4
+
+sensitivity landslides, p 0.5 = 0.93
+
+0.4
+
+sensitivity validation, p 0.5 = 0.93
+
+success rate landslides
+success rate rockfalls
+prediction rate validation
+
+LSS map class boundaries
+
+LSS map class boundaries
+
+sensitivity rockfalls, p 0.5 = 0.94
+
+0.2
+
+0.6
+
+0
+
+0.2
+
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+probability threshold
+
+0.8
+
+1
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+fraction study area
+
+Fig. 7 Sensitivity (left) and success/prediction rate curves (right) for the total calibration datasets and the external validation data (Fig. 3). The class boundaries of the
+landslide susceptibility maps (Fig. 5) are shown on the curves of the calibration data
+
+Landslides
+
+Original Paper
+
+Fig. 8 Standard deviation of landslide susceptibility for the model based on all landslide types (left) and for the model considering only rockfalls (right), based on 101
+simulations
+
+slope stability (e.g.: Knapen et al. 2006; Gariano and Guzzetti 2016;
+Guns and Vanacker 2013; Vannoppen et al. 2016). However, the
+effect of tree cover on slope stability might not always be positive,
+since trees also load the soil with extra weight, and since root
+reinforcement has only a minor stabilizing effect, especially on
+deep-seated (large) landslides (e.g., Sidle and Bogaard 2016).
+Moreover, the larger evapotranspiration from forests might have
+a limited effect under a tropical precipitation regime, where soils
+are often saturated (Akkermans et al. 2014; Schwingshackl et al.
+2017). Landslides were also observed within the national park and
+are even likely to be underrepresented in our dataset, due to
+limited field- mapping opportunities in this area. This clearly
+
+suggests that also within the national park, large zones are effectively highly susceptible to landsliding. This is an important observation concerning landslide risk reduction and an argument to
+prevent people from settling in these areas.
+Evaluation of model performance
+Figure 6 shows the ROC curves of the calibration data applied to our
+LSS models (see Fig. 5). For both models the area under the ROC curve
+(AUC) is very high (> 0.9). which indicates excellent discrimination of
+landslide and non-landslide pixels (Swets 1988). Indicated class
+boundaries on both curves show that the classes of the highest susceptibility contain 67% of observed landslides and 84% of observed
+
+1.E+06
+
+1.E+07
+
+y = 464.16x0.6325
+R² = 0.007
+n = 483
+
+1.E+05
+
+1.E+05
+1.E+04
+
+mL= 3
+
+1.E+03
+
+mL= 2
+
+1.E+02
+
+mL= 1
+
+1.E+04
+
+volume (m³)
+
+frequency density (km-²)
+
+1.E+06
+
+1.E+01
+
+1.E+03
+1.E+02
+1.E+01
+
+1.E+00
+1.E-01
+
+calibrated curves (Malamud et al. 2004)
+
+1.E+00
+
+landslide size inventory (n = 483)
+
+1.E-02
+1.E-06
+
+1.E-01
+1.E-05
+
+1.E-04
+
+1.E-03
+
+1.E-02
+
+landslide area (km²)
+
+1.E-01 1.E+00
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+LSS
+
+Fig. 9 (left) Frequency density distribution of our landslide size inventory, with the general frequency density distribution by Malamud et al. (2004). (right) Landslide
+susceptibility (LSS) at the landslide point location versus landslide size (volume)
+
+Landslides
+
+0.07
+
+LMR (ton/km²/y)
+
+1000
+
+0.02
+
+0.04
+
+160
+140
+120
+
+100
+0.01
+
+100
+
+10
+80
+
+1
+60
+0.1
+0.01
+
+40
+
+0.0003
+
+landslide number
+
+10000
+
+20
+
+0.001
+
+0
+very low
+low
+moderate
+high
+very high
+(340 km²) (80 km²) (70 km²) (58 km) (91 km²)
+
+LSS
+Fig. 10 Landslide susceptibility (LSS) versus landslide mobilization rate (LMR) and
+the number of landslides in the area considered for LMR analysis. Numbers
+between brackets indicate the area covered by the respective LSS class and
+numbers on top of the bars indicate the landslide frequency (landslides/km2/y)
+
+rockfalls, while these classes contain only 3.8% and 0.4% of nonlandslide locations for the model for all landslides and the model of
+
+rockfalls, respectively. From the moderate LSS class onwards, the rate
+of false positives increases more rapidly than the rate of true positives.
+We also compared our landslide datatset with the global LSS model of
+Stanley and Kirschbaum (2017) and the continental African LSS model
+of Broeckx et al. (2018). It can be observed that these models, and
+certainly the LSS model of Africa, are still relatively good at assigning
+true positives in the Mount Elgon region. However, they perform less
+in avoiding false positives, because also many non-landslide locations
+get rather high LSS values. Since in these models topography is also by
+far the main predictor, the lower resolution (30″ and 12″ for the global
+and continental LSS model respectively, compared to 1″ for the Mt.
+Elgon models) might be one of the main reasons for the performance
+difference. Additionally, this comparison shows that LSS models at
+large scale are useful to discern susceptibile regions and even to give a
+first indication of LSS within these regions. However, regional to local
+LSS maps are still required to provide policy makers with a useful tool
+to accurately identify the areas at risk within such susceptible regions.
+To get more insight in the model skill and prediction performance,
+we also constructed sensitivity and success/prediction rate curves
+(Fig. 7). Sensitivity shows the fraction of true positives corresponding
+to a certain susceptibility threshold: we note that 93% of the landslides
+and 94% of the rockfalls have at least a moderate LSS (LSS > 0.5)
+according to their respective LSS models. The success/prediction rate
+
+Fig. 11 Landslide risk in Mt. Elgon region of Uganda, combining landslide frequency and population density, indicating the average number of people potentially affected
+by a landslide per year per square kilometer
+
+Landslides
+
+Original Paper
+shows which fraction of true positives corresponds to a certain fraction
+of the study area. It can be observed that 67% of landslides from the
+calibration dataset falls within 10% of the study area, which is the area
+with very high LSS. Likewise, 84% of the rockfalls is located in the area
+of very high LSS, covering 3% of the study area. Overall, these results
+indicate good model skill, with consistently better results for the rockfall model. Prediction performance was only assessed for the model of
+all landslide types, since no independent rockfall dataset was collected.
+Both in terms of sensitivity and prediction rate, the external validation
+data (see Fig. 3, dashed green lines) scores almost as good as our
+calibration dataset. Although this data has less detailed information,
+this external validation clearly demonstrates that our model is capable
+of assigning locations where landslides are likely to occur in the future.
+As a last step in the model performance evaluation, we assessed
+the model uncertainty and its spatial distribution (Fig. 8). Overall,
+standard deviations of LSS (with values between 0 and 1) are very
+small with mean values of about 0.01 for both models. This
+suggests that the model results are little influenced by selecting
+different subsets for model calibration and further indicates that
+we present two robust models. Nevertheless, Fig. 8 does not show a
+uniform pattern across the region, with clearly larger standard
+deviations in some areas. For the model of rockfalls, highest
+uncertainties correspond to areas with rather high maximum
+slopes (SLOM, 40–70%, depending on the soil moisture (SW10) and
+lithology). For the model based on all landslide types, uncertainty is
+larger for areas with a lava lithology in combination with intermediate
+slopes (20–30%, and for lower slopes in case of high soil moisture) and
+for the combination of carbonatite lithology with rather steep slopes
+(60–75%). This indicates that, for intermediately steep areas, the role of
+lithology and soil moisture is important in determining LSS. Consequently, further constraining the role of these factors (potentially in
+combination with land use and other variables) could further improve
+model performance. This will require improved data on these variables,
+and a focus of more detailed landslide mapping in regions with the
+highest uncertainties.
+Relation between landslide susceptibility and landslide mobilization
+rate
+Figure 9 shows the landslide size-frequency density distribution of
+our inventory (483 landslides). Only for the rockfalls and 31 (mostly old) landslides, we have no information on their size. We
+observe more smaller and more larger landslides compared to
+the theoretical curves (Malamud et al. 2004). The heavy tail is
+the result of five large landslides (> 50,000 m2). The larger number
+of small landslides might be the result of human impact in an
+intensely cultivated region. This was also observed in other cultivated areas (e.g., Van Den Eeckhaut et al. 2007). Many small
+landslides (1–100 m2) can be found along steep road cuts and talus
+bordering agricultural plots in the Mt. Elgon region. Because of
+quick land reclamation, the true portion of small landslides is
+likely even larger. Small landslides make up only a minor part of
+the total LMR. Nevertheless, it is important to know the total
+number of landslides in an area if we want to assess the LMR
+based on theoretical size-frequency distributions. Additionally, the
+theoretical curves should correctly represent the real distribution.
+We observe this is not the case for our dataset.
+A slightly positive, but not significant (p = 0.07) relationship
+between LSS and individual landslide size is found (Fig. 9). Nevertheless, we do not observe a negative relationship between
+Landslides
+
+landslide size and LSS or slope and do not find the largest landslides at lower slopes, which is often assumed and found in other
+studies (e.g., Frattini and Crosta 2013; Jacobs et al. 2017). In
+contrast, the biggest landslides are located in areas with high
+susceptibility. When we exclude the smallest landslides (< 10 m2,
+which are likely to be underestimated), the relation becomes
+slightly significant (p < 0.01). Unlike landslide size, the landslide
+frequency (hazard) clearly increases with LSS (Fig. 10), which can
+be expected. Although susceptible areas are not necessarily hazardous (i.e., having a high landslide frequency), hazardous areas
+should correspond to areas with high LSS, for a good LSS model.
+Although landslide frequency is highly dependent on the complete
+mapping of especially small landslides, we can also make a first
+crude assessment of the landslide risk in the entire region by
+combining landslide frequency per susceptibility class with the
+population density at the parish level (UBOS 2017). Figure 11 shows
+the landslide risk of the Mt. Elgon region, with highest risk in the
+southwest, where both landslide frequency and population density
+are high. A landslide risk of 100 indicates that, for instance, within
+an area of 1 km2 1000 persons are exposed to one landslide every
+10 years or 500 persons are exposed to a landslide every 5 years.
+The typical size of such landslide involves about 100 to 20,000 ton,
+but could be much larger or smaller. The landslide frequency,
+however, should be considered as a lower estimate for the actual
+risk.
+For the LMR analysis (Fig. 3, area delineated in blue), a potential underestimation of small landslides is less important, because
+large landslides have a much stronger control on the LMR. Therefore, the length of the considered observation period is more
+important to capture the recurrence of low-frequency, largemagnitude landslide events. As a result, similar to the landslide
+risk assessment, our LMR should be considered as a lower estimate of the actual LMR, since large landslides occurring infrequently might not be captured by our inventory. The 231 observed
+landslides that occurred between 1997 and 2016 within the area
+considered for the LMR calculation, range between 0.25 and 1.2 106
+ton and represent a LMR of 350 ton/km2/y. However, when the
+zone of very low susceptibility is excluded (53%), a LMR of 750
+ton/km2/y is obtained and for the area of very high LSS this
+increases to almost 2000 ton/km2/y. This rate is at the higher end
+of the spectrum, observed at the global scale, but is still one to two
+orders of magnitudes smaller than LMR generated in highly tectonically active and/or very wet mountain ranges, such as for
+instance Taiwan (Broeckx et al., manuscript in preparation). Extrapolating the results of Fig. 10 to the entire Mt. Elgon region in
+Uganda yields a rate of 255 ton/km2/y, and 655 ton/km2/y if the
+area of very low susceptibility is excluded. Landslides are thus a
+major sediment-producing source in this African region. A clear
+positive relationship between LSS and LMR is observed in Fig. 10.
+This results from the larger landslide numbers that are associated
+with higher LSS values, rather than from larger landslides that are
+also slightly correlated with higher LSS values.
+These results show that LSS can be used as a first indicator or
+estimate of LMR in the Mt. Elgon region. It is recommended to
+investigate in follow-up studies whether such positive relation
+between LSS and LMR can also be found for other study areas
+and at larger scales. Broeckx et al. (2016, 2018) already demonstrated that LSS can be a good predictor for catchment sediment
+yield at regional to continental scale. Also our analyses suggest the
+
+potential of this relatively easy-to-calculate proxy variable, for
+quantitative geomorphological processes such as LMR and sediment yield, for which data is often scarce and without continuous
+coverage at large scale.
+Conclusions
+This study presents first detailed landslide and rockfall susceptibility maps for the Mt. Elgon region in Uganda, based on a dataset
+of 653 landslides collected in the field (2002–2016). Together with
+the landslide mobilization rate (LMR) and landslide risk assessment, these analyses provide a comprehensive approach to assess
+both the social and geomorphological impact and importance of
+landslides in this data-scarce region. As such, this study can be
+used as an example to go beyond a standard landslide susceptibility (LSS) assessment in other data-scarce regions in, but also
+outside the Global South. Most importantly, the results of our
+analyses and produced maps can be directly used by policymakers
+as a basis for sustainable planning and risk reduction for the
+region and its inhabitants.
+Topography is the main predictor for both LSS models, but has
+a stronger control on rockfalls, which are restricted to the steep
+escarpments being main geomorphological structures around Mt.
+Elgon. Lithology and soil moisture are also significant predictors
+of LSS. Uncertainty analyses showed that especially for intermediate relief these variables are important and should be further
+constrained to improve model performance. The LSS models for
+all landslide types and for rockfalls (Fig. 5) successfully distinguish
+between landslide and non-landslide locations and indicate respectively 17% and 5% of the region’s area as at least highly
+susceptible to landslide and rockfall occurrence. Comparison of
+our model with global and continental landslide susceptibility
+models shows that these large-scale models can already provide
+a first indication of the general LSS pattern within our region, but
+that higher resolution models are needed to differentiate susceptible and non-susceptible slopes at local scale.
+Our dataset shows a larger fraction of small landslides compared to proposed theoretical size-frequency distributions. This
+may be the result of human impact, which generates many small
+landslides near for instance road cuts and earth banks. However,
+at the same time, humans can also quickly remove the traces of
+these smaller landslides by land reclamation. Therefore, we hypothesize that in many similar, intensely cultivated steep mountain regions, the fraction of very small (1–100 m2) landslides is
+strongly underestimated. Small landslides have a limited contribution to the LMR. However, their omission could cause a larger
+underestimation of the LMR, if theoretical frequency-size distributions are used to estimate LMR based on the number of landslides. Consequently, for such approaches, it is crucial that both
+the number of landslides and the theoretical frequency density
+distributions are representative for the real situation. A positive
+relation is observed between LSS and LMR, which is mainly attributable to a larger number of landslides observed in classes with
+higher landslide susceptibility. This result indicates that LSS can be
+used as a first estimate for LMR in the Mt. Elgon region. Given the
+scarcity of LMR data in many regions around the world and at
+larger scales, LSS might be useful as a first LMR estimator in such
+regions. However, this relation should be further explored in other
+regions and potentially at larger scale to assess its true quantitative
+predictive power.
+
+Acknowledgements
+The authors acknowledge the cooperation of all local communities
+in the Mt. Elgon region. We are also very grateful to Lawrence
+Guloba for facilitating our field work with his excellent car driving
+skills in challenging conditions.
+Funding information
+This research received financial support of VLIR-UOS (Surelive
+project), which supports partnerships between universities in
+Flanders and in the Global South, and BELSPO Brain.be AfReSlide
+project (BR/121/A2/AfReSlide).
+References
+Akkermans T, Thiery W, Van Lipzig NPM (2014) The regional climate impact of a realistic
+future deforestation scenario in the Congo basin. J Clim 27:2714–2734. https://
+doi.org/10.1175/JCLI-D-13-00361.1
+Alcántara-Ayala I (2002) Geomorphology, natural hazards, vulnerability and prevention
+of natural disasters in developing countries. Geomorphology 47:107–124. https://
+doi.org/10.1016/S0169-555X(02)00083-1
+Blahut J, van Westen CJ, Sterlacchini S (2010) Analysis of landslide inventories for
+accurate prediction of debris-flow source areas. Geomorphology 119:36–51. https://
+doi.org/10.1016/j.geomorph.2010.02.017
+Broeckx J, Vanmaercke M, Balteanu D et al (2016) Linking landslide susceptibility to
+sediment yield at regional scale: application to Romania. Geomorphology 268:222–
+232. https://doi.org/10.1016/j.geomorph.2016.06.012
+Broeckx J, Vanmaercke M, Duchateau R, Poesen J (2018) A data-based landslide
+susceptibility map of Africa. Earth Sci Rev 185:102–121. https://doi.org/10.1016/
+j.earscirev.2018.05.002
+Bursac Z, Gauss CH, Williams DK, Hosmer DW (2008) Purposeful selection of variables in logistic
+regression. Source Code Biol Med 3:1–8. https://doi.org/10.1186/1751-0473-3-17
+Claessens L, Schoorl JM, Veldkamp a (2007) Modelling the location of shallow landslides
+and their effects on landscape dynamics in large watersheds: an application for
+northern New Zealand. Geomorphology 87:16–27. https://doi.org/10.1016/
+j.geomorph.2006.06.039
+Corominas J, van Westen C, Frattini P, Cascini L, Malet JP, Fotopoulou S, Catani F, van
+den Eeckhaut M, Mavrouli O, Agliardi F, Pitilakis K, Winter MG, Pastor M, Ferlisi S,
+Tofani V, Hervás J, Smith JT (2014) Recommendations for the quantitative analysis of
+landslide risk. Bull Eng Geol Environ 73:209–263. https://doi.org/10.1007/s10064013-0538-8
+Duman TY, Can T, Gokceoglu C, Nefeslioglu HA, Sonmez H (2006) Application of logistic
+regression for landslide susceptibility zoning of Cekmece area, Istanbul, Turkey.
+Environ Geol 51:241–256. https://doi.org/10.1007/s00254-006-0322-1
+Frattini P, Crosta GB (2013) The role of material properties and landscape morphology on
+landslide size distributions. Earth Planet Sci Lett 361:310–319. https://doi.org/
+10.1016/j.epsl.2012.10.029
+Froude MJ, Petley DN (2018) Global fatal landslide occurrence from 2004 to 2016. Nat
+Hazards Earth Syst Sci 18:2161–2181. https://doi.org/10.5194/nhess-18-2161-2018
+Gariano SL, Guzzetti F (2016) Landslides in a changing climate. Earth Sci Rev 162:227–
+252. https://doi.org/10.1016/j.earscirev.2016.08.011
+Goetz JN, Guthrie RH, Brenning A (2011) Integrating physical and empirical landslide
+susceptibility models using generalized additive models. Geomorphology 129:376–
+386. https://doi.org/10.1016/j.geomorph.2011.03.001
+Guns M, Vanacker V (2013) Forest cover change trajectories and their impact on landslide
+occurrence in the tropical Andes. Environ Earth Sci 70:2941–2952. https://doi.org/
+10.1007/s12665-013-2352-9
+Guzzetti F, Reichenbach P, Ardizzone F, Cardinali M, Galli M (2006) Estimating the quality
+of landslide susceptibility models. Geomorphology 81:166–184. https://doi.org/
+10.1016/j.geomorph.2006.04.007
+Guzzetti F, Mondini AC, Cardinali M, Fiorucci F, Santangelo M, Chang KT (2012) Landslide
+inventory maps: new tools for an old problem. Earth Sci Rev 112:42–66. https://
+doi.org/10.1016/j.earscirev.2012.02.001
+Jacobs L, Dewitte O, Poesen J, Delvaux D, Thiery W, Kervyn M (2016a) The Rwenzori
+Mountains, a landslide-prone region? Landslides 13:519–536. https://doi.org/
+10.1007/s10346-015-0582-5
+Jacobs L, Maes J, Mertens K, Sekajugo J, Thiery W, van Lipzig N, Poesen J, Kervyn M,
+Dewitte O (2016b) Reconstruction of a flash flood event through a multi-hazard
+
+Landslides
+
+Original Paper
+approach: focus on the Rwenzori Mountains, Uganda. Nat Hazards 84:851–876.
+https://doi.org/10.1007/s11069-016-2458-y
+Jacobs L, Dewitte O, Poesen J, Maes J, Mertens K, Sekajugo J, Kervyn M (2017) Landslide
+characteristics and spatial distribution in the Rwenzori Mountains, Uganda. J Afr Earth
+Sci 134:917–930. https://doi.org/10.1016/j.jafrearsci.2016.05.013
+Jacobs L, Dewitte O, Poesen J, Sekajugo J, Nobile A, Rossi M, Thiery W, Kervyn M (2018)
+Field-based landslide susceptibility assessment in a data-scarce environment: the
+populated areas of the Rwenzori Mountains. Nat Hazards Earth Syst Sci 18:105–124.
+https://doi.org/10.5194/nhess-18-105-2018
+King G, Zeng L (2001) Logistic regression in rare events data. Polit Anal 9:137–163.
+https://doi.org/10.1162/00208180152507597
+King BC, Le Bas MJ, Sutherland DS (1972) The history of the alkaline volcanoes and intrusive
+complexes of eastern Uganda and western Kenya. J Geol Soc Lond 128:173–205
+Kirschbaum D, Stanley T, Zhou Y (2015) Spatial and temporal analysis of a global
+landslide catalog. Geomorphology 249:4–15. https://doi.org/10.1016/
+j.geomorph.2015.03.016
+Kitutu MG, Muwanga A, Poesen J, Deckers JA (2009) Influence of soil properties on
+landslide occurrences in Bududa district , eastern Uganda. Afr J Agric Res 4:611–620.
+https://doi.org/10.5897/AJAR09.158
+Kleinbaum DG, Klein M (2010) Logistic regression: a self-learning text, 3rd edn. SpringerVerlag, New York
+Knapen A, Kitutu MG, Poesen J, Breugelmans W, Deckers J, Muwanga A (2006)
+Landslides in a densely populated county at the footslopes of Mount Elgon (Uganda):
+characteristics and causal factors. Geomorphology 73:149–165. https://doi.org/
+10.1016/j.geomorph.2005.07.004
+Larsen IJ, Montgomery DR, Korup O (2010) Landslide erosion controlled by hillslope
+material. Nat Geosci 3:247–251. https://doi.org/10.1038/ngeo776
+Maes J, Kervyn M, de Hontheim A, Dewitte O, Jacobs L, Mertens K, Vanmaercke M,
+Vranken L, Poesen J (2017) Landslide risk reduction measures: a review of practices
+and challenges for the tropics. Prog Phys Geogr 41:191–221. https://doi.org/10.1177/
+0309133316689344
+Malamud BD, Turcotte DL, Guzzetti F, Reichenbach P (2004) Landslides, earthquakes, and
+erosion. Earth Planet Sci Lett 229:45–59. https://doi.org/10.1016/j.epsl.2004.10.018
+Mertens K, Jacobs L, Maes J, Kabaseke C, Maertens M, Poesen J, Kervyn M, Vranken L
+(2016) The direct impact of landslides on household income in tropical regions: a case
+study from the Rwenzori Mountains in Uganda. Sci Total Environ 550:1032–1043.
+https://doi.org/10.1016/j.scitotenv.2016.01.171
+Messenzehl K, Meyer H, Otto JC, Hoffmann T, Dikau R (2017) Regional-scale controls on
+the spatial activity of rockfalls (Turtmann Valley, Swiss Alps) — a multivariate
+modeling approach. Geomorphology 287:29–45. https://doi.org/10.1016/
+j.geomorph.2016.01.008
+Mugagga F, Kakembo V, Buyinza M (2012a) A characterisation of the physical properties
+of soil and the implications for landslide occurrence on the slopes of Mount Elgon,
+eastern Uganda. Nat Hazards 60:1113–1131. https://doi.org/10.1007/s11069-0119896-3
+Mugagga F, Kakembo V, Buyinza M (2012b) Land use changes on the slopes of Mount
+Elgon and the implications for the occurrence of landslides. Catena 90:39–46. https://
+doi.org/10.1016/j.catena.2011.11.004
+Oleson KW, Niu GY, Yang ZL, Lawrence DM, Thornton PE, Lawrence PJ, Stöckli R,
+Dickinson RE, Bonan GB, Levis S, Dai A, Qian T (2008) Improvements to the
+community land model and their impact on the hydrological cycle. J Geophys Res
+Biogeosci 113. https://doi.org/10.1029/2007JG000563
+Petley D (2012) Global patterns of loss of life from landslides. Geology 40:927–930.
+https://doi.org/10.1130/G33217.1
+Petschko H, Brenning A, Bell R, Goetz J, Glade T (2014) Assessing the quality of landslide
+susceptibility maps - case study Lower Austria. Nat Hazards Earth Syst Sci 14:95–118.
+https://doi.org/10.5194/nhess-14-95-2014
+Poesen J, Lavee H (1994) Rock fragments in top soils: significance and processes. Catena
+23:1–28. https://doi.org/10.1016/0341-8162(94)90050-7
+Pourghasemi HR, Rossi M (2017) Landslide susceptibility modeling in a landslide prone
+area in Mazandarn Province, north of Iran: a comparison between GLM, GAM, MARS,
+and M-AHP methods. Theor Appl Climatol 130:1–25. https://doi.org/10.1007/s00704016-1919-2
+Reichenbach P, Rossi M, Malamud B et al (2018) A review of statistically-based landslide
+susceptibility models. Earth Sci Rev 180:60–91. https://doi.org/10.1016/
+j.earscirev.2018.03.001
+Sassen M, Sheil D, Giller KE, ter Braak CJF (2013) Complex contexts and dynamic
+drivers: understanding four decades of forest loss and recovery in an east
+African protected area. Biol Conserv 159:257–268. https://doi.org/10.1016/
+j.biocon.2012.12.003
+
+Landslides
+
+Schwingshackl C, Hirschi M, Seneviratne SI (2017) Quantifying spatiotemporal variations
+of soil moisture control on surface energy balance and near-surface air temperature. J
+Clim 30:7105–7124. https://doi.org/10.1175/JCLI-D-16-0727.1
+Scott P, IUCN FCP, IUCN RO for EA (1998) From conflict to collaboration: people and
+forests at Mount Elgon, Uganda. IUCN: International Union for Conservation of Nature,
+Gland
+Sidle RC, Bogaard TA (2016) Dynamic earth system and ecological controls of rainfallinitiated landslides. Earth Sci Rev 159:275–291. https://doi.org/10.1016/
+j.earscirev.2016.05.013
+Simonetti A, Bell K (1995) Nd, Pb and Sr isotopic data from the Mount Elgon volcano,
+eastern Uganda-western Kenya: implications for the origin and evolution of nephelinite lavas. Lithos 36:141–153. https://doi.org/10.1016/0024-4937(95)00011-4
+Stanley T, Kirschbaum DB (2017) A heuristic approach to global landslide susceptibility
+mapping. Nat Hazards 87:145–164. https://doi.org/10.1007/s11069-017-2757-y
+Steger S, Glade T (2017) The challenge of Btrivial areas^ in statistical landslide
+susceptibility modelling. In: Mikos M, Tiwari B, Yin Y, Sassa K (eds) Advancing culture
+of living with landslides. WLF 2017. Springer, Cham, p 1148
+Swets JA (1988) Measuring the accuracy of diagnostic systems. Science 240:1285–1293.
+https://doi.org/10.1126/science.3287615
+Thiery W, Davin EL, Panitz H-J, Demuzere M, Lhermitte S, van Lipzig N (2015) The impact
+of the African Great Lakes on the regional climate. J Clim 28:4061–4085. https://
+doi.org/10.1175/JCLI-D-14-00565.1
+Thiery W, Davin EL, Seneviratne SI, Bedka K, Lhermitte S, van Lipzig NPM (2016)
+Hazardous thunderstorm intensification over Lake Victoria. Nat Commun
+7(12786):1–15. https://doi.org/10.1038/ncomms12786
+UBOS (2017) The population of the regions and districts of Uganda according to census
+results. Citypopulation.de Quoting Uganda Bureau of Statistics (UBOS). http://
+citypopulation.de/php/uganda-admin.php. Accessed 26 Feb 2018
+UNISDR (2015) Sendai Framework for Disaster Risk Reduction 2015–2030. In:
+A/CONF.224/CRP.1. Sendai, Miyagi, Japan: UNISDR, 1–25
+Van Den Eeckhaut M, Vanwalleghem T, Poesen J et al (2006) Prediction of landslide
+susceptibility using rare events logistic regression: a case-study in the Flemish
+Ardennes (Belgium). Geomorphology 76:392–410. https://doi.org/10.1016/
+j.geomorph.2005.12.003
+Van Den Eeckhaut M, Poesen J, Govers G et al (2007) Characteristics of the size
+distribution of recent and historical landslides in a populated hilly region. Earth
+Planet Sci Lett 256:588–603. https://doi.org/10.1016/j.epsl.2007.01.040
+Van Den Eeckhaut M, Hervás J, Jaedicke C et al (2012) Statistical modelling of Europewide landslide susceptibility using limited landslide inventory data. Landslides 9:357–
+369. https://doi.org/10.1007/s10346-011-0299-z
+Van Eynde E, Dondeyne S, Isabirye M et al (2017) Impact of landslides on soil
+characteristics: implications for estimating their age. Catena 157:173–179. https://
+doi.org/10.1016/j.catena.2017.05.003
+Vanmaercke M, Poesen J, Broeckx J, Nyssen J (2014) Sediment yield in Africa. Earth Sci
+Rev 136:350–368. https://doi.org/10.1016/j.earscirev.2014.06.004
+Vannoppen W, Poesen J, Peeters P, de Baets S, Vandevoorde B (2016) Root properties of
+vegetation communities and their impact on the erosion resistance of river dikes.
+Earth Surf Process Landf 41:2038–2046. https://doi.org/10.1002/esp.3970
+Vlaeminck P, Maertens M, Isabirye M, Vanderhoydonks F, Poesen J, Deckers S, Vranken L
+(2016) Coping with landslide risk through preventive resettlement. Designing optimal
+strategies through choice experiments for the Mount Elgon region, Uganda. Land Use
+Policy 51:301–311. https://doi.org/10.1016/j.landusepol.2015.11.023
+Westerhof ABP, Härmä P, Isabirye E et al (2014) Geology and geodynamic development
+of Uganda with Explanation of the 1:1,000,000 -Scale Geological Map. Geol Surv
+Finland, Spec Pap 55
+
+Electronic supplementary material The online version of this article (https://doi.org/
+10.1007/s10346-018-1085-y) contains supplementary material, which is available to
+authorized users.
+J. Broeckx ()) : M. Maertens : M. Vanmaercke : J. Deckers : L. Jacobs :
+L. Vranken : J. Poesen
+Department of Earth and Environmental Sciences,
+KU Leuven,
+Celestijnenlaan 200E, 3001, Heverlee, Belgium
+Email: Jente.Broeckx@kuleuven.be
+
+
