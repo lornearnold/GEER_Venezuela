@@ -77,21 +77,32 @@ Per Eduardo Garcia: The sites you have as 111 and 114 are very noticeable from s
  
 ## Opportunities for future data collection
 
-Continued monitoring of indicators of landslide activity. Examples include: 
+**Landslide Inventory and Model Comparison:**
+The landslide inventory presented in this section was developed by visual interpretation of post-event satellite imagery and is preliminary.
+Development of a quality-controlled inventory for the affected region, applying consistent mapping criteria, discretizing individual source zones from their runout paths, and field-verifying a representative sample, would substantially strengthen the area and count estimates reported here.
+The preliminary inventory would serve as the starting point for that effort.
+Once a verified inventory is available, future research should undertake a formal comparison against the USGS Ground Failure coseismic landslide product for this event.
+The steep, thin-soiled tropical terrain of the Cordillera de la Costa, with its strong antecedent landslide history, represents a demanding test case for regional predictive models.
+Such a comparison would be most informative if the inventory is developed independently of the model output.
 
-Satellite imagery
-- Linear groupings of dead vegetation in landslide-prone areas, which would indicate a recent landslide that caused downslope vegetation damage from runout. Color changes from vegetation damage may only become apparent in the weeks after the damaging event.
+**Continued Monitoring of Landslide Activity:**
+Indicators of ongoing slope movement remain observable in satellite imagery and warrant continued monitoring through at least the next wet season.
+Linear groupings of dead vegetation in landslide-prone areas indicate recent movement, where downslope vegetation has been damaged by runout.
+Color changes associated with vegetation damage may only become apparent in the weeks following the triggering event, so repeat imagery acquisition is necessary to capture failures that were not evident in the imagery available immediately after the earthquakes.
+Monitoring would also help resolve whether the apparent enlargement of some slides between the post-event imagery and later field photographs reflects genuine ongoing mass movement.
 
-Inventory development and model comparison
-- Development of a quality-controlled landslide inventory for the affected region, with consistent mapping criteria, discretization of individual source zones, and field verification of a representative sample. The preliminary inventory presented here would serve as the starting point.
-- Once a verified inventory exists, a formal comparison against the USGS Ground Failure coseismic landslide product would allow a genuine assessment of predictive model performance in this setting. Steep, thin-soiled tropical terrain with a strong antecedent-landslide history is a demanding test case, and the comparison would be most informative if the inventory is developed independently of the model output.
+**Field Investigation of Slope and Deposit Conditions:**
+Several field measurements are believed important to resolve questions that satellite imagery alone cannot answer:
 
+- Three-dimensional characterization of landslide source and deposition areas, by remote sensing, for mechanics analysis;
+- Headscarp and ground condition in areas without apparent landslide activity;
+- Depth of residual soil and root mass over bedrock, in both 1999 and 2026 source areas;
+- Runout distance evidence and its distribution at characteristic sites;
 
-Field investigations
-- Remote sensing for full 3D characterization of landslide source and deposition areas. This is needed for mechanics analysis.
-- Investigation of landslide headscarp and ground condition in areas without apparent landslide activity. These would indicate whether the ground shaking introduced increased susceptibility to rain-induced landsliding (moving long in-situ materials downslope) in addition to an increased potential for rain-induced sebris flows from newly deposited source materials.
-- Investigation of bedrock cover thickness of residual soils and roots. If the areas of know sliding in 1999 are investigated, what is the average depth of the soil over bedrock? For the areas of high landslide concentration after the 2026 earthquakes? A noticable difference in thickness may indicate that the depletion of source material after the 1999 event helped relatively few landslides be triggered in this immediate area.
-- Investigation of runout distance evidence and distribution. This cannot be captured consistently from satellite imagery, especially in areas of dense vegetation. Understanding the runout distances of characteristic sites would help inform the nature of the compounding debris flow hazard.
+Investigation of ground conditions in areas that did not fail would indicate whether the ground shaking introduced increased susceptibility to rain-induced landsliding, by loosening in-situ materials on slopes that have not yet mobilized, in addition to the increased potential for debris flows from newly deposited source material.
+Comparison of soil thickness between areas of known 1999 sliding and areas of high 2026 landslide concentration would test the hypothesis that depletion of source material in 1999 limited triggering in the lower foothills adjacent to Caracas.
+A comparison of conditions between slopes that mobilized and adjacent slopes that did not could help inform models for earthquake-triggered landsliding in colluvium-mantled terrain generally, not only at this site.
+Runout distances cannot be captured consistently from satellite imagery, particularly beneath dense vegetation, and characterizing them at representative sites would inform the nature of the compounding debris flow hazard described above.
 
 
 
