@@ -20,6 +20,7 @@ Observed landslides were typically small, shallow failures involving the residua
 
 This inventory is preliminary.
 Landslide areas were delineated by visual interpretation of post-event satellite imagery and have not been subjected to formal quality control or field verification.
+<!-- USGS guidance from their data releases and the Nowicki-Jesse model. -->
 Coalescing source zones and runout paths were not consistently discretized, and small or vegetation-obscured failures are likely undercounted.
 The counts and areas reported here should therefore be read as an order-of-magnitude characterization of coseismic landsliding rather than a verified inventory.
 
@@ -42,20 +43,22 @@ This background activity was not quantified, and no published background landsli
 
 ## Trends 
 
-### Watersheds
-The landslides are concentrated on the northward side of the mountains between Caracas and Caraballeda.
-Fig. 6.2 shows the distribution of landslide area by slope orientation.
+The mapped landslides show a pronounced northeastward orientation.
+Fig. 6.2 presents the distribution of the 602 mapped landslide features by slope aspect (the mean downslope direction of each feature, computed from a 30 m digital elevation model), with each petal stacked by the maximum slope within the feature.
+The eastward component of the trend is consistent with fling step asymmetry expected near a fault with westward tectonic permanent displacement (Garini et al., 2011)
+The northward component of the trend is consistent with the stronger shaking on the northern side of the Cordillera de la Costa, nearer to the fault.
+<!-- The observed distribution is broadly consistent with the USGS Ground Failure product for this event, which also indicates elevated coseismic landslide probability in the mountainous terrain north of Caracas. (actually, only the northward component of the trend because the GF doesn't account for directivity or fling step) -->
+
+<!-- Garini, E., Gazetas, G., & Anastasopoulos, I. (2011). Asymmetric ‘Newmark’ sliding caused by motions containing severe ‘directivity’ and ‘fling’ pulses. Géotechnique, 61(9), 733–756. https://doi.org/10.1680/geot.9.P.070 -->
 
 
-### Directionality
-Fig. 6.3 shows the approximate area of landsliding by watershed which indicates a clear concentration on the slopes towards the north coast around Caraballeda.
-In addition to a clear northward trend, the landslides have an eastward concentration, likely attributable to direction of fault displacement, which runs nearly directly westward in the affected region.
+![Fig. 6.2](fig6_2_rose_count.png)
 
 ![Fig. 6.3](image-1.png)
 
-The observed distribution is broadly consistent with the USGS Ground Failure product for this event, which also indicates elevated coseismic landslide probability in the mountainous terrain north of Caracas.
-(_Confirm against the USGS product before finalizing._)
-Because the present inventory is preliminary and has not been independently verified, this comparison is offered as a qualitative observation only, not as an assessment of the predictive model's performance.
+
+The implications of the northward facing trend are most pronounced in the mountains between Caracas and Caraballeda, which has a prominent ridge running east-wesst.
+
 
 ## Compounding hazard potential 
 
