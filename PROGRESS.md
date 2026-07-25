@@ -628,3 +628,182 @@ Larsen & Torres-Sánchez 1998, Larsen 2012 (PP 1789-F), and Broeckx 2019 from on
 - Source PDFs/extracted texts archived in `data/references/lit_audit_20260724/` (gitignore
   status: data/basemaps is ignored; check whether to track these).
 - Working draft Background rewritten against verified quotes only.
+
+## Fig. 6.2 aspect rose script (2026-07-24)
+
+`scripts/fig6_2_aspect_rose.py` (run: `uv run python scripts/fig6_2_aspect_rose.py`) — count-based
+aspect rose combining the GeoSyntec landslide polygons (precomputed `aspect_deg`) with the
+GEER-mapped lines from `geer_mapping.gpkg` (aspect computed from DEM: warp to UTM 19N, Horn
+gradient, circular mean of ~15 m samples along each line, slope <2° excluded). Each feature
+counts 1 (mixed geometry types). 16 sectors, notebook-consistent binning; CVD-validated
+blue/orange stacked bars; writes `06_Landslides/fig6_2_rose_count.png` (300 dpi) + console table.
+The mapped lines lie WEST of the la-guaira DEM, so fetched `data/terrain/geer_mapping_dem.tif`
+(Copernicus GLO-30 via `geer_venezuela.terrain.fetch_dem`, lines extent + 0.02° pad); the script
+globs `data/terrain/*_dem.tif` and samples each line from whichever DEM covers it — new mapping
+areas just need one fetch_dem call. Result: 452 polygons + 150 lines, both inventories peak
+NE/ENE; the lines skew farther east (E sector: 30 of 63 total).
+
+## GeoSyntec layer cleanup — analysis attrs removed (2026-07-24)
+
+Lorne flagged that repo scripts had earlier written derived attributes into the GeoSyntec source
+layer, which he did not want. Removed `slope_mean, slope_min, slope_max, aspect_deg, aspect_R,
+n_cells, aspect_dir` from `data/geosyntec/geosyntec_geomorph_aerials_20260720.geojson` (back to
+the original 15-column delivery schema, 516 features). Followed the CLAUDE.md open-file
+procedure: saved style QML → removed layer from live QGIS → edited on disk → re-added into the
+GeoSyntec group → re-applied style. Project NOT saved (Lorne's call in QGIS).
+`scripts/fig6_2_aspect_rose.py` reworked accordingly: no attributes expected on either input —
+polygon aspect is now computed at run time (circular mean of DEM aspect over cells inside each
+polygon; representative point for tiny polygons), same DEM/gradient/slope-filter method as the
+lines. All 452 polygons + 150 lines resolve; counts near-identical (NE peak 101 vs 105).
+**Rule going forward: analysis products don't get written into source data layers — compute at
+run time or write to separate files.**
+
+- Fig. 6.2 script restyled per Lorne: Arial font; petals now stacked by max-slope class
+  (notebook SLOPE_BINS 0/20/30/40/50/90, ColorBrewer Blues light→dark) instead of by dataset;
+  slope computed per feature from the DEMs alongside aspect (max over covered cells/samples).
+  Inventories pooled by count (452 polygons + 150 lines; dataset split still printed to console).
+
+## USGS Ground Failure landslide models added (2026-07-24)
+
+Downloaded the ground-failure product rasters for event us6000t7zp (M 7.5, 20 km ESE of Yumare,
+GF version 12 of 2026-07-13, ShakeMap v12) via ComCat into `data/usgs/ground_failure/`:
+`jessee_2018_model.tif` (preferred; max prob 0.21, alert red), `godt_2008_model.tif`,
+`nowicki_2014_global_model.tif`, plus `info.json` (alerts, aggregate hazard 46 km², pop exposure
+~13,000, model refs). Liquefaction models (zhu_2015, zhu_2017_general) NOT downloaded — available
+in the same product if wanted. Added all three to the QGIS **USGS** group as
+"GF landslide probability — <model> (USGS…)", styled singleband pseudocolor (USGS-style
+yellow→red, <2% transparent, 75% opacity, classification 0–0.4). Project not saved (Lorne's
+call). NB for §6.2 comparison: info.json flags `point_source: true` + `rupture_warning: true` —
+the GF run used a point-source approximation for this M 7.5 event.
+
+## Vantor Open Data inventory + download script (2026-07-24)
+
+Compared the project's holdings against the Vantor open-data STAC collection
+(`vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/collection.json`;
+Maxar Open Data IS now activated for this event — earlier PROGRESS notes said it wasn't).
+Collection: 48 unique items (49 links, one duplicate), 10 pre-event Nov 2025–May 2026 +
+38 post-event Jun 25–30, ~349 GB of visual COGs. File-level overlap with the project:
+(1) the two "wv2" 2026-06-25 21:29 Maxar deliveries in `maxar_visual/` are the exact same
+collects as open-data items B16000110179D310/D410 (times + off-nadir match to the second —
+NB the open data labels them **LG06/Legion-6, not WV-2**; local file/layer names likely
+mislabeled); (2) `vantor_legion_20260625_mosaic.tif` derives from the five Jun-25 Legion
+post scenes. The other five Maxar deliveries (la-guaira-west, puerto-cabello ×2,
+valencia-west ×2) are NOT in the collection. Remaining 43 scenes we don't have = 327 GB
+(96 GB pre / 231 GB post; 2.1–51 GB each — the 51 GB one is the WV03 2026-05-31 pre-event
+strip). Too big for the repo/internal disk (146 GB free) → destination is the One Touch
+drive (2.9 TB free). Wrote `scripts/download_vantor_opendata.sh` (resumable curl loop,
+size-verified, STAC JSON sidecars, pre_event/post_event subfolders, default dest
+`/Volumes/One Touch/satellite_imagery/vantor_open_data`; `INCLUDE_MOSAIC_SCENES=1` adds
+the three Jun-25 LG01 full-res scenes, ~8 GB). Not yet run — Lorne to launch.
+
+## §6.2 Trends section rewrite around aspect rose (2026-07-24)
+
+Rewrote the Trends section of `06_Landslides/working_draft.md`: dropped the
+Watersheds/Directionality subsections in favor of one narrative that (1) describes the
+northeastward aspect trend using `fig6_2_rose_count.png` (ran
+`scripts/fig6_2_aspect_rose.py` for the numbers: 602 pooled features = 452 GeoSyntec
+polygons + 150 GEER lines; 391/602 ≈ 65% face N–E, NE+ENE ≈ 30%, <10% face south,
+dominant petals mostly 40°+ max slope), (2) attributes it to steep north-facing coastal
+terrain plus westward fault displacement destabilizing east-facing slopes (with an honest
+caveat that the inventory isn't normalized by terrain aspect), and (3) closes on the
+north/south drainage-divide split (coastal fans vs. Caracas basin margin) to tee up the
+compounding-hazard section. Fig. 6.3 watershed figure and the USGS Ground Failure
+qualitative-comparison caveat retained.
+
+## Vantor Open Data streaming: footprints + first vsicurl scene (2026-07-24)
+
+Verified the bucket's files are true COGs (LZW, 512-px tiles, full overview pyramids +
+mask bands) → stream well via `/vsicurl/` with no download. New
+`scripts/vantor_opendata_footprints.py` (stdlib + certifi for the macOS framework-Python
+TLS gotcha; run `uv run python scripts/vantor_opendata_footprints.py`) fetches the STAC
+collection and writes `data/basemaps/vantor_opendata_footprints.geojson` — 48 scene
+polygons with datetime/era (Temporal Controller compatible), sensor/vehicle, gsd, cloud,
+off-nadir, size_gb, holding (delivered-scene / mosaic-source / stream-only) and a
+ready-to-paste `vsicurl` URI per scene. Added to QGIS at root beside "Imagery footprints
+(toggle)" as **Vantor Open Data footprints (toggle)**: era-categorized outlines (after
+solid orange, before dashed blue), map tips show id/label/cc/size/holding. Also added the
+first streamed layer to the AFTER group: **AFTER — maracay · worldview-3 0.32m ·
+20260626_151035 (Vantor stream)** (B040001100074D10, 0% cloud; gdal provider over
+vsicurl; off-screen render test confirmed tiles arrive). Recipe for more scenes: copy the
+footprint feature's `vsicurl` attribute → Add Raster Layer (or ask Claude), name per the
+AFTER convention with "(Vantor stream)" suffix. Project NOT saved (Lorne's call).
+
+## Ground Failure: trimmed to Nowicki Jessee 2018, both mainshocks (2026-07-24)
+
+Per Lorne: Godt 2008 and Nowicki 2014 not needed — layers removed from the USGS group and
+their rasters (+ QGIS aux.xml sidecars) deleted from `data/usgs/ground_failure/`. Remaining
+layer relabeled **GF landslide probability — Nowicki Jessee 2018 — M 7.5 Yumare (USGS
+us6000t7zp)**. Added the same model for the second mainshock: **… — M 7.2 San Felipe (USGS
+us6000t7zc)** (GF version 7; alert orange, max prob 0.12, aggregate hazard 11 km², pop
+exposure ~1,700; extent spans both events' region). Files:
+`jessee_2018_model_us6000t7zc.tif` + `info_us6000t7zc.json` (event-ID suffix; the
+unsuffixed pair remains the M 7.5 us6000t7zp product). Style cloned from the 7.5 layer
+(USGS yellow→red pseudocolor, 75% opacity), inserted directly below it. NB: the 7.2 GF run
+also flags `point_source: true` — check info_us6000t7zc.json before quoting numbers.
+Project NOT saved (Lorne's call).
+
+## Geology layer expanded to full study region (2026-07-24)
+
+Per Lorne: geology coverage widened from the La Guaira box (32 units,
+-67.12..-66.72 / 10.40..10.63) to the whole study region **LL 10.0/-69.3 → UR 10.7/-66.4**
+(Puerto Cabello through La Guaira). New `scripts/fetch_geology.py` (bounds constant +
+usage note incl. the SSL_CERT_FILE workaround) wraps `geer_venezuela.fetch_geology`; wrote
+`data/terrain/geology.geojson` — **426 units** at Macrostrat zoom 11 (same USGS 1:750k
+source map). QGIS: old layer removed first (file-cache gotcha), new layer added in its
+place ("Terrain & Geology" group, index 1, visibility kept OFF as before), style preserved
+via saved `data/terrain/geology.qml` (single symbol, fill data-defined
+`set_color_part(coalesce("color",'#cccccc'),'alpha',89)`). Superseded
+`la-guaira_geology.geojson` deleted (regenerable from the script by narrowing BOUNDS).
+Project NOT saved (Lorne's call).
+
+## Notebook: GF-model aspect rose, M 7.5 event (2026-07-24)
+
+New `notebooks/jessee75_prob_aspect.ipynb` — aspect rose for the Nowicki Jessee 2018 M 7.5
+Yumare model (companion to the candidate/GeoSyntec/Avila slope-aspect notebooks, but per
+Lorne stacked by **modeled probability class** instead of slope class; probability bins
+0.002/0.005/0.01/0.02/0.05+, yellow→red). Params up top: `WEST_CUTOFF` (default −67.8;
+None = full footprint) and `PROB_THRESHOLD` (0.002). Pipeline mirrors
+fig6_2/`geer_venezuela`: keep model cells ≥ threshold & east of cutoff → fetch GLO-30 for
+their bounds (cache `data/terrain/dem_cache_<bounds>.tif`, gitignored, ~46 MB for the
+default cutoff) → UTM 19N Horn gradient → sample aspect/slope at cell centers, drop
+slope < 2°. Headline rose = summed probability per 16 sectors (saved
+`jessee75_rose_prob.png`); companions: cell-count rose (`jessee75_rose_count.png`) +
+8-direction summary table. Run at defaults: 55,958 cells, Σp ≈ 615; **N-facing peak**
+(N sector Σp 135 vs SE/S minima ~42–45) — NB the mapped inventories peak NE, worth a
+sentence in §6.2. Executed headless via `uv run jupyter nbconvert --execute`.
+
+## All 48 Vantor Open Data scenes added as streamed layers (2026-07-24)
+
+Per Lorne: every scene in the collection now streams in QGIS via `/vsicurl` (gdal
+provider), same recipe as the maracay demo. 38 post-event → flat **AFTER — post-event
+imagery** group (59 layers total now); 10 pre-event → new **BEFORE — Vantor pre-event
+(stream)** group inserted above BEFORE-1999. Names:
+`<ERA> — <nearest-town> · <sensor> <pan_gsd>m · <YYYYMMDD_HHMMSS> (Vantor stream)`,
+town from footprint-centroid nearest-match (gazetteer of 15 regional towns; NB the long
+N–S coastal strips centroid-match to "caracas" even when they cover the La Guaira coast —
+incl. the two 20260625_2129xx legion scenes whose local Maxar-delivered clips are named
+la-guaira; rename if that grates). All added **visibility OFF** (48 remote strips
+rendering at once would hammer the network) — the earlier maracay demo stays ON as
+before; chronological order within each group; skip-if-name-exists guard makes the add
+idempotent (one MCP timeout double-ran a batch harmlessly). All 48 layers valid, CRS
+still EPSG:4326. Project NOT saved (Lorne's call).
+
+## MGRS inspection grid: 10 km + nested 1 km curtain (2026-07-25)
+
+Per Lorne: systematic-inspection grid on the standard MGRS/UTM 19N kilometer grid
+(REGVEN-compatible; study region sits wholly in zone 19N band P, 100-km squares
+19PDM–19PGM). New `scripts/build_inspection_grid.py` (uv run; MGRS lettering computed and
+verified against known references) writes `data/grids/inspection_grid.gpkg`:
+**grid_10km** (297 cells, ids like `19PGM45`) + **grid_1km** (29,700 children, ids like
+`19PGM4256`, `parent_id` link), both with `show` 0/1 (default 0). QGIS: new group
+**Inspection grid (toggle)** (added OFF) above the imagery groups / below the vector
+overlays — cells with show=0 render as a white ~60–63% curtain hiding imagery beneath;
+show=1 renders outline-only (imagery visible). Labels: short MGRS suffix, scale-limited
+(10 km ≤1:1.5M, 1 km ≤1:60k). **Click-to-toggle**: each layer carries a Python QgsAction
+("Toggle cell") — pick it under the Run Feature Action tool ▾ and click cells on canvas;
+edits commit straight to the gpkg, so open/closed state persists across sessions and
+doubles as the inspected-cells record. Round-trip toggle verified; styles+action saved
+into the gpkg as default styles (survive re-add). Two-tier use: open a 10 km cell to
+reveal the 1 km curtain, then open 1 km cells; whole tiers toggle via layer checkboxes.
+Re-running the build script resets inspection state (and needs layers removed first —
+file-cache gotcha). Project NOT saved (Lorne's call).
