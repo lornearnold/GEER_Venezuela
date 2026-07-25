@@ -15,6 +15,13 @@ sources:
     name: Vantor Legion (NASA CSDA)
     url: https://www.earthdata.nasa.gov/data/programs/csda
     license: © Vantor — NON-redistributable (NASA CSDA). Viewing aid only.
+  vantor_opendata:
+    name: Vantor Open Data Program — Venezuela Earthquake Jun 2026
+    url: https://vantor.com/company/open-data-program/
+    license: CC BY-NC 4.0, © Vantor
+  historical_1999:
+    name: 1999 Vargas post-disaster aerial photo mosaics (~1:15,000, flown 21–27 Dec 1999)
+    license: Scanned aerial mosaics, provenance unrecorded; georeferenced for this project.
   nasa_disasters:
     name: NASA Disasters — Venezuela earthquake 2026-06 ImageServers (Earthdata GIS)
     url: https://gis.earthdata.nasa.gov/portal/apps/sites/#/disasters
@@ -227,11 +234,13 @@ layers:
   path: data/basemaps/historical_1999_vargas/BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27.tif
   fetch: rebuild
   note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
+  source: historical_1999
 - name: BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27
   tier: download
   path: data/basemaps/historical_1999_vargas/BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27.tif
   fetch: rebuild
   note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
+  source: historical_1999
 - name: Maxar/Vantor delivery footprints (external drive)
   tier: download
   path: data/basemaps/maxar_visual/maxar_footprints.geojson
@@ -692,3 +701,243 @@ layers:
 - name: Trip sites (from _temp.md)
   tier: repo
   path: data/routes/field_trips/trip_sites.geojson
+- name: AFTER — caracas · legion 0.34m · 20260627_134836 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C710.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.35m · 20260625_151646 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2210.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.36m · 20260627_134855 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C810.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.41m · 20260629_140932 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5C710.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.46m · 20260625_151749 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2510.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.48m · 20260629_140955 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5C810.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.49m · 20260625_212947 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B16000110179D410.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.53m · 20260625_212928 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B16000110179D310.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · legion 0.60m · 20260629_141016 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5CA10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · worldview-3 0.35m · 20260626_150950 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075510.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — caracas · worldview-3 0.38m · 20260626_150937 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075610.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — catia-la-mar · legion 0.35m · 20260627_134810 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C610.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — catia-la-mar · worldview-2 0.94m · 20260627_151506 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFB10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — choroni · worldview-2 0.62m · 20260627_151415 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF210.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — choroni · worldview-2 0.86m · 20260627_151458 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF610.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — guarenas · legion 0.34m · 20260625_151707 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2310.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — guarenas · worldview-2 0.69m · 20260628_143613 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B030001100114010.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — la-guaira · legion 0.38m · 20260626_211346 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017A8610.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · geoeye-1 0.55m · 20260629_144927 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B05000110006BA10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · geoeye-1 0.65m · 20260629_144955 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B05000110006BD10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · legion 0.44m · 20260627_153017 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100BECE10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · legion 0.45m · 20260629_131531 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101891610.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · legion 0.46m · 20260627_153037 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100BED010.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · legion 0.48m · 20260629_131617 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890E10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — maracay · worldview-3 0.32m · 20260626_151035 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100074D10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — moron · legion 0.50m · 20260629_202521 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D9010.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — moron · legion 0.60m · 20260629_131645 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890B10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — moron · legion 0.60m · 20260630_125955 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1500011018A1110.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — moron · worldview-2 0.95m · 20260627_151521 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFC10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — ocumare-de-la-costa · worldview-2 0.64m · 20260627_151423 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF410.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — puerto-cabello · worldview-2 0.67m · 20260627_151431 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF510.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — san-felipe · geoeye-1 0.45m · 20260627_151550 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B050001100041D10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — san-felipe · legion 0.37m · 20260629_202422 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D8D10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — san-felipe · legion 0.57m · 20260629_202315 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D8B10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — san-felipe · worldview-2 1.01m · 20260627_151531 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFE10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — valencia · legion 0.51m · 20260629_131508 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890C10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — valencia · legion 0.59m · 20260629_131448 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890A10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: AFTER — valencia · worldview-2 0.70m · 20260627_151442 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000E1810.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.37m · 20251103_125633 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BE2A00.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.37m · 20260131_151724 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100029010.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.42m · 20260319_212351 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101008110.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.43m · 20260320_210810 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101015C10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.45m · 20260320_144655 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B160001100FD1910.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.45m · 20260321_143132 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B160001100FF4510.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · legion 0.47m · 20260209_120336 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1400011000BDF10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — caracas · worldview-3 0.33m · 20260531_145727 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/10400100B979DD00.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — catia-la-mar · legion 0.48m · 20260407_151446 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100513B10.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata
+- name: BEFORE — guarenas · legion 0.35m · 20251104_123929 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BF9600.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+  source: vantor_opendata

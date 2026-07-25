@@ -47,6 +47,9 @@ def _ident(datasource: str) -> str:
     template token ({z}, ${z}, %7Bz%7D) so project and manifest forms match.
     """
     s = (datasource or "").strip()
+    # GDAL virtual-filesystem prefixes wrap a plain URL; unwrap so a /vsicurl/
+    # layer and the bare url in the manifest reduce to the same key.
+    s = re.sub(r"^/vsi(curl|s3|gs|az)(_streaming)?/", "", s)
     m = re.search(r"url=['\"]?([^'\"&\s]+)", s) or re.search(r"<ServerUrl>([^<]+)</ServerUrl>", s)
     if s.lower().startswith("http") or m:
         url = m.group(1) if m else s
