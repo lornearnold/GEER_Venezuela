@@ -807,3 +807,34 @@ into the gpkg as default styles (survive re-add). Two-tier use: open a 10 km cel
 reveal the 1 km curtain, then open 1 km cells; whole tiers toggle via layer checkboxes.
 Re-running the build script resets inspection state (and needs layers removed first —
 file-cache gotcha). Project NOT saved (Lorne's call).
+
+## la-guaira-west blackout diagnosed + OAM add + imagery-zone reorg scripts (2026-07-27)
+
+- **OAM caracas-corridor COG added.** `tiles.openaerialmap.org` is 503 (whole host down; API up),
+  but the source GeoTIFF survives on S3 (`oin-hotosm-temp…/6a437f8fa8d2fe29ac06614d/0/…614e.tif`,
+  240 MB COG, 0.86 m, EPSG:4326, 34×54 km spanning caracas/catia-la-mar/la-guaira, 49/125 candidate
+  sites). Added from `~/Downloads/6a437f8fa8d2fe29ac06614e.tif` (**pending move into
+  `data/basemaps/`**). Heavy cloud over the interior ranges; **acquisition date UNVERIFIED** — S3
+  upload 2026-06-30 is not capture date; no OAM API record for this id.
+- **la-guaira-west (Maxar S2AS_366001) black rectangle: root cause found.** The 26.5 × 6.6 km
+  opaque box (UTM 680598–707063 E / 1152455–1159053 N; RGB≈1 fill) is **4 missing source tiles
+  R2C04–R2C07** (of a 3×10 grid): the Jul-15 VRT references only 26/30 tiles, and `gdalbuildvrt`
+  skips unreadable inputs silently — same failure family as the puerto-cabello "bled-JPEG" scene.
+  The local tif is a faithful render of the holey VRT; nothing to recover locally. Not in Vantor
+  open data (the 14:20:38 collect is absent; delivery is non-redistributable). Impact low: 0
+  candidate/geer_mapping sites in the gap; Satellogic 100%/OAM 77%/catia-la-mar WV-2 77% cover it.
+  → **`scripts/check_maxar_delivery_tiles.sh`** (new): run with the One Touch drive mounted;
+  validates all 30 tiles (exists/opens/decodes via QGIS-bundled GDAL), tells rebuild-vs-reorder.
+  NB the working GDAL 3.12 lives in **QGIS.app** (`Contents/MacOS/`), not QGIS-LTR.app.
+- **Imagery layer reorg designed (with Lorne), scripts staged but NOT yet applied:**
+  (1) **date-first names** — `AFTER — MM-DD · <gsd>m <sensor> · <loc> · <id>` (BEFORE keeps
+  YYYY-MM-DD), so alpha sort = chronological → `scripts/rename_imagery_layers.py` (DRY_RUN
+  default; 69 renames verified; OAM layer skipped pending a real date in `DATE_OVERRIDES`).
+  (2) **zone index groups** — `scripts/build_imagery_zones.py` (DRY_RUN default) builds
+  "ZONES — AFTER imagery (index)": 0.25° cells (fixed A1 anchor -69.0/11.5, codes stable),
+  each holding **pointer nodes** to intersecting AFTER layers (verified: QGIS renders a layer
+  when ANY checked reference is under a checked group; pointer removal via API leaves the layer
+  intact) + labeled `data/derived/imagery_zones.geojson` canvas index. Dry run: 60 layers →
+  42 cells / 240 pointers (0.5° would give ~15). **Footgun:** right-click "Remove Layer" on a
+  pointer removes the layer everywhere — rebuild via script only. Built-in "Filter Legend by
+  Map Content" was ruled out first (vector-only; QGIS #14194/#38402/#45453).

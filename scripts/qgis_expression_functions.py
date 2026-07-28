@@ -86,11 +86,16 @@ def _top_imagery_layer(context):
 def _date_of(layer):
     """Acquisition date string for a layer, or '' when it carries none.
 
-    Prefers the layer's temporal properties (set by scripts/set_temporal.py on
-    dated scenes). Falls back to the metadata temporal extent, which is where
-    always-on service layers such as Wayback keep their release date: those are
-    deliberately kept off the Temporal Controller so they stay visible at every
-    point on the timeline, so they have no fixedTemporalRange to read.
+    Reads only the layer's temporal properties, set by scripts/set_temporal.py
+    on dated scenes.
+
+    DO NOT add a fallback through layer.metadata().extent().temporalExtents().
+    Chaining off metadata() returns a temporary QgsLayerMetadata that is freed
+    before the QList copy completes, and QGIS 3.44 segfaults in
+    QgsLayerMetadata::Extent::temporalExtents(). Because this function runs from
+    a canvas decoration on a repaint timer, that crash fires repeatedly and
+    cannot be caught by try/except -- it is a hard SIGSEGV, not a Python
+    exception. Always-on service layers (Wayback) therefore report no date.
     """
     if layer is None:
         return ""
@@ -98,13 +103,6 @@ def _date_of(layer):
         temporal = layer.temporalProperties()
         if temporal.isActive():
             begin = temporal.fixedTemporalRange().begin()
-            if begin.isValid():
-                return begin.toString("yyyy-MM-dd")
-    except Exception:
-        pass
-    try:
-        for extent in layer.metadata().extent().temporalExtents():
-            begin = extent.begin()
             if begin.isValid():
                 return begin.toString("yyyy-MM-dd")
     except Exception:

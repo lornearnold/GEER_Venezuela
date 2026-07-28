@@ -28,23 +28,33 @@ it starts True so the first run only reports what would change.
 from __future__ import annotations
 
 import re
-import sys
 from pathlib import Path
 
 import yaml
-from qgis.core import (
-    QgsDateTimeRange,
-    QgsLayerMetadata,
-    QgsProject,
-    QgsRasterLayer,
-)
-from qgis.PyQt.QtCore import QDate, QDateTime, QTime
+from qgis.core import QgsProject, QgsRasterLayer
 
-ROOT = Path(__file__).resolve().parents[1]
+def _repo_root() -> Path:
+    """Repo root, found from the open project rather than from __file__.
+
+    The QGIS console's Run button executes a *copy* of the script from a temp
+    directory, so Path(__file__).parents[1] can land in /private/var/folders/...
+    The loaded .qgz lives at <repo>/qgis/geer_venezuela.qgz, which is stable
+    however the script was launched; __file__ is only a fallback for running it
+    outside QGIS.
+    """
+    project_path = QgsProject.instance().fileName()
+    if project_path:
+        candidate = Path(project_path).resolve().parents[1]
+        if (candidate / "data" / "manifest.yaml").exists():
+            return candidate
+    try:
+        return Path(__file__).resolve().parents[1]
+    except NameError:  # exec'd without __file__
+        return Path.cwd()
+
+
+ROOT = _repo_root()
 MANIFEST = ROOT / "data" / "manifest.yaml"
-
-# YYYY-MM-DD anywhere in a layer or source name.
-_DATE_RE = re.compile(r"((?:19|20)\d{2})-(\d{2})-(\d{2})")
 
 
 def _ident(datasource: str) -> str:
@@ -78,47 +88,20 @@ def _manifest_index() -> tuple[dict, dict]:
     return by_ident, sources
 
 
-def _release_date(layer_name: str, source_block: dict):
-    """A YYYY-MM-DD date from the layer name, else from the manifest source name.
-
-    Used only for always-on service layers, which carry no temporal properties;
-    see the note in _stamp_temporal_extent.
-    """
-    for text in (layer_name, source_block.get("name", "")):
-        match = _DATE_RE.search(text or "")
-        if match:
-            year, month, day = (int(g) for g in match.groups())
-            try:
-                return QDate(year, month, day)
-            except ValueError:
-                continue
-    return None
-
-
-def _stamp_temporal_extent(layer, metadata, qdate) -> bool:
-    """Record a one-day temporal extent in the layer's *metadata*.
-
-    Deliberately not temporalProperties(): scripts/imagery_index.py keeps
-    service layers (Wayback, NASA, hillshade) off the Temporal Controller so
-    they stay visible at every point on the timeline. The metadata extent is a
-    separate slot, so a date can be published for the decoration label without
-    putting the layer on the time slider.
-    """
-    extent = metadata.extent()
-    if extent.temporalExtents():
-        return False
-    begin = QDateTime(qdate, QTime(0, 0))
-    end = QDateTime(qdate.addDays(1), QTime(0, 0))
-    extent.setTemporalExtents([QgsDateTimeRange(begin, end)])
-    metadata.setExtent(extent)
-    return True
+# NOTE: an earlier version also stamped a one-day range into the layer's
+# metadata extent so always-on service layers (Wayback) could report a date.
+# That was removed: reading it back via
+# layer.metadata().extent().temporalExtents() hard-crashes QGIS 3.44 with a
+# SIGSEGV (freed temporary QgsLayerMetadata), and writing a value that cannot
+# be read safely is worse than having no value. See the warning in
+# scripts/qgis_expression_functions.py:_date_of.
 
 
 def apply_rights(dry_run: bool = True) -> int:
     project = QgsProject.instance()
     by_ident, sources = _manifest_index()
 
-    written, already, unmatched, no_licence, dated = [], [], [], [], []
+    written, already, unmatched, no_licence = [], [], [], []
 
     for layer in project.mapLayers().values():
         if not isinstance(layer, QgsRasterLayer):
@@ -137,25 +120,14 @@ def apply_rights(dry_run: bool = True) -> int:
             continue
 
         metadata = layer.metadata()
-        changed = False
-
-        if metadata.rights() != [licence]:
-            metadata.setRights([licence])
-            metadata.setLicenses([licence])
-            written.append((layer.name(), licence))
-            changed = True
-
-        # Only layers with no temporal properties need the metadata fallback.
-        temporal = layer.temporalProperties()
-        if not temporal.isActive():
-            qdate = _release_date(layer.name(), source_block)
-            if qdate and _stamp_temporal_extent(layer, metadata, qdate):
-                dated.append((layer.name(), qdate.toString("yyyy-MM-dd")))
-                changed = True
-
-        if not changed:
+        if metadata.rights() == [licence]:
             already.append(layer.name())
-        elif not dry_run:
+            continue
+
+        metadata.setRights([licence])
+        metadata.setLicenses([licence])
+        written.append((layer.name(), licence))
+        if not dry_run:
             layer.setMetadata(metadata)
 
     verb = "would set" if dry_run else "set"
@@ -164,11 +136,6 @@ def apply_rights(dry_run: bool = True) -> int:
         print(f"    {name[:56]}\n        {licence}")
     if len(written) > 8:
         print(f"    ... and {len(written) - 8} more")
-
-    if dated:
-        print(f"\n{verb} a metadata date on {len(dated)} always-on service layer(s)")
-        for name, day in dated:
-            print(f"    {name[:56]}  ->  {day}")
 
     print(f"\nalready correct : {len(already)}")
     if no_licence:
