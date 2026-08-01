@@ -838,3 +838,151 @@ file-cache gotcha). Project NOT saved (Lorne's call).
   42 cells / 240 pointers (0.5° would give ~15). **Footgun:** right-click "Remove Layer" on a
   pointer removes the layer everywhere — rebuild via script only. Built-in "Filter Legend by
   Map Content" was ruled out first (vector-only; QGIS #14194/#38402/#45453).
+
+## Imagery reorg applied (after a recovered layer-wipe) (2026-07-27, evening)
+
+First application attempt went sideways: the zone build crashed on `renderer()` (None on a
+geometry-less layer), and during the confusion **70 layers (all AFTER + BEFORE-Vantor) were
+removed from the project registry** — pattern consistent with a GUI *Remove Group/Layer* on
+pointer-bearing groups (GUI removal deletes the layers everywhere; script-side node ops were
+re-verified registry-safe). No data lost: the 15:33 on-disk save predated everything; QGIS
+restart + reload recovered all layers. Scripts hardened (clone-based re-sort keeps ≥1 tree ref
+per layer at all times; zone build aborts on an empty AFTER group; registry-count asserts; explicit
+`QgsSingleSymbolRenderer`). Then the full pipeline ran clean: OAM layer re-added, **69 layers
+renamed** to date-first (OAM skipped pending verified acquisition date → `DATE_OVERRIDES`),
+groups re-sorted chronologically, **42 zone groups / 240 pointers** built + labeled
+`data/derived/imagery_zones.geojson` index (render-verified). Registry 184. Project NOT saved —
+Lorne's call. **Rule: never right-click-remove a pointer or zone group — rebuild via
+`scripts/build_imagery_zones.py`.**
+
+- **Naming/grid revision (same evening, per Lorne):** era prefixes dropped from imagery layer
+  names (`06-27 · 0.65m pelican · caracas · id` — group/zone names carry AFTER/BEFORE; BEFORE
+  layers keep full YYYY-MM-DD). Zone codes flipped to letter=row (A north), number=column (1 west),
+  anchor NW -69.0/11.0 → groups list alphabetically A1…E7 matching the map. Both scripts updated
+  (rename now normalizes from any earlier name generation), rebuilt clean: 42 cells / 240 pointers,
+  registry 184. CLAUDE.md conventions updated (era-prefix rule retired). Project NOT saved.
+
+## C7 public-source review + OAM date fix + 2 new NASA layers (2026-07-27, late)
+
+Reviewed all public manifest sources for new imagery in grid cell C7 (-67.5→-67.25, 10.25→10.5,
+maracay): **nothing new** — Vantor open-data collection unchanged (48 items; the 7 intersecting C7
+are all already streamed), NASA `202611_SkySat` bbox-overlaps but its catalog has 0 footprints in
+the cell, Esri Wayback's new 2026-06-30 release redirects all C7 tiles to the 2026-02-26 release
+(no post-event basemap there), OAM's 7 hits are the same Vantor collects (as ready-made S3 COGs).
+Side findings acted on: (1) the OAM caracas-corridor COG identified via OAM API as Vantor collect
+**B0300011000DFB10, WV-2, 2026-06-27** — DATE_OVERRIDES set, renamed to
+`06-27 · 0.86m OAM · caracas-corridor · …`, zones rebuilt (same 42/240); it duplicates the
+`catia-la-mar · 151506` stream as a local COG. (2) NASA event folder grew 10→15 services; added the
+two <2 m color ones per Lorne — **202611_SkySat** (0.5 m, 4-band) and **202611_VANTOR_CARACAS**
+(0.47 m, raw 8-band U16, server-rendered RGB) — to the NASA group, off; skipped Black Marble HD
+pair (12 m/464 m). Registry 186. Project NOT saved.
+
+- **NASA optical imagery folded into the AFTER group (same evening, per Lorne):** the split
+  bugged him (rightly — it recreated the two-groups problem and hid layers from the zone index).
+  New rule: **AFTER group = all post-event optical imagery regardless of host; NASA group =
+  analysis products + coarse reference** (heatmaps, InSAR, NDVI, damage, S2/Landsat, Black Marble).
+  Moved 3: `06-26 · 0.50m skysat · aoi-coast · mosaic (NASA stream)`, `06-26 · 0.5-1m satellogic ·
+  aoi-coast · mosaic (NASA stream)`, and `06-25 · 0.47m wv-2 · caracas · 212947 (NASA stream)` —
+  the last identified via its raster catalog as collect S2AS 200013362935 = a THIRD copy of the
+  212947 collect (also local Maxar clip + open-data stream). Zones rebuilt: 63 layers / 300
+  pointers; `place_of` now deprioritizes generic wide-footprint names (aoi-coast, caracas-corridor)
+  so sparse cells keep real place labels. NB zone membership is bbox-based, so the sparse SkySat
+  mosaic advertises in cells where it has no footprints (e.g. C7). NASA group down to 9 (products
+  only). Registry 186. Project NOT saved.
+
+- **Zone rebuilds are now position-preserving (per Lorne):** `build_imagery_zones.py` re-inserts
+  the ZONES group and the ZONE index layer at their current parent/position (and keeps the index
+  layer's checkbox state) instead of forcing top-of-tree; only a first-ever build defaults to top.
+  Verified: group at position 14 and index layer at root[0] both survive a rebuild. NB the old
+  "Imagery footprints (toggle)" GROUP no longer exists — a layer by that name sits at root — so the
+  script no longer targets it.
+
+## la-guaira-west blackout FIXED — tiles recovered from twin delivery zip (2026-07-28)
+
+`scripts/check_maxar_delivery_tiles.sh` (drive mounted) settled it: R2C04–07 are **absent from the
+extracted delivery AND from both 366001 zips** — but present in the twin re-delivery zip
+`7013438268042418355.zip` (delivery 200013362902, same 14:20:38 collect; each delivery is partial
+in a complementary way). Recovery: extracted the 4 tiles (16 GB) to
+`satellite_imagery/recovered_142038_R2C04-07/` (vendor folders untouched), rebuilt the VRT from all
+30 tiles (old VRT kept as `.pre-recovery`; NB the VRT now references the recovered folder too),
+re-ran translate (recomputed mean±2σ stretch: 1–6438/1–6164/1–5563) → warp cutline → JPEG +
+internal mask + overviews. Probe of the formerly-black window: mean RGB ≈ 124/129/112 (was constant
+1). Layer swapped in QGIS per the file-cache gotcha (remove → replace file → re-add), zones rebuilt
+(63/300 unchanged). Holey original kept as `…tif.holey.bak` (1 GB, deletable). Render-verified: gap
+filled, no tile seam; tone slightly darker than before (new stretch), collar now transparent.
+**New GDAL gotcha:** GDAL 3.12 CLI utilities infer the output driver from the file extension and
+`gdalwarp` **exits 1 silently** for unknown extensions like `.tif.new` — always pass `-of GTiff`.
+Also: zsh does NOT word-split unquoted vars (use `${=VAR}`) — bit the tile-script args twice.
+Puerto-cabello (S3DS_362958) regeneration still pending — likely the same zip-recovery pattern.
+Project NOT saved.
+
+## 2026-07-28 — Wayback zoom-error fix
+
+The BEFORE — Esri Wayback 2026-05-28 layer spammed `GDALWMS: Unable to download block` warnings
+when zoomed past ~1:2,000: its TMS config requested tiles to `<TileLevel>19</TileLevel>`, but the
+2026-05-28 Wayback cache (version 10842) tops out at level 18 over the AOI — level-19 requests
+return a hard 404 HTML page (verified with curl; levels 17–18 redirect fine to canonical version
+49999). Fixed in place via `setDataSource` (no remove/re-add needed — source string change, not a
+file-cache case): TileLevel 19→18 so GDAL upsamples level-18 tiles at closer zooms, plus
+`<ZeroBlockHttpCodes>404</ZeroBlockHttpCodes>` so any residual missing tile renders empty instead
+of erroring. Layer kept its tree position/style. Project saved.
+
+## GF layer style: QML files, blue-purple no-fill tint (2026-07-29)
+
+To match a collaborator's map (semi-transparent ramp with a blue-purple wash where the model
+shows ~zero probability), added `qgis/styles/` with two loadable QMLs for both Nowicki Jessee
+layers (Lorne loads them via Properties → Symbology → Style → Load Style; no live restyling):
+`gf_landslide_probability_usgs_bluefill.qml` — the original default style recovered from the
+saved project's San Felipe layer (yellow→red #ffffb2/#fecc5c/#fd8d3c/#f03b20/#bd0026 at
+2/5/10/20/40%, 75% opacity, classification 0–0.4) with the transparent <2% band replaced by a
+flat #7472b8 blue-purple; and `gf_landslide_probability_spectral.qml` — an earlier
+Spectral-reversed attempt (breaks packed 0.002–0.21, 55% opacity), kept for comparison. NB the
+Yumare layer's in-project style had been overwritten manually; the San Felipe layer was the
+intact reference.
+
+## GF ramp matched to collaborator's ArcGIS display (2026-07-29)
+
+Iteratively tuned `qgis/styles/gf_landslide_probability_hybrid.qml` against the collaborator's
+slide (landslide_photo_gis_matching.pptx, slide 7; caption on slide 6 confirms "blue = less
+susceptible, red = more"): flat steel-blue #6285c4 below 0.5%, green #66bd63→#a6d96a to 2.5%,
+yellow #ffe14d at 4%, orange #fdae61 at 7%, deep orange #f46d43 at 12%, red #d73027 at 18%,
+dark red #a50026 at 0.21 cap; interpolated, 60% opacity. Applied via apply_style_qml to BOTH
+Nowicki Jessee layers (Lorne's go-ahead; earlier no-restyling stance lifted for this task).
+Tuning loop used macOS screencapture (VS Code granted Screen Recording) because
+get_canvas_screenshot/render_map time out — plugin 0.7.1 vs server 0.8.1 mismatch, upgrade
+pending. For comparison, temporarily toggled OFF: OpenStreetMap basemap (it sits ABOVE the
+hillshade and hides it) and the San Felipe GF layer (double-tint); TOPO Esri World Hillshade
+left on. Canvas left on the La Guaira strip. Project NOT saved. Superseded experiment QMLs
+kept in qgis/styles/ (spectral, usgs_bluefill).
+
+## Zone visibility script (2026-07-29)
+
+C7/C8 looked emptier than their zone lists promise because `build_imagery_zones.py` assigns
+cells by transformed *bounding box* — rotated coastal strips (choroni / catia-la-mar /
+la-guaira-west) carry nodata collars whose bboxes reach the inland row without real pixels.
+Added `scripts/turn_on_zone_layers.py` (run via exec() in the QGIS console, same pattern as
+the zones builder): checks on the ZONES master group, the cell subgroups in its `CELLS` set
+(currently B7/B8/C7/C8), and every pointer whose layer streams or has its file on disk;
+pointers to missing sources (unmounted Maxar drive) are left off and reported. Never unchecks;
+does not save. Lorne cancelled live execute_code runs — mutations go through user-run scripts.
+
+## Crash diagnosis + safe launcher (2026-07-29)
+
+Project load hung minutes, then segfaulted on reopen. Crash report showed (1) load blocked in
+QgsProject::preloadProviders with GDAL worker threads stuck in /vsicurl Stat calls —
+GDALFindAssociatedFile probing the vantor-opendata S3 bucket for .IMD/.RPB sidecars next to
+every Vantor stream COG (DigitalGlobe-style filenames trigger the reader); slow network made
+each probe wait out full timeouts; (2) the segfault itself was a re-entrant double-open — the
+welcome screen accepted a second double-click mid-load. Project file was fine.
+Fix: `scripts/open_qgis.sh` launches the QGIS binary directly (not `open -a`) with
+CPL_VSIL_CURL_ALLOWED_EXTENSIONS=.tif,.tiff + GDAL_DISABLE_READDIR_ON_OPEN=EMPTY_DIR +
+HTTP timeout caps, so non-.tif requests fail instantly. Load now completes in ~3 min of real
+header fetches. qgis-mcp server auto-starts on load (listens on 9876 without clicking Start
+Server). NB the pre-crash in-memory visibility changes (B7/B8/C7/C8 zone layers) were never
+saved and are gone. Also: CLAUDE.md gained the "execute_code protocol" section (labeled calls,
+in-memory only, never save via MCP).
+
+Follow-up: the same GDAL options are now machine-default via `~/.gdal/gdalrc` (verified GDAL
+loads it), so any launch path — Finder double-click included — is protected and
+`scripts/open_qgis.sh` is optional. Delete that file to undo; add extensions to
+CPL_VSIL_CURL_ALLOWED_EXTENSIONS if a future project streams non-.tif remote formats.

@@ -28,6 +28,8 @@ Run from the repo root:
 
     uv run python scripts/fig6_2_aspect_rose.py
     uv run python scripts/fig6_2_aspect_rose.py --out path/to/fig.png --sectors 16
+    uv run python scripts/fig6_2_aspect_rose.py --scale 0.667 \
+        --out 06_Landslides/fig6_2_rose_count_small.png
 
 Reads only; safe to run while QGIS has the project open.
 """
@@ -205,6 +207,10 @@ def main():
     ap.add_argument("--out", type=Path, default=OUT_DEFAULT)
     ap.add_argument("--sectors", type=int, default=16)
     ap.add_argument("--dpi", type=int, default=300)
+    ap.add_argument("--scale", type=float, default=1.0,
+                    help="figure size multiplier; font sizes are unaffected, so "
+                         "text is relatively larger at smaller scales "
+                         "(e.g. --scale 0.667 for a 2/3-size copy)")
     args = ap.parse_args()
 
     grids = load_grids()
@@ -258,8 +264,18 @@ def main():
     theta = np.arange(n) * (2 * np.pi / n)
     width = 2 * np.pi / n * 0.95  # small gap between petals
 
-    fig = plt.figure(figsize=(6.5, 6.5))
-    ax = fig.add_subplot(111, projection="polar")
+    # The axes stay `side` inches square at every scale; the legend gets its own
+    # strip of fixed physical width beside them. Sizing the figure this way (and
+    # placing the axes explicitly, without tight_layout) keeps the rose-to-font
+    # ratio constant — letting the layout engine fit the legend inside a fixed
+    # figure width would instead shrink the axes while the point-sized text held.
+    side = 6.5 * args.scale
+    legend_strip = 1.30  # inches reserved to the right of the axes
+    pad = 0.32  # inches of margin so the N/S tick labels aren't clipped
+    fig_w, fig_h = side + legend_strip, side + 2 * pad
+    fig = plt.figure(figsize=(fig_w, fig_h))
+    ax = fig.add_axes([pad / fig_w, pad / fig_h, side / fig_w, side / fig_h],
+                      projection="polar")
     ax.set_theta_zero_location("N")
     ax.set_theta_direction(-1)
 
@@ -279,12 +295,13 @@ def main():
     ax.xaxis.grid(True, color="0.85", linewidth=0.8)
     ax.spines["polar"].set_color("0.7")
     ax.set_rlabel_position(200)
-    ax.legend(title="Max slope", loc="upper left", bbox_to_anchor=(-0.12, 1.10),
+    # Anchor the legend in the reserved strip, just past the axes' right edge.
+    ax.legend(title="Max slope", loc="upper left",
+              bbox_to_anchor=(1.0, 0.95),
               frameon=False, fontsize=10, title_fontsize=10)
 
-    fig.tight_layout()
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(args.out, dpi=args.dpi, bbox_inches="tight")
+    fig.savefig(args.out, dpi=args.dpi)
     print(f"\nwrote {args.out}")
 
 

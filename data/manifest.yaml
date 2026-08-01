@@ -38,6 +38,10 @@ sources:
     name: OpenStreetMap arterial + drivable roads
     url: https://www.openstreetmap.org/copyright
     license: © OpenStreetMap contributors, ODbL 1.0.
+  osm_protected:
+    name: Parque Nacional Waraira Repano (El Ávila) limits — OSM relation 3375647
+    url: https://www.openstreetmap.org/relation/3375647
+    license: © OpenStreetMap contributors, ODbL 1.0.
   usgs:
     name: USGS rapid imagery-based landslide assessment
     url: https://doi.org/10.5066/P1MRLOZ7
