@@ -986,3 +986,135 @@ Follow-up: the same GDAL options are now machine-default via `~/.gdal/gdalrc` (v
 loads it), so any launch path — Finder double-click included — is protected and
 `scripts/open_qgis.sh` is optional. Delete that file to undo; add extensions to
 CPL_VSIL_CURL_ALLOWED_EXTENSIONS if a future project streams non-.tif remote formats.
+
+## geer_mapping schema aligned with GeoSyntec fields (2026-08-17)
+
+The geer_mapping line layer (geer_mapping.gpkg, 225 features) had only `fid`; Lorne's manual
+attempt to add the GeoSyntec fields didn't stick. Inspection of the GeoSyntec geomorph aerials
+layer showed all eight requested fields are plain types (String for Confidence/Type/Comments/
+Source/Access/Impact, Real for Latitude/Longitude) with **no dropdown widgets in the project** —
+the pick-lists were ArcGIS field domains that don't survive the GeoJSON export. Data-derived
+vocabularies: Confidence = Likely/Possible/Questionable; Type = Ground Rupture/Ground
+Settlement/Landslide/Liquefaction; Source/Access/Impact are free text (with typos like "Har").
+Added `scripts/add_geer_mapping_fields.py` (run via exec() in the QGIS console): adds the eight
+fields, sets ValueMap dropdowns for Confidence/Type, editable UniqueValues autocomplete for
+Access/Impact, multiline text for Comments/Source, centroid-based default values (apply on
+geometry update) for Latitude/Longitude, and backfills lat/lon on existing features. Widget
+config lives in the .qgz — user saves the project after running.
+
+## Source-stamp toolbar button (2026-08-17)
+
+Lorne ran add_geer_mapping_fields.py (geer_mapping now has the eight GeoSyntec-style fields) and
+asked for one-click Source population from the imagery being traced. Added
+`scripts/source_stamp_button.py` (exec() in the console each session): installs a "Stamp Source"
+toolbar button that takes the active raster layer, builds a source string from its actual data
+source URI (Lorne rejected layer-name stamps): /vsicurl/ COGs → plain S3 URL, NASA/WMS
+connection strings → the url= service endpoint, Wayback GDAL_WMS XML → the tile ServerUrl,
+local Maxar/cache files → repo-relative path. The string is stored in the project variable
+@mapping_source, and wires geer_mapping's Source default value to @mapping_source so subsequent
+digitizing is stamped automatically. If geer_mapping is in edit mode with a selection, the button
+also stamps those features (undoable, user commits). Button is session-only; the default-value
+expression + variable persist once the project is saved.
+
+Follow-up (same day): local cached files now stamp provider-catalog references instead of repo
+paths, resolved from the manifests — Planet visual tifs → "Planet SkySat|Pelican ortho_visual
+<collect id>" (ID parsed from filename; ortho_visual named explicitly since the collect ID alone
+also covers analytic/SR/pansharpened assets); Maxar visual tifs → "Maxar WorldView-2|3 scene
+<scene_id>" via date+time_z lookup in maxar_footprints.geojson; vantor_legion mosaic → its three
+holding=mosaic-source scene IDs + S3 prefix from vantor_opendata_footprints.geojson. No
+acquisition dates in stamps (documented elsewhere, per Lorne). Dry-run verified all 21 cached
+tifs resolve; repo-relative path remains the fallback (e.g. historical_1999_vargas).
+
+Follow-up: Access and Impact are now ValueMap dropdowns too (Lorne's request) — vocabularies
+curated from GeoSyntec's actual entries sans typos ("Har"→"Hard"; Impact generalized to
+categories like Main road / Uphill buildings/housing / Airport / Port / Drainage/watershed /
+Potential scientific interest; multi-impact nuance goes in Comments). Re-run
+add_geer_mapping_fields.py to apply (idempotent). Bulk value fill ("copy down" Type=Landslide
+etc.) uses built-in multi-edit mode in the attribute table — no script.
+
+## GEER metadata statement -> layer metadata -> KMZ (2026-08-17)
+
+The GEER team's three-paragraph inventory statement (methods summary + Ch.7 pointer, purpose/
+limitations, preliminary-data disclaimer) goes into geer_mapping's layer-metadata Abstract via
+the GUI (Layer Properties -> Metadata -> Identification -> Abstract, then Metadata menu ->
+Save as Default to store it inside geer_mapping.gpkg). A set-metadata script was written then
+deleted at Lorne's call — one-time paste, zero programmatic advantage; GUI is the tool. New reports/export_mapping_kmz.py
+(uv run) exports the inventory to reports/geer_venezuela_mapping_inventory.kmz — lines foldered
++ colored by Type, placemark tables with the eight attributes, and the Abstract as the KML
+Document <description> (shown in Google Earth when the top-level layer is clicked). Abstract
+lookup order: gpkg metadata tables, then the .qgz; exporter refuses to build a KMZ without it.
+Verified the fail-loudly path; full export pending the metadata paste.
+
+## Sub-meter imagery sweep of all public manifest sources (2026-08-21)
+
+Lorne asked for a manifest review + check for new <1 m imagery. Swept Vantor Open Data S3,
+Planet Source Coop STAC, NASA Disasters folder, OpenAerialMap, Esri Wayback. Results:
+- **Vantor Open Data: 49 tifs in bucket vs 48 in footprints/manifest/project.** Missing:
+  **B040001100075810** — WV03, 2026-06-26 15:10:04Z, pan GSD 0.34 m, 34 % cloud, off-nadir 18°,
+  18 GB COG, bbox -66.87→-66.73 / 10.29→10.74 (zones B9/B10/C9/C10: coast east of La Guaira →
+  Ávila → east Caracas/Petare → south). In the bucket since 06-26 (LastModified) — missed by earlier
+  sweeps, not newly published. Thumbnail: cloud band over the north Ávila slope, Caracas urban clear.
+  Area already has 28 project + 15 Vantor sub-meter footprints; value = another 06-26 look, same
+  WV03 pass as the 150950/150937 strips to its west.
+- **Planet Source Coop: 17 post-event items vs 15 cached.** Not in project: (a)
+  **20260628_115115_ssc12_u0001** SkySat 0.79 m, location slug *yumare* (new slug), 38 % cloud,
+  bbox -68.71→-68.64 / 10.51→10.67 = zone B2, the M 7.5 Yumare epicentral area — currently the
+  only sub-meter coverage there would be this; today B2 has only WV-2 1.01 m (151531) + PlanetScope
+  3 m; NASA SkySat/Satellogic mosaics have 0 footprints at Yumare. (b) 20260626_150538_20_3010
+  Pelican 0.62 m "la-guaira", 0 % cloud but bbox 10.675→10.726 N = offshore; skip. Both created
+  06-26/06-28 — excluded by the original USGS-AOI filter, not new uploads.
+- **NASA Disasters: still 15 services (same as 07-27)** — nothing new. Side finding:
+  data/manifest.yaml lists only 9 of them and `manifest check` reports 23 PROBLEMS (NASA SkySat /
+  VANTOR_CARACAS / vantor, OAM COG, USGS GF rasters, grids, memory layers uncatalogued; external-
+  drive PlanetScope rows unresolvable when drive unmounted).
+- **OAM: 43 hits**, all Vantor collects we stream, plus 2 "Planet SkySat SSC2 0.5 m" uploads by a
+  third party (La Mar, Caraballeda, 06-28) whose bboxes equal/clip our 20260627_112621_ssc2
+  u0001/u0002 scenes — duplicates, mislabeled dates. Nothing new.
+- **Esri Wayback: new release 2026-08-05 (32246)** — tiles at 9 AOI points all redirect to the
+  same pre-event releases as 2026-05-28 (22252 coast/Caracas, 49999 west). No post-event basemap.
+No project changes made. Candidates to add: Yumare SkySat (manifest download row + fetch) and
+WV03 B040001100075810 (Vantor stream layer + footprints rebuild), Lorne's call.
+
+## Manifest updated for the two new scenes + drift cleared (2026-08-21)
+
+Drive re-mounted; Lorne asked to update the manifest and add the new imagery as streams where
+possible (download to drive only if needed). Both COGs honour HTTP range requests (verified
+206 responses), so **both are stream-tier — nothing downloaded**; the drive has no
+vantor_open_data archive, so no archive-completeness download either. data/manifest.yaml:
++ `AFTER — caracas · worldview-3 0.34m · 20260626_151004 (Vantor stream)` (B040001100075810)
++ `AFTER — yumare · skysat 0.79m · 20260628_115115_ssc12_u0001 (Planet stream)` (Source Coop COG)
++ catalogued the 21 layers the audit flagged (NASA SkySat / VANTOR_CARACAS / 202611_vantor, OAM
+  caracas-corridor COG in ~/Downloads, USGS areas-to-check + both GF rasters, dams.kmz, inspection
+  grid, geer_mapping, Vantor Open Data footprints [download/rebuild], ZONE index, GeoSyntec watershed
+  shps, WatershedCCs1.kmz in ~/Downloads [flagged to move into repo], Esri World Topo + vector
+  basemap, OSM tiles) with 3 new sources (oam, usgs_ground_failure, esri_basemaps); fixed the
+  geology row (la-guaira_geology.geojson → geology.geojson). `manifest check`: 23 → **2 problems**,
+  both in-memory scratch layers (Joined layer, Statistics by category) — save to file or drop.
+  192 layers: 35 repo, 67 stream, 90 download. scripts/download_vantor_opendata.sh SCENES list
+  gained the 49th scene (18.1 GB) for any future drive archive.
+Project side (Lorne, GUI): add the two layers via Add Raster Layer → Protocol HTTP(S) with the
+manifest URLs, names `06-26 · 0.34m wv-3 · caracas · 151004 (Vantor stream)` and
+`06-28 · 0.79m skysat · yumare · 115115_ssc12_u0001 (Planet stream)`, into the AFTER group;
+remove the Vantor footprints layer → `uv run python scripts/vantor_opendata_footprints.py` →
+re-add; then build_footprints.py, set_temporal.py, build_imagery_zones.py in QGIS. Project not
+touched by Claude.
+
+Follow-up (same day): Lorne overrode the no-add-layers-via-MCP rule for this step — Claude
+added both layers through execute_code (labeled MUTATES, skip-if-exists): Vantor WV-3 151004 at
+AFTER slot 11 (EPSG:4326, 45,861×151,791 px, 4 bands) and Yumare SkySat at slot 49 (native
+EPSG:32619, 14,510×36,018 px), both unchecked; AFTER group now 65 layers; project CRS still
+EPSG:4326. Project NOT saved (Lorne's click). Footprints/zones rebuild still pending.
+
+Follow-up ("override" #2, same day): Claude ran the whole index sequence via MCP. Findings fixed
+on the way: (1) **Vantor's collection.json is wrong** — links B040001100075610 twice and omits
+B040001100075810, which is why every sweep built from it saw 48; `vantor_opendata_footprints.py`
+now unions the S3 bucket listing with the collection links and reports what the collection misses
+(49 scenes written). (2) **`imagery_index.scene_date()` never understood the date-first `MM-DD ·`
+names** introduced 2026-07-27, so build_footprints/set_temporal had silently treated all 62 AFTER
+layers as undated (the committed footprints file was stale, still carrying 71 old-style names);
+first rerun dropped them (134→75). Patched `imagery_index.py` (date-first → implied year 2026,
+sensor token after the GSD with wv-2/wv-3/ge-1 → long names, location = third token) and reran:
+**137 footprints** (63 PS + 62 AFTER + 10 BEFORE + 2 1999), temporal set on 137, zones rebuilt
+(42 cells / 305 pointers; yumare → B2, WV-3 151004 → B9/B10/C9/C10). Vantor footprints layer
+removed/rebuilt/re-added at root index 4 with its style; "Imagery footprints (toggle)" re-added at
+root top by the script (reorder if it was elsewhere). Project NOT saved — Lorne's click.

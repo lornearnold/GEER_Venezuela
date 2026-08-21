@@ -54,6 +54,18 @@ sources:
     name: Surface geology (USGS 1:750k Geologic Map of Venezuela, via Macrostrat)
     url: https://macrostrat.org/
     license: Macrostrat CC-BY; source map Hackley, Urbani et al. (USGS OFR 2005-1038).
+  oam:
+    name: OpenAerialMap (HOT OIN) — third-party re-hosted event imagery
+    url: https://map.openaerialmap.org/
+    license: Per upload; the caracas-corridor COG is a Vantor Open Data collect (CC BY-NC 4.0, © Vantor).
+  usgs_ground_failure:
+    name: USGS Ground Failure product (Nowicki Jessee 2018 landslide model) — us6000t7zp / us6000t7zc
+    url: https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zp/ground-failure
+    license: USGS — public domain.
+  esri_basemaps:
+    name: Esri World Topo Map (raster tiles) + World Basemap v2 (vector tiles)
+    url: https://www.arcgis.com/home/item.html?id=30e5fe3149c34df1ba922e6f5bbf808f
+    license: Esri and contributors — Esri terms of use.
 layers:
 - name: dead_zone
   tier: repo
@@ -112,7 +124,8 @@ layers:
   source: usgs
 - name: Geology (USGS 1:750k via Macrostrat)
   tier: repo
-  path: data/terrain/la-guaira_geology.geojson
+  path: data/terrain/geology.geojson
+  note: Full study region (426 units); rebuild with scripts/fetch_geology.py. Superseded la-guaira_geology.geojson.
   source: macrostrat
 - name: Slope (degrees)
   tier: repo
@@ -945,3 +958,96 @@ layers:
   url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BF9600.tif
   note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
   source: vantor_opendata
+- name: AFTER — caracas · worldview-3 0.34m · 20260626_151004 (Vantor stream)
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075810.tif
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo. 34 % cloud (band over the north Ávila slope); coast east of La Guaira → east Caracas. Found in 2026-08-21 sweep (49th scene in the bucket).
+  source: vantor_opendata
+- name: AFTER — yumare · skysat 0.79m · 20260628_115115_ssc12_u0001 (Planet stream)
+  tier: stream
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/yumare/items/20260628_115115_ssc12_u0001/20260628_115115_ssc12_u0001_visual.tif
+  note: Planet visual COG (660 MB) streamed via /vsicurl/ from Source Coop (range requests verified). Only sub-meter post-event scene over the M 7.5 Yumare epicentral area (zone B2); 38 % cloud. Found in 2026-08-21 sweep.
+  source: planet
+- name: AFTER — aoi-coast · skysat 0.50m · mosaic (NASA stream)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_SkySat/ImageServer
+  note: NASA Disasters SkySat 4-band mosaic, server-rendered RGB. Sparse footprints; zone membership is bbox-based.
+  source: nasa_disasters
+- name: AFTER — caracas · worldview-2 0.47m · 20260625_212947 (NASA stream)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_VANTOR_CARACAS/ImageServer
+  note: Raw 8-band U16, server-rendered RGB; third copy of collect S2AS 200013362935 (also local Maxar clip + open-data stream).
+  source: nasa_disasters
+- name: DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_vantor (NASA CSDA Vantor mosaic stream)
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_vantor/ImageServer
+  note: Source service of the local vantor_legion_20260625_mosaic.tif rebuild.
+  source: vantor
+- name: AFTER — caracas-corridor · OAM 0.86m · 6a437f8fa8d2fe29ac06614e
+  tier: download
+  path: /Users/lornearnold/Downloads/6a437f8fa8d2fe29ac06614e.tif
+  fetch: http
+  url: https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a437f8fa8d2fe29ac06614d/0/6a437f8fa8d2fe29ac06614e.tif
+  note: OAM re-host of Vantor collect B0300011000DFB10 (WV-2, 2026-06-27); duplicates the catia-la-mar 151506 stream as a local COG. Lives in ~/Downloads, not the repo.
+  source: oam
+- name: Areas to check (USGS)
+  tier: repo
+  path: data/usgs/areas_to_check_for_GEER.kml
+  source: usgs
+- name: GF landslide probability — Nowicki Jessee 2018 — M 7.5 Yumare (USGS us6000t7zp)
+  tier: repo
+  path: data/usgs/ground_failure/jessee_2018_model.tif
+  note: Metadata in data/usgs/ground_failure/info.json.
+  source: usgs_ground_failure
+- name: GF landslide probability — Nowicki Jessee 2018 — M 7.2 San Felipe (USGS us6000t7zc)
+  tier: repo
+  path: data/usgs/ground_failure/jessee_2018_model_us6000t7zc.tif
+  note: Metadata in info_us6000t7zc.json (point_source flag — check before quoting numbers).
+  source: usgs_ground_failure
+- name: Dams (field trips)
+  tier: repo
+  path: data/routes/field_trips/dams.kmz
+- name: Inspection grid 10 km + 1 km (MGRS/UTM 19N)
+  tier: repo
+  path: data/grids/inspection_grid.gpkg
+  note: Layers grid_10km and grid_1km; rebuild with scripts/build_inspection_grid.py.
+- name: geer_mapping (GEER ground-deformation inventory, lines)
+  tier: repo
+  path: data/landslide_candidates/geer_mapping.gpkg
+  note: Fields mirror the GeoSyntec schema (scripts/add_geer_mapping_fields.py); layer metadata Abstract carries the GEER statement used by reports/export_mapping_kmz.py.
+- name: Vantor Open Data footprints (toggle)
+  tier: download
+  path: data/basemaps/vantor_opendata_footprints.geojson
+  fetch: rebuild
+  note: uv run python scripts/vantor_opendata_footprints.py (fetches the STAC collection; remove the QGIS layer first). Gitignored with the rest of data/basemaps/.
+  source: vantor_opendata
+- name: ZONE index — AFTER imagery
+  tier: repo
+  path: data/derived/imagery_zones.geojson
+  note: 0.25° grid cells; rebuild with scripts/build_imagery_zones.py (inside QGIS).
+- name: Watershed × landslide union (GeoSyntec, 2026-07-25)
+  tier: repo
+  path: data/geosyntec/watershed_analysis/Watershed_LS_Union.shp
+  source: geosyntec
+- name: Watershed landslide coverage (GeoSyntec, 2026-07-25)
+  tier: repo
+  path: data/geosyntec/watershed_analysis/Watershed_LSCoverage.shp
+  source: geosyntec
+- name: WatershedCCs1 — Watersheds
+  tier: download
+  path: /Users/lornearnold/Downloads/WatershedCCs1.kmz
+  fetch: rebuild
+  note: Collaborator KMZ (13 KB) still referenced from ~/Downloads — copy into data/geosyntec/ and repoint the layer to make it repo-tier.
+  source: geosyntec
+- name: TOPO — Esri World Topo Map (streets+relief)
+  tier: stream
+  url: https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}
+  source: esri_basemaps
+- name: World Topographic Map (Esri vector tiles)
+  tier: stream
+  url: https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
+  source: esri_basemaps
+- name: OpenStreetMap (standard tiles)
+  tier: stream
+  url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+  source: osm

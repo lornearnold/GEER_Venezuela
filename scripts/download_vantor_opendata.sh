@@ -4,7 +4,7 @@
 # partial ones, so it is safe to interrupt and restart.
 #
 # Usage:
-#   ./scripts/download_vantor_opendata.sh                  # 43 scenes, ~327 GB
+#   ./scripts/download_vantor_opendata.sh                  # 44 scenes, ~345 GB
 #   INCLUDE_MOSAIC_SCENES=1 ./scripts/download_vantor_opendata.sh  # +3 Jun-25 LG01 scenes (~8 GB)
 #   ./scripts/download_vantor_opendata.sh /some/other/dest
 #
@@ -35,6 +35,7 @@ SCENES=(
   "pre WV03 20260531_145727 10400100B979DD00 55008896131"
   "post WV03 20260626_150937 B040001100075610 17670640139"
   "post WV03 20260626_150950 B040001100075510 19271866928"
+  "post WV03 20260626_151004 B040001100075810 18136199478"
   "post WV03 20260626_151035 B040001100074D10 14055248090"
   "post LG06 20260626_211346 B1600011017A8610 6521783380"
   "post LG05 20260627_134810 B15000110186C610 3852241461"

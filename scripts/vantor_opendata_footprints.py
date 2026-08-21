@@ -89,10 +89,37 @@ def to_feature(item):
     }
 
 
+BUCKET_LIST = (
+    "https://vantor-opendata.s3.amazonaws.com/?list-type=2"
+    "&prefix=events/Venezuela-Earthquake-Jun-2026/&max-keys=1000"
+)
+
+
+def bucket_item_urls():
+    """Every <scene>.json in the bucket, listed directly from S3.
+
+    collection.json has been observed to be wrong (2026-08-21: one item linked twice,
+    one — B040001100075810 — missing), so the bucket listing is the ground truth and
+    the collection's links are only a second source.
+    """
+    import re
+    with urllib.request.urlopen(BUCKET_LIST, timeout=60, context=SSL_CTX) as r:
+        xml = r.read().decode()
+    keys = re.findall(r"<Key>([^<]+\.json)</Key>", xml)
+    base = "https://vantor-opendata.s3.amazonaws.com/"
+    return {base + k for k in keys if not k.endswith("collection.json")}
+
+
 def main():
     coll = fetch_json(COLLECTION)
-    item_urls = sorted({l["href"] for l in coll["links"] if l["rel"] == "item"})
-    print(f"{len(item_urls)} unique items in collection")
+    from_collection = {l["href"] for l in coll["links"] if l["rel"] == "item"}
+    from_bucket = bucket_item_urls()
+    item_urls = sorted(from_collection | from_bucket)
+    print(f"{len(from_collection)} unique items linked from collection.json, "
+          f"{len(from_bucket)} item files in the bucket -> {len(item_urls)} total")
+    only_bucket = from_bucket - from_collection
+    if only_bucket:
+        print("  not linked from collection.json:", sorted(u.rsplit('/', 1)[1] for u in only_bucket))
     with ThreadPoolExecutor(max_workers=8) as pool:
         items = list(pool.map(fetch_json, item_urls))
         features = list(pool.map(to_feature, items))

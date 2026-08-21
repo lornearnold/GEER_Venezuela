@@ -47,12 +47,33 @@ def is_service_layer(name: str) -> bool:
     return any(marker in name for marker in SERVICE_MARKERS)
 
 
+# Date-first scheme (since 2026-07-27): AFTER layers are 'MM-DD · <gsd>m <sensor> · <loc> · <id>'
+# with the year implied (all post-event imagery is 2026); BEFORE layers keep YYYY-MM-DD.
+_DATE_FIRST_RE = re.compile(r"^(\d{2})-(\d{2}) · ")
+IMPLIED_YEAR = 2026
+_SENSOR_LONG = {"wv-2": "worldview-2", "wv-3": "worldview-3", "ge-1": "geoeye-1"}
+
+
+def _date_first_tokens(name: str) -> list[str] | None:
+    """['MM-DD'|'YYYY-MM-DD', '<gsd>m <sensor>', '<loc>', '<id>'] for date-first names, else None."""
+    parts = [p.strip() for p in name.split(" · ")]
+    if len(parts) >= 3 and re.match(r"^(\d{2}-\d{2}|\d{4}-\d{2}-\d{2})$", parts[0]):
+        return parts
+    return None
+
+
 def scene_date(name: str) -> date | None:
     """Capture date parsed from a layer name, or None if it has none.
 
     Rejects impossible month/day values so a stray scene id like '..._9999_13'
     cannot masquerade as a date.
     """
+    m = _DATE_FIRST_RE.match(name)
+    if m:
+        try:
+            return date(IMPLIED_YEAR, int(m.group(1)), int(m.group(2)))
+        except ValueError:
+            pass
     for match in _DATE_RE.finditer(name):
         year, month, day = (int(g) for g in match.groups())
         try:
@@ -64,6 +85,12 @@ def scene_date(name: str) -> date | None:
 
 def sensor_of(name: str) -> str:
     """Best-effort sensor label from the layer name ('' when unknown)."""
+    toks = _date_first_tokens(name)
+    if toks:
+        m = re.match(r"^[\d.\-–]+\s*m\s+(.+)$", toks[1])  # '0.34m wv-3' -> 'wv-3'
+        if m:
+            short = m.group(1).strip().lower()
+            return _SENSOR_LONG.get(short, short)
     for sensor in ("skysat", "pelican", "worldview-2", "worldview-3", "vantor",
                    "aerial mosaic"):
         if sensor in name.lower():
@@ -75,6 +102,9 @@ def sensor_of(name: str) -> str:
 
 def location_of(name: str) -> str:
     """AOI name from the 'AFTER - <location> - ...' convention ('' when absent)."""
+    toks = _date_first_tokens(name)
+    if toks:
+        return toks[2]
     parts = [p.strip() for p in name.split("·")]
     if len(parts) >= 2 and (name.startswith("AFTER") or name.startswith("BEFORE")):
         head = parts[0]
