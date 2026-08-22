@@ -1,9 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "r3_endpoints",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "trip": "R3 — Forum Stadium → 125", "role": "start", "label": "Forum La Guaira Stadium" }, "geometry": { "type": "Point", "coordinates": [ -66.933, 10.6 ] } },
-{ "type": "Feature", "properties": { "trip": "R3 — Forum Stadium → 125", "role": "end", "label": "site 125" }, "geometry": { "type": "Point", "coordinates": [ -66.906340712316009, 10.583775579248357 ] } }
-]
-}

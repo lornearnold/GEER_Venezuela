@@ -4,7 +4,7 @@ __pycache__/
 *.qgs~
 cache/
 # large re-downloadable rasters (sources in data/manifest.yaml)
-data/terrain/*.tif
-!data/terrain/la-guaira_slope.tif
-data/basemaps/*
-!data/basemaps/imagery_footprints.geojson
+data/imagery/*
+!data/imagery/imagery_footprints.geojson
+!data/imagery/imagery_zones.geojson
+data/terrain/

@@ -1,9 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "r2_endpoints",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "trip": "R2 — Autopista + Trocha", "role": "start", "label": "Caracas (Catia)" }, "geometry": { "type": "Point", "coordinates": [ -66.935, 10.509 ] } },
-{ "type": "Feature", "properties": { "trip": "R2 — Autopista + Trocha", "role": "end", "label": "site 4" }, "geometry": { "type": "Point", "coordinates": [ -66.983632, 10.533847 ] } }
-]
-}

@@ -1,3 +1,5 @@
+# Layer catalog for qgis/geer_venezuela.qgz — one entry per layer in the Layers panel.
+# tier: repo (tracked in git) · download (local cache, gitignored; fetch via url/note) · external (drive) · stream (online).
 project: qgis/geer_venezuela.qgz
 crs: EPSG:4326
 sources:
@@ -34,22 +36,10 @@ sources:
     name: Esri World Hillshade
     url: https://www.arcgis.com/home/item.html?id=1b243539f4514b6ba35e7d995890db1d
     license: Esri, Airbus DS, USGS, NGA, NASA, CGIAR — Esri terms of use.
-  osm:
-    name: OpenStreetMap arterial + drivable roads
-    url: https://www.openstreetmap.org/copyright
-    license: © OpenStreetMap contributors, ODbL 1.0.
-  osm_protected:
-    name: Parque Nacional Waraira Repano (El Ávila) limits — OSM relation 3375647
-    url: https://www.openstreetmap.org/relation/3375647
-    license: © OpenStreetMap contributors, ODbL 1.0.
   usgs:
     name: USGS rapid imagery-based landslide assessment
     url: https://doi.org/10.5066/P1MRLOZ7
     license: USGS — public domain.
-  copernicus_dem:
-    name: Copernicus GLO-30 DEM → slope
-    url: https://registry.opendata.aws/copernicus-dem/
-    license: Copernicus DEM — free/open (ESA / © DLR e.V. 2010-2014 & © Airbus DS 2014-2018).
   macrostrat:
     name: Surface geology (USGS 1:750k Geologic Map of Venezuela, via Macrostrat)
     url: https://macrostrat.org/
@@ -66,988 +56,1066 @@ sources:
     name: Esri World Topo Map (raster tiles) + World Basemap v2 (vector tiles)
     url: https://www.arcgis.com/home/item.html?id=30e5fe3149c34df1ba922e6f5bbf808f
     license: Esri and contributors — Esri terms of use.
+  geer:
+    name: GEER reconnaissance mapping for this project (Jun–Jul 2026); full history at git tag geer-phase
+    license: Project-authored.
+  project:
+    name: Derived in this project (grids / indexes)
+    license: Project-authored.
+  maxar_worldview:
+    name: Maxar (now Vantor) WorldView-2/3 tasked collects, 25–26 Jun 2026 — raw 8-band 16-bit tile deliveries
+    license: © 2026 Maxar Technologies — restricted per delivery LICENSE.TXT (Limited Rights Data); NON-redistributable, viewing aid only.
+    delivery: /Volumes/One Touch/satellite_imagery/<order>/ (R#C# tiles + .TIL/.IMD/.XML/LICENSE.TXT); acquired via NASA CSDA per the prior manifest — confirm.
 layers:
-- name: dead_zone
+- name: ZONE index — AFTER imagery
+  group: (root)
   tier: repo
-  path: data/landslide_candidates/dead_zone.shp
-- name: Imagery footprints (toggle)
+  path: data/imagery/imagery_zones.geojson
+  source: project
+  note: 0.25° grid cells; rebuild with scripts/build_imagery_zones.py (at git tag geer-phase).
+- name: GEER Area A geomorph features (2026-07-20)
+  group: Reference data
   tier: repo
-  path: data/basemaps/imagery_footprints.geojson
-- name: triangulation
+  path: data/reference/geosyntec_geomorph_aerials_20260720.geojson
+  source: geosyntec
+- name: GEER Area A early point mapping
+  group: Reference data
   tier: repo
-  path: data/landslide_candidates/triangulation.shp
-- name: landslide_candidates
+  path: data/reference/la-guaira_20260626_150535_17_3010.geojson
+  source: geer
+- name: GEER Area B line mapping
+  group: Reference data
   tier: repo
-  path: data/landslide_candidates/geer_venezuela_candidate_sites.csv
-- name: Candidate sites
+  path: data/reference/geer_mapping.gpkg|layername=geer_mapping
+  source: geer
+  note: Fields mirror the GeoSyntec schema (scripts/add_geer_mapping_fields.py (at git tag geer-phase)); layer metadata Abstract carries the GEER statement used by reports/export_mapping_kmz.py. (at git tag geer-phase)
+- name: USGS Areas to check
+  group: Reference data
   tier: repo
-  path: data/landslide_candidates/la-guaira_20260626_150535_17_3010.geojson
-- name: Arterials (OSM)
+  path: data/reference/areas_to_check_for_GEER.kml
+  source: usgs
+- name: USGS (unpublished) Avila landslide inventory — lines (2026-07-15 draft)
+  group: Reference data
   tier: repo
-  path: data/routes/la-guaira_arterials.geojson
-  source: osm
-- name: Drivable roads (OSM)
+  path: data/reference/venls_avila_inventory_line_20260715.geojson
+  source: avila_inventory
+- name: USGS rapid assessment (2026-07-01)
+  group: Reference data
   tier: repo
-  path: data/routes/la-guaira_drivable.geojson
-  source: osm
+  path: data/reference/VenezuelaEarthquake_rapid_imagery_landslide_assessment_20260701.geojson
+  source: usgs
+- name: GF landslide probability — Nowicki Jessee 2018 — M 7.5 Yumare (USGS us6000t7zp)
+  group: Reference data
+  tier: repo
+  path: data/reference/jessee_2018_model.tif
+  source: usgs_ground_failure
+  note: Metadata in data/usgs/ground_failure/info.json.
+- name: GF landslide probability — Nowicki Jessee 2018 — M 7.2 San Felipe (USGS us6000t7zc)
+  group: Reference data
+  tier: repo
+  path: data/reference/jessee_2018_model_us6000t7zc.tif
+  source: usgs_ground_failure
+  note: Metadata in info_us6000t7zc.json (point_source flag — check before quoting numbers).
 - name: Sentinel-1 landslide heatmap (NASA, 06-25)
+  group: Reference data
   tier: stream
   url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_sentinel1_landslide_heatmap/ImageServer
   source: nasa_disasters
 - name: Sentinel-2 optical 10 m (NASA)
+  group: Reference data
   tier: stream
   url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_sentinel2/ImageServer
   source: nasa_disasters
 - name: Landsat optical (NASA)
+  group: Reference data
   tier: stream
   url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_landsat/ImageServer
   source: nasa_disasters
 - name: Sentinel-2 building-damage likelihood (NASA)
+  group: Reference data
   tier: stream
   url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_sentinel2_buildingDamageLikelihood/ImageServer
   source: nasa_disasters
-- name: OPERA displacement — InSAR (NASA)
+- name: DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_vantor
+  group: Reference data
   tier: stream
-  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_opera_displacement/ImageServer
-  source: nasa_disasters
-- name: NISAR LOS displacement — InSAR (NASA)
-  tier: stream
-  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_nisar_losDisplacement/ImageServer
-  source: nasa_disasters
-- name: Black Marble night lights (NASA)
-  tier: stream
-  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_blackmarble_brdf_cloud/ImageServer
-  source: nasa_disasters
-- name: USGS rapid assessment (2026-07-01)
-  tier: repo
-  path: data/usgs/VenezuelaEarthquake_rapid_imagery_landslide_assessment_20260701.geojson
-  source: usgs
-- name: Geology (USGS 1:750k via Macrostrat)
-  tier: repo
-  path: data/terrain/geology.geojson
-  note: Full study region (426 units); rebuild with scripts/fetch_geology.py. Superseded la-guaira_geology.geojson.
-  source: macrostrat
-- name: Slope (degrees)
-  tier: repo
-  path: data/terrain/la-guaira_slope.tif
-  source: copernicus_dem
-- name: AFTER — caracas · skysat 0.87m · 20260626_123541_ssc5_u0001
-  tier: download
-  path: data/basemaps/skysat_20260626_123541_ssc5_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260626_123541_ssc5_u0001/20260626_123541_ssc5_u0001_visual.tif
-  source: planet
-- name: AFTER — caracas · pelican 0.65m · 20260627_145824_88_300d
-  tier: download
-  path: data/basemaps/pelican_20260627_145824_88_300d_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260627_145824_88_300d/20260627_145824_88_300d_visual.tif
-  source: planet
-- name: AFTER — caracas · pelican 0.65m · 20260627_145826_40_300d
-  tier: download
-  path: data/basemaps/pelican_20260627_145826_40_300d_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260627_145826_40_300d/20260627_145826_40_300d_visual.tif
-  source: planet
-- name: AFTER — catia-la-mar · skysat 0.81m · 20260626_112057_ssc4_u0001
-  tier: download
-  path: data/basemaps/skysat_20260626_112057_ssc4_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/catia-la-mar/items/20260626_112057_ssc4_u0001/20260626_112057_ssc4_u0001_visual.tif
-  source: planet
-- name: AFTER — independencia-ocumare · skysat 0.82m · 20260628_122047_ssc1_u0001
-  tier: download
-  path: data/basemaps/skysat_20260628_122047_ssc1_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/independencia-ocumare/items/20260628_122047_ssc1_u0001/20260628_122047_ssc1_u0001_visual.tif
-  source: planet
-- name: AFTER — la-guaira · vantor 0.42m · 20260625 mosaic
-  tier: download
-  path: data/basemaps/vantor_legion_20260625_mosaic.tif
-  fetch: rebuild
-  note: Non-redistributable; rebuilt by tiling the NASA CSDA Vantor ImageServer exportImage endpoint (see src/geer_venezuela/catalog.py notes).
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_vantor/ImageServer
   source: vantor
-- name: AFTER — la-guaira · pelican 0.62m · 20260626_150535_17_3010
-  tier: download
-  path: data/basemaps/pelican_20260626_150535_17_3010_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260626_150535_17_3010/20260626_150535_17_3010_visual.tif
+  note: Source service of the local vantor_legion_20260625_mosaic.tif rebuild.
+- name: Vegetation formations 2010 (Huber & Alarcón)
+  group: Reference data
+  tier: repo
+  path: data/reference/vegetation_formations_2010.geojson
+  note: Provenance unrecorded.
+- name: Dams
+  group: Reference data
+  tier: repo
+  path: data/reference/dams.kmz
+  note: Provenance unrecorded.
+- name: Watershed landslide coverage (GeoSyntec, 2026-07-25)
+  group: Reference data
+  tier: repo
+  path: data/reference/Watershed_LSCoverage.shp
+  source: geosyntec
+- name: Geology (USGS 1:750k via Macrostrat)
+  group: Reference data
+  tier: repo
+  path: data/reference/geology.geojson
+  source: macrostrat
+  note: Full study region (426 units); rebuild with scripts/fetch_geology.py. (at git tag geer-phase) Superseded la-guaira_geology.geojson.
+- name: Inspection grid 10 km
+  group: Inspection grid (toggle)
+  tier: repo
+  path: data/inspection_grid/inspection_grid.gpkg|layername=grid_10km
+  source: project
+  note: Layers grid_10km and grid_1km; rebuild with scripts/build_inspection_grid.py. (at git tag geer-phase)
+- name: Inspection grid 1 km
+  group: Inspection grid (toggle)
+  tier: repo
+  path: data/inspection_grid/inspection_grid.gpkg|layername=grid_1km
+  source: project
+  note: Layers grid_10km and grid_1km; rebuild with scripts/build_inspection_grid.py. (at git tag geer-phase)
+- name: PS 2026-06-25 150337 · 254f
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260625_150337_05_254f_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — la-guaira · pelican 0.62m · 20260626_150536_68_3010
-  tier: download
-  path: data/basemaps/pelican_20260626_150536_68_3010_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260626_150536_68_3010/20260626_150536_68_3010_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 145711 · 2558
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145711_05_2558_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — la-guaira · skysat 0.66m · 20260627_112651_ssc2_u0001
-  tier: download
-  path: data/basemaps/skysat_20260627_112651_ssc2_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112651_ssc2_u0001/20260627_112651_ssc2_u0001_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 145718 · 2558
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145718_09_2558_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — la-guaira · skysat 0.67m · 20260627_112651_ssc2_u0002
-  tier: download
-  path: data/basemaps/skysat_20260627_112651_ssc2_u0002_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112651_ssc2_u0002/20260627_112651_ssc2_u0002_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 150246 · 2563
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150246_34_2563_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — la-guaira · skysat 0.73m · 20260627_112621_ssc2_u0002
-  tier: download
-  path: data/basemaps/skysat_20260627_112621_ssc2_u0002_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112621_ssc2_u0002/20260627_112621_ssc2_u0002_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 150347 · 2555
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150347_71_2555_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — la-guaira · skysat 0.78m · 20260627_112621_ssc2_u0001
-  tier: download
-  path: data/basemaps/skysat_20260627_112621_ssc2_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112621_ssc2_u0001/20260627_112621_ssc2_u0001_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 150352 · 2555
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150352_46_2555_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — la-guaira · skysat 0.79m · 20260627_112722_ssc2_u0001
-  tier: download
-  path: data/basemaps/skysat_20260627_112722_ssc2_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112722_ssc2_u0001/20260627_112722_ssc2_u0001_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 150354 · 2555
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150354_84_2555_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — puerto-cabello · skysat 0.70m · 20260626_114759_ssc12_u0002
-  tier: download
-  path: data/basemaps/skysat_20260626_114759_ssc12_u0002_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/puerto-cabello/items/20260626_114759_ssc12_u0002/20260626_114759_ssc12_u0002_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 152834 · 2538
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152834_56_2538_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — puerto-cabello · skysat 0.71m · 20260626_114759_ssc12_u0001
-  tier: download
-  path: data/basemaps/skysat_20260626_114759_ssc12_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/puerto-cabello/items/20260626_114759_ssc12_u0001/20260626_114759_ssc12_u0001_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 152836 · 2538
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152836_55_2538_3B_AnalyticMS_SR.tif
   source: planet
-- name: AFTER — valencia · skysat 0.72m · 20260626_191038_ssc8_u0001
-  tier: download
-  path: data/basemaps/skysat_20260626_191038_ssc8_u0001_visual.tif
-  fetch: http
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/valencia/items/20260626_191038_ssc8_u0001/20260626_191038_ssc8_u0001_visual.tif
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-26 153510 · 253a
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_153510_89_253a_3B_AnalyticMS_SR.tif
   source: planet
-- name: TOPO — Esri World Hillshade
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-27 145729 · 24d8
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145729_28_24d8_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-27 145730 · 2553
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145730_42_2553_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-27 145731 · 24d8
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145731_64_24d8_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-27 150903 · 254c
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_150903_45_254c_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-27 153106 · 2530
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153106_40_2530_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-27 153535 · 251e
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153535_90_251e_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150034 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150034_30_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150036 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150036_68_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150039 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150039_05_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150315 · 255c
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150315_73_255c_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150825 · 257a
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150825_56_257a_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150937 · 256e
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150937_37_256e_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150939 · 256e
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150939_71_256e_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 150942 · 256e
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150942_06_256e_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 153406 · 253b
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153406_58_253b_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 153607 · 2539
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153607_08_2539_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 153611 · 2539
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153611_06_2539_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 153952 · 2504
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153952_18_2504_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 153954 · 2504
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153954_17_2504_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-29 153956 · 2504
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153956_16_2504_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-30 150344 · 2544
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150344_18_2544_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-06-30 150452 · 254f
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150452_43_254f_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-05 150014 · 2575
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150014_98_2575_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-05 150133 · 2560
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150133_96_2560_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-05 150455 · 2570
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150455_58_2570_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-05 150550 · 254f
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150550_25_254f_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-06 150526 · 2563
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_150526_96_2563_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-06 155030 · 250b
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_155030_67_250b_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-08 145518 · 2520
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260708_145518_70_2520_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-10 153643 · 253d
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_153643_59_253d_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-10 155427 · 24de
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_155427_15_24de_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-12 145757 · 255a
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145757_21_255a_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-12 145759 · 255a
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145759_33_255a_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-12 150259 · 2555
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_150259_04_2555_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-13 154828 · 24fa
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260713_154828_90_24fa_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-14 153957 · 2530
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_153957_69_2530_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-14 154732 · 24db
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_154732_46_24db_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 145459 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145459_33_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 145504 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145504_05_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 145506 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145506_40_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 145508 · 2510
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145508_76_2510_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 145740 · 255c
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145740_96_255c_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 150440 · 2562
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150440_15_2562_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 150442 · 2562
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150442_26_2562_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 150444 · 2562
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150444_37_2562_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 150650 · 254f
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150650_41_254f_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 153425 · 2531
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_153425_37_2531_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-15 154417 · 2534
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_154417_98_2534_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-16 145436 · 2565
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260716_145436_44_2565_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-17 145651 · 254b
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_145651_14_254b_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-17 153553 · 251d
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153553_15_251d_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-17 153555 · 251d
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153555_01_251d_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: PS 2026-07-17 153558 · 251d
+  group: Imagery
+  tier: external
+  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153558_75_251d_3B_AnalyticMS_SR.tif
+  source: planet
+  fetch: rebuild
+  note: PlanetScope 4-band SR on the external drive (not copied into repo).
+- name: 2025-11-03 · 0.37m legion · caracas · 125633 (Vantor stream)
+  group: Imagery
   tier: stream
-  url: https://services.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}
-  source: esri_hillshade
-- name: BEFORE — Esri Wayback 2026-05-28
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BE2A00.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2025-11-04 · 0.35m legion · guarenas · 123929 (Vantor stream)
+  group: Imagery
   tier: stream
-  url: https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10842/{z}/{y}/{x}
-  source: esri_wayback
-- name: AFTER — Satellogic true color 0.5–1 m (NASA, 06-26/27)
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BF9600.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-01-31 · 0.37m legion · caracas · 151724 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100029010.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-02-09 · 0.47m legion · caracas · 120336 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1400011000BDF10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-03-19 · 0.42m legion · caracas · 212351 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101008110.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-03-20 · 0.43m legion · caracas · 210810 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101015C10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-03-20 · 0.45m legion · caracas · 144655 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B160001100FD1910.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-03-21 · 0.45m legion · caracas · 143132 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B160001100FF4510.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-04-07 · 0.48m legion · catia-la-mar · 151446 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100513B10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 2026-05-31 · 0.33m wv-3 · caracas · 145727 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/10400100B979DD00.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-25 · 0.34m legion · guarenas · 151707 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2310.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-25 · 0.35m legion · caracas · 151646 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2210.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-25 · 0.42m vantor · la-guaira · mosaic
+  group: Imagery
+  tier: download
+  path: data/imagery/vantor_legion_20260625_mosaic.tif
+  source: vantor
+  fetch: rebuild
+  note: Non-redistributable; rebuilt by tiling the NASA CSDA Vantor ImageServer exportImage endpoint (see src/geer_venezuela/catalog.py (at git tag geer-phase) notes).
+- name: 06-25 · 0.46m legion · caracas · 151749 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2510.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-25 · 0.46m wv-2 · la-guaira · 212928 (Maxar)
+  group: Imagery
+  tier: download
+  path: data/imagery/maxar_visual/AFTER_la-guaira_wv2_20260625_212928.tif
+  source: maxar_worldview
+  origin: /Volumes/One Touch/satellite_imagery/7013435178804960023/ — delivery 200013362857, tiles *212928-S2AS_R#C#-200013362857_01_P001.TIF
+  fetch: rebuild
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+- name: 06-25 · 0.46m wv-2 · la-guaira · 212947 (Maxar)
+  group: Imagery
+  tier: download
+  path: data/imagery/maxar_visual/AFTER_la-guaira_wv2_20260625_212947.tif
+  source: maxar_worldview
+  origin: /Volumes/One Touch/satellite_imagery/7013440003271077158/ — delivery 200013362935, tiles *212947-S2AS_R#C#-200013362935_01_P001.TIF
+  fetch: rebuild
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+- name: 06-25 · 0.46m wv-2 · la-guaira-west · 142038 (Maxar)
+  group: Imagery
+  tier: download
+  path: data/imagery/maxar_visual/AFTER_la-guaira-west_wv2_20260625_142038.tif
+  source: maxar_worldview
+  origin: /Volumes/One Touch/satellite_imagery/7013580666438136294/ — delivery 200013366001, tiles *142038-S2AS_R#C#-200013366001_01_P001.TIF
+  fetch: rebuild
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+- name: 06-25 · 0.47m wv-2 · caracas · 212947 (NASA stream)
+  group: Imagery
+  tier: stream
+  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_VANTOR_CARACAS/ImageServer
+  source: nasa_disasters
+  note: Raw 8-band U16, server-rendered RGB; third copy of collect S2AS 200013362935 (also local Maxar clip + open-data stream).
+- name: 06-25 · 0.49m legion · caracas · 212947 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B16000110179D410.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-25 · 0.53m legion · caracas · 212928 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B16000110179D310.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-26 · 0.32m wv-3 · maracay · 151035 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100074D10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-26 · 0.34m wv-3 · caracas · 151004 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075810.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo. 34 % cloud (band over the north Ávila slope); coast east of La Guaira → east Caracas. Found in 2026-08-21 sweep (49th scene in the bucket).
+- name: 06-26 · 0.35m wv-3 · caracas · 150950 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075510.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-26 · 0.38m legion · la-guaira · 211346 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017A8610.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-26 · 0.38m wv-3 · caracas · 150937 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075610.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-26 · 0.46m wv-2 · valencia-west · 140331 (Maxar)
+  group: Imagery
+  tier: download
+  path: data/imagery/maxar_visual/AFTER_valencia-west_wv2_20260626_140331.tif
+  source: maxar_worldview
+  origin: /Volumes/One Touch/satellite_imagery/7013568983859847485/ — delivery 200013365952, tiles *140331-S2AS_R#C#-200013365952_01_P001.TIF
+  fetch: rebuild
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+- name: 06-26 · 0.46m wv-3 · valencia-west · 140407 (Maxar)
+  group: Imagery
+  tier: download
+  path: data/imagery/maxar_visual/AFTER_valencia-west_wv3_20260626_140407.tif
+  source: maxar_worldview
+  origin: /Volumes/One Touch/satellite_imagery/7013566414318029537/ — delivery 200013365925, tiles *140407-S3DS_R#C#-200013365925_01_P001.TIF
+  fetch: rebuild
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+- name: 06-26 · 0.5-1m satellogic · aoi-coast · mosaic (NASA stream)
+  group: Imagery
   tier: stream
   url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_satellogic/ImageServer
   source: nasa_disasters
-- name: Satellogic NDVI (NASA, 06-26/27)
-  tier: stream
-  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_satellogic_ndvi/ImageServer
-  source: nasa_disasters
-- name: Vegetation formations 2010 (Huber & Alarcón)
-  tier: repo
-  path: data/terrain/vegetation_formations_2010.geojson
-- name: BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27
-  tier: download
-  path: data/basemaps/historical_1999_vargas/BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27.tif
-  fetch: rebuild
-  note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
-  source: historical_1999
-- name: BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27
-  tier: download
-  path: data/basemaps/historical_1999_vargas/BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27.tif
-  fetch: rebuild
-  note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
-  source: historical_1999
-- name: Maxar/Vantor delivery footprints (external drive)
-  tier: download
-  path: data/basemaps/maxar_visual/maxar_footprints.geojson
-  fetch: rebuild
-  note: Footprint polygons parsed from each delivery product XML corner coordinates.
-- name: AFTER — la-guaira · worldview-2 0.46m · 20260625_212928 (Maxar)
-  tier: download
-  path: data/basemaps/maxar_visual/AFTER_la-guaira_wv2_20260625_212928.tif
-  fetch: rebuild
-  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
-  source: vantor
-- name: AFTER — la-guaira · worldview-2 0.46m · 20260625_212947 (Maxar)
-  tier: download
-  path: data/basemaps/maxar_visual/AFTER_la-guaira_wv2_20260625_212947.tif
-  fetch: rebuild
-  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
-  source: vantor
-- name: AFTER — la-guaira-west · worldview-2 0.46m · 20260625_142038 (Maxar)
-  tier: download
-  path: data/basemaps/maxar_visual/AFTER_la-guaira-west_wv2_20260625_142038.tif
-  fetch: rebuild
-  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
-  source: vantor
-- name: AFTER — valencia-west · worldview-2 0.46m · 20260626_140331 (Maxar)
-  tier: download
-  path: data/basemaps/maxar_visual/AFTER_valencia-west_wv2_20260626_140331.tif
-  fetch: rebuild
-  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
-  source: vantor
-- name: AFTER — valencia-west · worldview-3 0.46m · 20260626_140407 (Maxar)
-  tier: download
-  path: data/basemaps/maxar_visual/AFTER_valencia-west_wv3_20260626_140407.tif
-  fetch: rebuild
-  note: Non-redistributable. Rebuilt from raw WorldView tiles on the external drive (VRT to 8-bit RGB b5/b3/b2, gdalwarp cutline to footprint, JPEG GeoTIFF). See maxar-external-drive-imagery memory.
-  source: vantor
-- name: PS 2026-06-25 150337 · 254f
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260625_150337_05_254f_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 145711 · 2558
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145711_05_2558_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 145718 · 2558
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145718_09_2558_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 150246 · 2563
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150246_34_2563_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 150347 · 2555
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150347_71_2555_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 150352 · 2555
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150352_46_2555_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 150354 · 2555
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150354_84_2555_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 152834 · 2538
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152834_56_2538_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 152836 · 2538
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152836_55_2538_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-26 153510 · 253a
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_153510_89_253a_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-27 145729 · 24d8
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145729_28_24d8_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-27 145730 · 2553
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145730_42_2553_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-27 145731 · 24d8
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145731_64_24d8_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-27 150903 · 254c
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_150903_45_254c_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-27 153106 · 2530
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153106_40_2530_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-27 153535 · 251e
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153535_90_251e_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150034 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150034_30_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150036 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150036_68_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150039 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150039_05_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150315 · 255c
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150315_73_255c_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150825 · 257a
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150825_56_257a_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150937 · 256e
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150937_37_256e_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150939 · 256e
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150939_71_256e_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 150942 · 256e
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150942_06_256e_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 153406 · 253b
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153406_58_253b_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 153607 · 2539
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153607_08_2539_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 153611 · 2539
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153611_06_2539_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 153952 · 2504
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153952_18_2504_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 153954 · 2504
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153954_17_2504_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-29 153956 · 2504
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153956_16_2504_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-30 150344 · 2544
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150344_18_2544_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-06-30 150452 · 254f
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150452_43_254f_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-05 150014 · 2575
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150014_98_2575_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-05 150133 · 2560
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150133_96_2560_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-05 150455 · 2570
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150455_58_2570_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-05 150550 · 254f
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150550_25_254f_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-06 150526 · 2563
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_150526_96_2563_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-06 155030 · 250b
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_155030_67_250b_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-08 145518 · 2520
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260708_145518_70_2520_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-10 153643 · 253d
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_153643_59_253d_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-10 155427 · 24de
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_155427_15_24de_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-12 145757 · 255a
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145757_21_255a_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-12 145759 · 255a
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145759_33_255a_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-12 150259 · 2555
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_150259_04_2555_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-13 154828 · 24fa
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260713_154828_90_24fa_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-14 153957 · 2530
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_153957_69_2530_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-14 154732 · 24db
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_154732_46_24db_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 145459 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145459_33_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 145504 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145504_05_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 145506 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145506_40_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 145508 · 2510
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145508_76_2510_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 145740 · 255c
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145740_96_255c_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 150440 · 2562
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150440_15_2562_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 150442 · 2562
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150442_26_2562_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 150444 · 2562
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150444_37_2562_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 150650 · 254f
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150650_41_254f_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 153425 · 2531
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_153425_37_2531_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-15 154417 · 2534
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_154417_98_2534_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-16 145436 · 2565
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260716_145436_44_2565_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-17 145651 · 254b
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_145651_14_254b_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-17 153553 · 251d
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153553_15_251d_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-17 153555 · 251d
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153555_01_251d_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: PS 2026-07-17 153558 · 251d
-  tier: download
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153558_75_251d_3B_AnalyticMS_SR.tif
-  fetch: rebuild
-  note: PlanetScope 4-band SR on the external drive (not copied into repo).
-  source: planet
-- name: GeoSyntec geomorph aerials (2026-07-20)
-  tier: repo
-  path: data/geosyntec/geosyntec_geomorph_aerials_20260720.geojson
-  source: geosyntec
-- name: Avila landslide inventory — lines (2026-07-15 draft)
-  tier: repo
-  path: data/usgs_avila/venls_avila_inventory_line_20260715.geojson
-  source: avila_inventory
-- name: R1 — El Junquito Ridge — route
-  tier: repo
-  path: data/routes/field_trips/r1_line.geojson
-- name: R1 — El Junquito Ridge — start/end
-  tier: repo
-  path: data/routes/field_trips/r1_endpoints.geojson
-- name: R2 — Autopista + Trocha — route
-  tier: repo
-  path: data/routes/field_trips/r2_line.geojson
-- name: R2 — Autopista + Trocha — start/end
-  tier: repo
-  path: data/routes/field_trips/r2_endpoints.geojson
-- name: R3 — Forum Stadium → 125 — route
-  tier: repo
-  path: data/routes/field_trips/r3_line.geojson
-- name: R3 — Forum Stadium → 125 — start/end
-  tier: repo
-  path: data/routes/field_trips/r3_endpoints.geojson
-- name: R4 — La Guaira Coast — route
-  tier: repo
-  path: data/routes/field_trips/r4_line.geojson
-- name: R4 — La Guaira Coast — start/end
-  tier: repo
-  path: data/routes/field_trips/r4_endpoints.geojson
-- name: R5 — Airport Loop — route
-  tier: repo
-  path: data/routes/field_trips/r5_line.geojson
-- name: R5 — Airport Loop — start/end
-  tier: repo
-  path: data/routes/field_trips/r5_endpoints.geojson
-- name: R5alt — Airport Loop (via Trocha) — route
-  tier: repo
-  path: data/routes/field_trips/r5alt_line.geojson
-- name: R5alt — Airport Loop (via Trocha) — start/end
-  tier: repo
-  path: data/routes/field_trips/r5alt_endpoints.geojson
-- name: Trip sites (from _temp.md)
-  tier: repo
-  path: data/routes/field_trips/trip_sites.geojson
-- name: AFTER — caracas · legion 0.34m · 20260627_134836 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C710.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.35m · 20260625_151646 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2210.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.36m · 20260627_134855 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C810.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.41m · 20260629_140932 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5C710.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.46m · 20260625_151749 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2510.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.48m · 20260629_140955 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5C810.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.49m · 20260625_212947 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B16000110179D410.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.53m · 20260625_212928 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B16000110179D310.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · legion 0.60m · 20260629_141016 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5CA10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · worldview-3 0.35m · 20260626_150950 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075510.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · worldview-3 0.38m · 20260626_150937 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075610.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — catia-la-mar · legion 0.35m · 20260627_134810 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C610.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — catia-la-mar · worldview-2 0.94m · 20260627_151506 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFB10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — choroni · worldview-2 0.62m · 20260627_151415 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF210.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — choroni · worldview-2 0.86m · 20260627_151458 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF610.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — guarenas · legion 0.34m · 20260625_151707 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2310.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — guarenas · worldview-2 0.69m · 20260628_143613 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B030001100114010.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — la-guaira · legion 0.38m · 20260626_211346 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017A8610.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · geoeye-1 0.55m · 20260629_144927 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B05000110006BA10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · geoeye-1 0.65m · 20260629_144955 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B05000110006BD10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · legion 0.44m · 20260627_153017 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100BECE10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · legion 0.45m · 20260629_131531 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101891610.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · legion 0.46m · 20260627_153037 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100BED010.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · legion 0.48m · 20260629_131617 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890E10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — maracay · worldview-3 0.32m · 20260626_151035 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100074D10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — moron · legion 0.50m · 20260629_202521 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D9010.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — moron · legion 0.60m · 20260629_131645 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890B10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — moron · legion 0.60m · 20260630_125955 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1500011018A1110.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — moron · worldview-2 0.95m · 20260627_151521 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFC10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — ocumare-de-la-costa · worldview-2 0.64m · 20260627_151423 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF410.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — puerto-cabello · worldview-2 0.67m · 20260627_151431 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF510.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — san-felipe · geoeye-1 0.45m · 20260627_151550 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B050001100041D10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — san-felipe · legion 0.37m · 20260629_202422 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D8D10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — san-felipe · legion 0.57m · 20260629_202315 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D8B10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — san-felipe · worldview-2 1.01m · 20260627_151531 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFE10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — valencia · legion 0.51m · 20260629_131508 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890C10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — valencia · legion 0.59m · 20260629_131448 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890A10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — valencia · worldview-2 0.70m · 20260627_151442 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000E1810.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.37m · 20251103_125633 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BE2A00.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.37m · 20260131_151724 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100029010.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.42m · 20260319_212351 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101008110.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.43m · 20260320_210810 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101015C10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.45m · 20260320_144655 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B160001100FD1910.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.45m · 20260321_143132 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B160001100FF4510.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · legion 0.47m · 20260209_120336 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1400011000BDF10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — caracas · worldview-3 0.33m · 20260531_145727 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/10400100B979DD00.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — catia-la-mar · legion 0.48m · 20260407_151446 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100513B10.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: BEFORE — guarenas · legion 0.35m · 20251104_123929 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B130001101BF9600.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-  source: vantor_opendata
-- name: AFTER — caracas · worldview-3 0.34m · 20260626_151004 (Vantor stream)
-  tier: stream
-  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075810.tif
-  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo. 34 % cloud (band over the north Ávila slope); coast east of La Guaira → east Caracas. Found in 2026-08-21 sweep (49th scene in the bucket).
-  source: vantor_opendata
-- name: AFTER — yumare · skysat 0.79m · 20260628_115115_ssc12_u0001 (Planet stream)
-  tier: stream
-  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/yumare/items/20260628_115115_ssc12_u0001/20260628_115115_ssc12_u0001_visual.tif
-  note: Planet visual COG (660 MB) streamed via /vsicurl/ from Source Coop (range requests verified). Only sub-meter post-event scene over the M 7.5 Yumare epicentral area (zone B2); 38 % cloud. Found in 2026-08-21 sweep.
-  source: planet
-- name: AFTER — aoi-coast · skysat 0.50m · mosaic (NASA stream)
+- name: 06-26 · 0.50m skysat · aoi-coast · mosaic (NASA stream)
+  group: Imagery
   tier: stream
   url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_SkySat/ImageServer
+  source: nasa_disasters
   note: NASA Disasters SkySat 4-band mosaic, server-rendered RGB. Sparse footprints; zone membership is bbox-based.
-  source: nasa_disasters
-- name: AFTER — caracas · worldview-2 0.47m · 20260625_212947 (NASA stream)
-  tier: stream
-  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_VANTOR_CARACAS/ImageServer
-  note: Raw 8-band U16, server-rendered RGB; third copy of collect S2AS 200013362935 (also local Maxar clip + open-data stream).
-  source: nasa_disasters
-- name: DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_vantor (NASA CSDA Vantor mosaic stream)
-  tier: stream
-  url: https://gis.earthdata.nasa.gov/gis05/rest/services/DISASTERS_202606_EARTHQUAKE_VENEZUELA/202611_vantor/ImageServer
-  note: Source service of the local vantor_legion_20260625_mosaic.tif rebuild.
-  source: vantor
-- name: AFTER — caracas-corridor · OAM 0.86m · 6a437f8fa8d2fe29ac06614e
+- name: 06-26 · 0.62m pelican · la-guaira · 150535_17_3010
+  group: Imagery
   tier: download
-  path: /Users/lornearnold/Downloads/6a437f8fa8d2fe29ac06614e.tif
+  path: data/imagery/pelican_20260626_150535_17_3010_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260626_150535_17_3010/20260626_150535_17_3010_visual.tif
+  source: planet
   fetch: http
-  url: https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a437f8fa8d2fe29ac06614d/0/6a437f8fa8d2fe29ac06614e.tif
-  note: OAM re-host of Vantor collect B0300011000DFB10 (WV-2, 2026-06-27); duplicates the catia-la-mar 151506 stream as a local COG. Lives in ~/Downloads, not the repo.
-  source: oam
-- name: Areas to check (USGS)
-  tier: repo
-  path: data/usgs/areas_to_check_for_GEER.kml
-  source: usgs
-- name: GF landslide probability — Nowicki Jessee 2018 — M 7.5 Yumare (USGS us6000t7zp)
-  tier: repo
-  path: data/usgs/ground_failure/jessee_2018_model.tif
-  note: Metadata in data/usgs/ground_failure/info.json.
-  source: usgs_ground_failure
-- name: GF landslide probability — Nowicki Jessee 2018 — M 7.2 San Felipe (USGS us6000t7zc)
-  tier: repo
-  path: data/usgs/ground_failure/jessee_2018_model_us6000t7zc.tif
-  note: Metadata in info_us6000t7zc.json (point_source flag — check before quoting numbers).
-  source: usgs_ground_failure
-- name: Dams (field trips)
-  tier: repo
-  path: data/routes/field_trips/dams.kmz
-- name: Inspection grid 10 km + 1 km (MGRS/UTM 19N)
-  tier: repo
-  path: data/grids/inspection_grid.gpkg
-  note: Layers grid_10km and grid_1km; rebuild with scripts/build_inspection_grid.py.
-- name: geer_mapping (GEER ground-deformation inventory, lines)
-  tier: repo
-  path: data/landslide_candidates/geer_mapping.gpkg
-  note: Fields mirror the GeoSyntec schema (scripts/add_geer_mapping_fields.py); layer metadata Abstract carries the GEER statement used by reports/export_mapping_kmz.py.
-- name: Vantor Open Data footprints (toggle)
+- name: 06-26 · 0.62m pelican · la-guaira · 150536_68_3010
+  group: Imagery
   tier: download
-  path: data/basemaps/vantor_opendata_footprints.geojson
-  fetch: rebuild
-  note: uv run python scripts/vantor_opendata_footprints.py (fetches the STAC collection; remove the QGIS layer first). Gitignored with the rest of data/basemaps/.
+  path: data/imagery/pelican_20260626_150536_68_3010_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260626_150536_68_3010/20260626_150536_68_3010_visual.tif
+  source: planet
+  fetch: http
+- name: 06-26 · 0.70m skysat · puerto-cabello · 114759_ssc12_u0002
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260626_114759_ssc12_u0002_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/puerto-cabello/items/20260626_114759_ssc12_u0002/20260626_114759_ssc12_u0002_visual.tif
+  source: planet
+  fetch: http
+- name: 06-26 · 0.71m skysat · puerto-cabello · 114759_ssc12_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260626_114759_ssc12_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/puerto-cabello/items/20260626_114759_ssc12_u0001/20260626_114759_ssc12_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-26 · 0.72m skysat · valencia · 191038_ssc8_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260626_191038_ssc8_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/valencia/items/20260626_191038_ssc8_u0001/20260626_191038_ssc8_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-26 · 0.81m skysat · catia-la-mar · 112057_ssc4_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260626_112057_ssc4_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/catia-la-mar/items/20260626_112057_ssc4_u0001/20260626_112057_ssc4_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-26 · 0.87m skysat · caracas · 123541_ssc5_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260626_123541_ssc5_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260626_123541_ssc5_u0001/20260626_123541_ssc5_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.34m legion · caracas · 134836 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C710.tif
   source: vantor_opendata
-- name: ZONE index — AFTER imagery
-  tier: repo
-  path: data/derived/imagery_zones.geojson
-  note: 0.25° grid cells; rebuild with scripts/build_imagery_zones.py (inside QGIS).
-- name: Watershed × landslide union (GeoSyntec, 2026-07-25)
-  tier: repo
-  path: data/geosyntec/watershed_analysis/Watershed_LS_Union.shp
-  source: geosyntec
-- name: Watershed landslide coverage (GeoSyntec, 2026-07-25)
-  tier: repo
-  path: data/geosyntec/watershed_analysis/Watershed_LSCoverage.shp
-  source: geosyntec
-- name: WatershedCCs1 — Watersheds
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.35m legion · catia-la-mar · 134810 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C610.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.36m legion · caracas · 134855 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B15000110186C810.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.44m legion · maracay · 153017 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100BECE10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.45m ge-1 · san-felipe · 151550 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B050001100041D10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.46m legion · maracay · 153037 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B120001100BED010.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.62m wv-2 · choroni · 151415 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF210.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.64m wv-2 · ocumare-de-la-costa · 151423 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF410.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.65m pelican · caracas · 145824_88_300d
+  group: Imagery
   tier: download
-  path: /Users/lornearnold/Downloads/WatershedCCs1.kmz
+  path: data/imagery/pelican_20260627_145824_88_300d_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260627_145824_88_300d/20260627_145824_88_300d_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.65m pelican · caracas · 145826_40_300d
+  group: Imagery
+  tier: download
+  path: data/imagery/pelican_20260627_145826_40_300d_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/caracas/items/20260627_145826_40_300d/20260627_145826_40_300d_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.66m skysat · la-guaira · 112651_ssc2_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260627_112651_ssc2_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112651_ssc2_u0001/20260627_112651_ssc2_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.67m skysat · la-guaira · 112651_ssc2_u0002
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260627_112651_ssc2_u0002_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112651_ssc2_u0002/20260627_112651_ssc2_u0002_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.67m wv-2 · puerto-cabello · 151431 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF510.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.70m wv-2 · valencia · 151442 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000E1810.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.73m skysat · la-guaira · 112621_ssc2_u0002
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260627_112621_ssc2_u0002_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112621_ssc2_u0002/20260627_112621_ssc2_u0002_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.78m skysat · la-guaira · 112621_ssc2_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260627_112621_ssc2_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112621_ssc2_u0001/20260627_112621_ssc2_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.79m skysat · la-guaira · 112722_ssc2_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260627_112722_ssc2_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/la-guaira/items/20260627_112722_ssc2_u0001/20260627_112722_ssc2_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-27 · 0.86m OAM · caracas-corridor · 6a437f8fa8d2fe29ac06614e
+  group: Imagery
+  tier: download
+  path: data/imagery/oam_caracas-corridor_20260627_6a437f8fa8d2fe29ac06614e.tif
+  source: oam
+- name: 06-27 · 0.86m wv-2 · choroni · 151458 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DF610.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.94m wv-2 · catia-la-mar · 151506 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFB10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 0.95m wv-2 · moron · 151521 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFC10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-27 · 1.01m wv-2 · san-felipe · 151531 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B0300011000DFE10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-28 · 0.69m wv-2 · guarenas · 143613 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B030001100114010.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-28 · 0.79m skysat · yumare · 115115_ssc12_u0001 (Planet stream)
+  group: Imagery
+  tier: stream
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/yumare/items/20260628_115115_ssc12_u0001/20260628_115115_ssc12_u0001_visual.tif
+  source: planet
+  note: Planet visual COG (660 MB) streamed via /vsicurl/ from Source Coop (range requests verified). Only sub-meter post-event scene over the M 7.5 Yumare epicentral area (zone B2); 38 % cloud. Found in 2026-08-21 sweep.
+- name: 06-28 · 0.82m skysat · independencia-ocumare · 122047_ssc1_u0001
+  group: Imagery
+  tier: download
+  path: data/imagery/skysat_20260628_122047_ssc1_u0001_visual.tif
+  url: https://data.source.coop/planet/venezuela-earthquake-2026-06-24/post-event/independencia-ocumare/items/20260628_122047_ssc1_u0001/20260628_122047_ssc1_u0001_visual.tif
+  source: planet
+  fetch: http
+- name: 06-29 · 0.37m legion · san-felipe · 202422 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D8D10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.41m legion · caracas · 140932 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5C710.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.45m legion · maracay · 131531 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101891610.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.48m legion · caracas · 140955 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5C810.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.48m legion · maracay · 131617 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890E10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.50m legion · moron · 202521 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D9010.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.51m legion · valencia · 131508 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890C10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.55m ge-1 · maracay · 144927 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B05000110006BA10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.57m legion · san-felipe · 202315 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1600011017D8B10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.59m legion · valencia · 131448 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890A10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.60m legion · caracas · 141016 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B140001100B5CA10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.60m legion · moron · 131645 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B150001101890B10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-29 · 0.65m ge-1 · maracay · 144955 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B05000110006BD10.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: 06-30 · 0.60m legion · moron · 125955 (Vantor stream)
+  group: Imagery
+  tier: stream
+  url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B1500011018A1110.tif
+  source: vantor_opendata
+  note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
+- name: BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27
+  group: Imagery
+  tier: download
+  path: data/imagery/historical_1999_vargas/BEFORE-1999 — camuri-caraballeda · aerial mosaic 15k · 1999-12-27.tif
+  source: historical_1999
   fetch: rebuild
-  note: Collaborator KMZ (13 KB) still referenced from ~/Downloads — copy into data/geosyntec/ and repoint the layer to make it repo-tier.
-  source: geosyntec
+  note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
+- name: BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27
+  group: Imagery
+  tier: download
+  path: data/imagery/historical_1999_vargas/BEFORE-1999 — vargas coast · aerial mosaic 15k · 1999-12-27.tif
+  source: historical_1999
+  fetch: rebuild
+  note: Georeferenced 1999 Vargas aerial mosaic, TPS-warped from saved .points GCPs; gitignored. See docs/trimming-1999-mosaics.md.
+- name: BEFORE — Esri Wayback 2026-05-28
+  group: Basemaps
+  tier: stream
+  url: "<GDAL_WMS>\n  <Service name=\"TMS\">\n    <ServerUrl>https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10842/${z}/${y}/${x}</ServerUrl>\n  </Service>\n  <DataWindow>\n    <UpperLeftX>-20037508.34</UpperLeftX>\n    <UpperLeftY>20037508.34</UpperLeftY>\n    <LowerRightX>20037508.34</LowerRightX>\n    <LowerRightY>-20037508.34</LowerRightY>\n    <TileLevel>18</TileLevel>\n    <TileCountX>1</TileCountX>\n    <TileCountY>1</TileCountY>\n    <YOrigin>top</YOrigin>\n  </DataWindow>\n  <Projection>EPSG:3857</Projection>\n  <BlockSizeX>256</BlockSizeX>\n  <BlockSizeY>256</BlockSizeY>\n  <BandsCount>3</BandsCount>\n  <MaxConnections>4</MaxConnections>\n  <ZeroBlockHttpCodes>404</ZeroBlockHttpCodes>\n  <Cache/>\n</GDAL_WMS>"
+  source: esri_wayback
+- name: TOPO — Esri World Hillshade
+  group: Basemaps
+  tier: stream
+  url: https://services.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&zmax=15&zmin=0
+  source: esri_hillshade
 - name: TOPO — Esri World Topo Map (streets+relief)
+  group: Basemaps
   tier: stream
-  url: https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}
+  url: https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D
   source: esri_basemaps
-- name: World Topographic Map (Esri vector tiles)
-  tier: stream
-  url: https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
-  source: esri_basemaps
-- name: OpenStreetMap (standard tiles)
-  tier: stream
-  url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
-  source: osm
