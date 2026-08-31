@@ -46,8 +46,12 @@ def footprints():
     global _footprints
     if _footprints is None:
         _footprints = {}
-        path = os.path.normpath(os.path.join(_project().homePath(), FOOTPRINTS))
-        lyr = QgsVectorLayer(path, "footprints", "ogr")
+        loaded = _project().mapLayersByName("Imagery footprints")
+        if loaded:
+            lyr = loaded[0]  # project copy first: sees uncommitted edits
+        else:
+            path = os.path.normpath(os.path.join(_project().homePath(), FOOTPRINTS))
+            lyr = QgsVectorLayer(path, "footprints", "ogr")
         if lyr.isValid():
             xf = QgsCoordinateTransform(lyr.crs(), WGS84, _project())
             for f in lyr.getFeatures():

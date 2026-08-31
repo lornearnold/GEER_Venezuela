@@ -8,3 +8,5 @@ data/imagery/*
 !data/imagery/imagery_footprints.geojson
 !data/imagery/imagery_zones.geojson
 data/terrain/
+qgis/keys.yaml
+qgis/streams/
