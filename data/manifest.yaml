@@ -65,7 +65,7 @@ sources:
   maxar_worldview:
     name: Maxar (now Vantor) WorldView-2/3 tasked collects, 25–26 Jun 2026 — raw 8-band 16-bit tile deliveries
     license: © 2026 Maxar Technologies — restricted per delivery LICENSE.TXT (Limited Rights Data); NON-redistributable, viewing aid only.
-    delivery: /Volumes/One Touch/satellite_imagery/<order>/ (R#C# tiles + .TIL/.IMD/.XML/LICENSE.TXT); acquired via NASA CSDA per the prior manifest — confirm.
+    delivery: /Volumes/PortableSSD/satellite_imagery/<order>/ (R#C# tiles + .TIL/.IMD/.XML/LICENSE.TXT); acquired via NASA CSDA per the prior manifest — confirm.
 layers:
 - name: ZONE index — AFTER imagery
   group: (root)
@@ -175,444 +175,444 @@ layers:
   path: data/inspection_grid/inspection_grid.gpkg|layername=grid_1km
   source: project
   note: Layers grid_10km and grid_1km; rebuild with scripts/build_inspection_grid.py. (at git tag geer-phase)
-- name: PS 2026-06-25 150337 · 254f
+- name: 06-25 · 3m planetscope · moron · 150337-254f (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260625_150337_05_254f_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260625_150337_05_254f_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 145711 · 2558
+- name: 06-26 · 3m planetscope · caracas · 145711-2558 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145711_05_2558_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_145711_05_2558_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 145718 · 2558
+- name: 06-26 · 3m planetscope · caracas · 145718-2558 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_145718_09_2558_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_145718_09_2558_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 150246 · 2563
+- name: 06-26 · 3m planetscope · maracay · 150246-2563 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150246_34_2563_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_150246_34_2563_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 150347 · 2555
+- name: 06-26 · 3m planetscope · san-felipe · 150347-2555 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150347_71_2555_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_150347_71_2555_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 150352 · 2555
+- name: 06-26 · 3m planetscope · san-felipe · 150352-2555 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150352_46_2555_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_150352_46_2555_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 150354 · 2555
+- name: 06-26 · 3m planetscope · san-felipe · 150354-2555 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_150354_84_2555_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_150354_84_2555_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 152834 · 2538
+- name: 06-26 · 3m planetscope · caracas · 152834-2538 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152834_56_2538_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_152834_56_2538_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 152836 · 2538
+- name: 06-26 · 3m planetscope · caracas · 152836-2538 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_152836_55_2538_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_152836_55_2538_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-26 153510 · 253a
+- name: 06-26 · 3m planetscope · valencia · 153510-253a (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260626_153510_89_253a_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260626_153510_89_253a_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-27 145729 · 24d8
+- name: 06-27 · 3m planetscope · catia-la-mar · 145729-24d8 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145729_28_24d8_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260627_145729_28_24d8_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-27 145730 · 2553
+- name: 06-27 · 3m planetscope · caracas · 145730-2553 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145730_42_2553_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260627_145730_42_2553_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-27 145731 · 24d8
+- name: 06-27 · 3m planetscope · caracas · 145731-24d8 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_145731_64_24d8_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260627_145731_64_24d8_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-27 150903 · 254c
+- name: 06-27 · 3m planetscope · san-felipe · 150903-254c (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_150903_45_254c_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260627_150903_45_254c_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-27 153106 · 2530
+- name: 06-27 · 3m planetscope · catia-la-mar · 153106-2530 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153106_40_2530_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260627_153106_40_2530_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-27 153535 · 251e
+- name: 06-27 · 3m planetscope · moron · 153535-251e (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260627_153535_90_251e_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260627_153535_90_251e_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150034 · 2510
+- name: 06-29 · 3m planetscope · valencia · 150034-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150034_30_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150034_30_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150036 · 2510
+- name: 06-29 · 3m planetscope · valencia · 150036-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150036_68_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150036_68_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150039 · 2510
+- name: 06-29 · 3m planetscope · valencia · 150039-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150039_05_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150039_05_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150315 · 255c
+- name: 06-29 · 3m planetscope · moron · 150315-255c (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150315_73_255c_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150315_73_255c_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150825 · 257a
+- name: 06-29 · 3m planetscope · san-felipe · 150825-257a (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150825_56_257a_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150825_56_257a_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150937 · 256e
+- name: 06-29 · 3m planetscope · san-felipe-west · 150937-256e (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150937_37_256e_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150937_37_256e_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150939 · 256e
+- name: 06-29 · 3m planetscope · san-felipe-west · 150939-256e (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150939_71_256e_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150939_71_256e_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 150942 · 256e
+- name: 06-29 · 3m planetscope · san-felipe-west · 150942-256e (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_150942_06_256e_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_150942_06_256e_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 153406 · 253b
+- name: 06-29 · 3m planetscope · catia-la-mar · 153406-253b (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153406_58_253b_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_153406_58_253b_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 153607 · 2539
+- name: 06-29 · 3m planetscope · maracay · 153607-2539 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153607_08_2539_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_153607_08_2539_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 153611 · 2539
+- name: 06-29 · 3m planetscope · maracay · 153611-2539 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153611_06_2539_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_153611_06_2539_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 153952 · 2504
+- name: 06-29 · 3m planetscope · san-felipe · 153952-2504 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153952_18_2504_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_153952_18_2504_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 153954 · 2504
+- name: 06-29 · 3m planetscope · san-felipe · 153954-2504 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153954_17_2504_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_153954_17_2504_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-29 153956 · 2504
+- name: 06-29 · 3m planetscope · san-felipe · 153956-2504 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260629_153956_16_2504_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260629_153956_16_2504_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-30 150344 · 2544
+- name: 06-30 · 3m planetscope · valencia · 150344-2544 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150344_18_2544_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260630_150344_18_2544_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-06-30 150452 · 254f
+- name: 06-30 · 3m planetscope · moron · 150452-254f (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260630_150452_43_254f_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260630_150452_43_254f_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-05 150014 · 2575
+- name: 07-05 · 3m planetscope · maracay · 150014-2575 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150014_98_2575_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260705_150014_98_2575_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-05 150133 · 2560
+- name: 07-05 · 3m planetscope · maracay · 150133-2560 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150133_96_2560_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260705_150133_96_2560_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-05 150455 · 2570
+- name: 07-05 · 3m planetscope · san-felipe · 150455-2570 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150455_58_2570_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260705_150455_58_2570_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-05 150550 · 254f
+- name: 07-05 · 3m planetscope · san-felipe · 150550-254f (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260705_150550_25_254f_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260705_150550_25_254f_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-06 150526 · 2563
+- name: 07-06 · 3m planetscope · san-felipe · 150526-2563 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_150526_96_2563_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260706_150526_96_2563_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-06 155030 · 250b
+- name: 07-06 · 3m planetscope · moron · 155030-250b (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260706_155030_67_250b_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260706_155030_67_250b_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-08 145518 · 2520
+- name: 07-08 · 3m planetscope · guarenas · 145518-2520 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260708_145518_70_2520_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260708_145518_70_2520_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-10 153643 · 253d
+- name: 07-10 · 3m planetscope · choroni · 153643-253d (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_153643_59_253d_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260710_153643_59_253d_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-10 155427 · 24de
+- name: 07-10 · 3m planetscope · maracay · 155427-24de (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260710_155427_15_24de_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260710_155427_15_24de_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-12 145757 · 255a
+- name: 07-12 · 3m planetscope · caracas · 145757-255a (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145757_21_255a_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260712_145757_21_255a_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-12 145759 · 255a
+- name: 07-12 · 3m planetscope · caracas · 145759-255a (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_145759_33_255a_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260712_145759_33_255a_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-12 150259 · 2555
+- name: 07-12 · 3m planetscope · ocumare-de-la-costa · 150259-2555 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260712_150259_04_2555_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260712_150259_04_2555_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-13 154828 · 24fa
+- name: 07-13 · 3m planetscope · choroni · 154828-24fa (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260713_154828_90_24fa_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260713_154828_90_24fa_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-14 153957 · 2530
+- name: 07-14 · 3m planetscope · san-felipe · 153957-2530 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_153957_69_2530_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260714_153957_69_2530_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-14 154732 · 24db
+- name: 07-14 · 3m planetscope · puerto-cabello · 154732-24db (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260714_154732_46_24db_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260714_154732_46_24db_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 145459 · 2510
+- name: 07-15 · 3m planetscope · guarenas · 145459-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145459_33_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_145459_33_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 145504 · 2510
+- name: 07-15 · 3m planetscope · caracas · 145504-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145504_05_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_145504_05_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 145506 · 2510
+- name: 07-15 · 3m planetscope · caracas · 145506-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145506_40_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_145506_40_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 145508 · 2510
+- name: 07-15 · 3m planetscope · caracas-south · 145508-2510 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145508_76_2510_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_145508_76_2510_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 145740 · 255c
+- name: 07-15 · 3m planetscope · caracas · 145740-255c (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_145740_96_255c_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_145740_96_255c_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 150440 · 2562
+- name: 07-15 · 3m planetscope · moron · 150440-2562 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150440_15_2562_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_150440_15_2562_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 150442 · 2562
+- name: 07-15 · 3m planetscope · moron · 150442-2562 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150442_26_2562_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_150442_26_2562_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 150444 · 2562
+- name: 07-15 · 3m planetscope · valencia · 150444-2562 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150444_37_2562_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_150444_37_2562_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 150650 · 254f
+- name: 07-15 · 3m planetscope · san-felipe-west · 150650-254f (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_150650_41_254f_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_150650_41_254f_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 153425 · 2531
+- name: 07-15 · 3m planetscope · choroni · 153425-2531 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_153425_37_2531_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_153425_37_2531_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-15 154417 · 2534
+- name: 07-15 · 3m planetscope · san-felipe-west · 154417-2534 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260715_154417_98_2534_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260715_154417_98_2534_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-16 145436 · 2565
+- name: 07-16 · 3m planetscope · caracas-southeast · 145436-2565 (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260716_145436_44_2565_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260716_145436_44_2565_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-17 145651 · 254b
+- name: 07-17 · 3m planetscope · caracas · 145651-254b (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_145651_14_254b_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260717_145651_14_254b_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-17 153553 · 251d
+- name: 07-17 · 3m planetscope · guarenas · 153553-251d (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153553_15_251d_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260717_153553_15_251d_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-17 153555 · 251d
+- name: 07-17 · 3m planetscope · caracas · 153555-251d (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153555_01_251d_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260717_153555_01_251d_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
-- name: PS 2026-07-17 153558 · 251d
+- name: 07-17 · 3m planetscope · caracas · 153558-251d (Planet drive)
   group: Imagery
   tier: external
-  path: /Volumes/One Touch/satellite_imagery/post_earthquake/20260717_153558_75_251d_3B_AnalyticMS_SR.tif
+  path: /Volumes/PortableSSD/satellite_imagery/post_earthquake/20260717_153558_75_251d_3B_AnalyticMS_SR.tif
   source: planet
   fetch: rebuild
   note: PlanetScope 4-band SR on the external drive (not copied into repo).
@@ -701,30 +701,30 @@ layers:
   url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B110001100BB2510.tif
   source: vantor_opendata
   note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-- name: 06-25 · 0.46m wv-2 · la-guaira · 212928 (Maxar)
+- name: 06-25 · 0.46m wv-2 · la-guaira · 212928 (Maxar local)
   group: Imagery
   tier: download
   path: data/imagery/maxar_visual/AFTER_la-guaira_wv2_20260625_212928.tif
   source: maxar_worldview
-  origin: /Volumes/One Touch/satellite_imagery/7013435178804960023/ — delivery 200013362857, tiles *212928-S2AS_R#C#-200013362857_01_P001.TIF
+  origin: /Volumes/PortableSSD/satellite_imagery/7013435178804960023/ — delivery 200013362857, tiles *212928-S2AS_R#C#-200013362857_01_P001.TIF
   fetch: rebuild
-  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
-- name: 06-25 · 0.46m wv-2 · la-guaira · 212947 (Maxar)
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Rebuilt 2026-09-02 (2–98 pctl stretch, JPEG q92) via scripts/rebuild_maxar_visuals.py.
+- name: 06-25 · 0.46m wv-2 · la-guaira · 212947 (Maxar local)
   group: Imagery
   tier: download
   path: data/imagery/maxar_visual/AFTER_la-guaira_wv2_20260625_212947.tif
   source: maxar_worldview
-  origin: /Volumes/One Touch/satellite_imagery/7013440003271077158/ — delivery 200013362935, tiles *212947-S2AS_R#C#-200013362935_01_P001.TIF
+  origin: /Volumes/PortableSSD/satellite_imagery/7013440003271077158/ — delivery 200013362935, tiles *212947-S2AS_R#C#-200013362935_01_P001.TIF
   fetch: rebuild
-  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
-- name: 06-25 · 0.46m wv-2 · la-guaira-west · 142038 (Maxar)
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Rebuilt 2026-09-02 (2–98 pctl stretch, JPEG q92) via scripts/rebuild_maxar_visuals.py.
+- name: 06-25 · 0.46m wv-2 · la-guaira-west · 142038 (Maxar local)
   group: Imagery
   tier: download
   path: data/imagery/maxar_visual/AFTER_la-guaira-west_wv2_20260625_142038.tif
   source: maxar_worldview
-  origin: /Volumes/One Touch/satellite_imagery/7013580666438136294/ — delivery 200013366001, tiles *142038-S2AS_R#C#-200013366001_01_P001.TIF
+  origin: /Volumes/PortableSSD/satellite_imagery/7013580666438136294/ — delivery 200013366001, tiles *142038-S2AS_R#C#-200013366001_01_P001.TIF
   fetch: rebuild
-  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Rebuilt 2026-09-02 (2–98 pctl stretch, JPEG q92) via scripts/rebuild_maxar_visuals.py.
 - name: 06-25 · 0.47m wv-2 · caracas · 212947 (NASA stream)
   group: Imagery
   tier: stream
@@ -773,22 +773,30 @@ layers:
   url: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/B040001100075610.tif
   source: vantor_opendata
   note: Vantor Open Data COG streamed via /vsicurl/; nothing downloaded to the repo.
-- name: 06-26 · 0.46m wv-2 · valencia-west · 140331 (Maxar)
+- name: 06-26 · 0.46m wv-2 · valencia-west · 140331 (Maxar local)
   group: Imagery
   tier: download
   path: data/imagery/maxar_visual/AFTER_valencia-west_wv2_20260626_140331.tif
   source: maxar_worldview
-  origin: /Volumes/One Touch/satellite_imagery/7013568983859847485/ — delivery 200013365952, tiles *140331-S2AS_R#C#-200013365952_01_P001.TIF
+  origin: /Volumes/PortableSSD/satellite_imagery/7013568983859847485/ — delivery 200013365952, tiles *140331-S2AS_R#C#-200013365952_01_P001.TIF
   fetch: rebuild
-  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
-- name: 06-26 · 0.46m wv-3 · valencia-west · 140407 (Maxar)
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Rebuilt 2026-09-02 (2–98 pctl stretch, JPEG q92) via scripts/rebuild_maxar_visuals.py.
+- name: 06-25 · 0.36m wv-3 · puerto-cabello · 203718 (Maxar local)
+  group: Imagery
+  tier: download
+  path: data/imagery/maxar_visual/AFTER_puerto-cabello_wv3_20260625_203718.tif
+  source: maxar_worldview
+  origin: /Volumes/PortableSSD/satellite_imagery/7013442983526554665/ — delivery 200013362958, tiles *203718-S3DS_R#C#-200013362958_01_P001.TIF
+  fetch: rebuild
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Rebuilt 2026-09-02 (2–98 pctl stretch, JPEG q92) via scripts/rebuild_maxar_visuals.py.
+- name: 06-26 · 0.46m wv-3 · valencia-west · 140407 (Maxar local)
   group: Imagery
   tier: download
   path: data/imagery/maxar_visual/AFTER_valencia-west_wv3_20260626_140407.tif
   source: maxar_worldview
-  origin: /Volumes/One Touch/satellite_imagery/7013566414318029537/ — delivery 200013365925, tiles *140407-S3DS_R#C#-200013365925_01_P001.TIF
+  origin: /Volumes/PortableSSD/satellite_imagery/7013566414318029537/ — delivery 200013365925, tiles *140407-S3DS_R#C#-200013365925_01_P001.TIF
   fetch: rebuild
-  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Recipe at git tag geer-phase.
+  note: Visual GeoTIFF rebuilt from the raw tiles (bands 5/3/2 → 8-bit JPEG); VRT pointer in data/imagery/maxar_external/. Rebuilt 2026-09-02 (2–98 pctl stretch, JPEG q92) via scripts/rebuild_maxar_visuals.py.
 - name: 06-26 · 0.5-1m satellogic · aoi-coast · mosaic (NASA stream)
   group: Imagery
   tier: stream

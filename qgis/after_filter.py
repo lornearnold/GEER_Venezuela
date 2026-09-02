@@ -9,6 +9,11 @@ Loaded by the project's openProject() macro (or manually:
 intersect the current canvas extent as Private (hidden from the Layers panel,
 unchecked). "Show all AFTER" clears the flags. install() always clears stale
 flags first, so a project saved while filtered reopens clean.
+
+Layers whose source lives on an unmounted external drive (/Volumes/<name>/...)
+are always kept hidden by both actions, so an unavailable layer can't be
+selected and left waiting on a dead mount. Plug the drive back in and hit
+either button to bring them back.
 """
 import os
 
@@ -24,10 +29,7 @@ from qgis.PyQt.QtGui import QKeySequence
 from qgis.PyQt.QtWidgets import QAction
 from qgis.utils import iface
 
-AFTER_GROUPS = (
-    "AFTER — post-event imagery (stream)",
-    "AFTER — post-event imagery (external drive)",
-)
+AFTER_GROUPS = ("AFTER — post-event imagery",)
 FOOTPRINTS = os.path.join("..", "data", "imagery", "imagery_footprints.geojson")
 TOOLBAR_NAME = "afterFilterToolbar"
 WGS84 = QgsCoordinateReferenceSystem("EPSG:4326")
@@ -35,6 +37,7 @@ WGS84 = QgsCoordinateReferenceSystem("EPSG:4326")
 _toolbar = None
 _actions = []
 _footprints = None  # layer_name -> QgsGeometry (EPSG:4326)
+_mounts = {}  # "/Volumes/<name>" -> bool, refreshed once per action
 
 
 def _project():
@@ -77,6 +80,17 @@ def after_layers():
     return out
 
 
+def _unavailable(lyr):
+    """True when the layer's source sits under an unmounted /Volumes drive."""
+    src = lyr.source()
+    if not src.startswith("/Volumes/"):
+        return False
+    mount = "/".join(src.split("/", 3)[:3])
+    if mount not in _mounts:
+        _mounts[mount] = os.path.exists(mount)
+    return not _mounts[mount]
+
+
 def _layer_geom(lyr):
     g = footprints().get(lyr.name())
     if g is not None:
@@ -107,6 +121,7 @@ def _refresh():
 
 
 def filter_to_view():
+    _mounts.clear()
     canvas = iface.mapCanvas()
     rect = canvas.extent()
     ccrs = canvas.mapSettings().destinationCrs()
@@ -114,25 +129,42 @@ def filter_to_view():
         rect = QgsCoordinateTransform(ccrs, WGS84, _project()).transformBoundingBox(rect)
     view = QgsGeometry.fromRect(rect)
     layers = after_layers()
-    hits = 0
+    hits, offline = 0, 0
     for lyr in layers:
-        if _layer_geom(lyr).intersects(view):
+        if _unavailable(lyr):
+            offline += 1
+            _set_private(lyr, True)
+            _uncheck(lyr.id())
+        elif _layer_geom(lyr).intersects(view):
             hits += 1
             _set_private(lyr, False)
         else:
             _set_private(lyr, True)
             _uncheck(lyr.id())
     _refresh()
-    iface.messageBar().pushInfo("AFTER filter", f"{hits}/{len(layers)} AFTER layers cover the view")
+    msg = f"{hits}/{len(layers)} AFTER layers cover the view"
+    if offline:
+        msg += f" ({offline} hidden — drive not connected)"
+    iface.messageBar().pushInfo("AFTER filter", msg)
     return hits
 
 
 def show_all():
+    _mounts.clear()
     layers = after_layers()
+    offline = 0
     for lyr in layers:
-        _set_private(lyr, False)
+        if _unavailable(lyr):
+            offline += 1
+            _set_private(lyr, True)
+            _uncheck(lyr.id())
+        else:
+            _set_private(lyr, False)
     _refresh()
-    return len(layers)
+    if offline and iface.messageBar() is not None:
+        iface.messageBar().pushInfo(
+            "AFTER filter", f"{offline} AFTER layers hidden — drive not connected")
+    return len(layers) - offline
 
 
 def uninstall():
@@ -154,15 +186,15 @@ def install():
     global _toolbar, _actions, _footprints
     uninstall()
     _footprints = None
-    show_all()  # clear any flags persisted in a saved-while-filtered project
+    show_all()  # clear stale flags; keeps unmounted-drive layers hidden
     _toolbar = iface.addToolBar("AFTER filter")
     _toolbar.setObjectName(TOOLBAR_NAME)
     a_filter = QAction("Filter AFTER to view", iface.mainWindow())
     a_filter.setToolTip("Hide AFTER imagery layers whose footprint misses the current view (Ctrl+Shift+F)")
     a_filter.triggered.connect(lambda *_: filter_to_view())
     a_all = QAction("Show all AFTER", iface.mainWindow())
-    a_all.setToolTip("Un-hide all AFTER imagery layers")
-    a_all.triggered.connect(lambda *_: (show_all(), iface.messageBar().pushInfo("AFTER filter", "all AFTER layers shown")))
+    a_all.setToolTip("Un-hide all AFTER imagery layers (unmounted-drive layers stay hidden)")
+    a_all.triggered.connect(lambda *_: (show_all(), iface.messageBar().pushInfo("AFTER filter", "all available AFTER layers shown")))
     _toolbar.addAction(a_filter)
     _toolbar.addAction(a_all)
     iface.registerMainWindowAction(a_filter, QKeySequence("Ctrl+Shift+F").toString())
