@@ -167,25 +167,26 @@ def rebuild(key):
         n = normalized_vrt(vrt_path, primary, pct_by_order, src)
         print(f"[{key}]   normalized {n} band-sources from secondary orders")
 
-    # Stage 1: lossless intermediate (scaled 1-255, 0 = empty). JPEG must not be
-    # the stage that defines validity: with nodata-by-value alone, decode jitter
-    # punches holes and strip edges fringe (the old 142038 bug).
-    # Zero-safety: raw 0 must map below 0.5 so off-strip fill stays 0 and the
-    # stage-2 nodata test sees it. With src_min too low (dark scenes can sample
-    # p2=1), raw 0 rounds to 1 and the mask silently ends up all-valid (caught
-    # on 212947, 2026-09-02) — so floor src_min at src_max/500.
-    scale = []
-    for b in RGB_BANDS:
-        lo, hi = pct_by_order[primary][b]
-        lo = max(lo, hi / 500.0)
-        scale.append([lo, hi, 1, 255])
+    # Stage 1: lossless intermediate. Validity must come from the RAW data, not
+    # from the stretched values: plain -scale clamps below-floor shadow pixels
+    # to 0, which the stage-2 nodata test then mistakes for empty fill and masks
+    # transparent (interior shadow holes, caught on 212928, 2026-09-02). So per
+    # band: raw 0 stays 0 (fill), any raw > 0 is clipped into 1-255 — even deep
+    # shadow stays opaque near-black. JPEG must also not be the stage that
+    # defines validity (decode jitter: the old 142038 bug), hence lossless here.
+    from osgeo_utils.gdal_calc import Calc
     interm = os.path.join(OUT_DIR, f".{key}_interm.tif")
-    print(f"[{key}] stage 1: lossless intermediate (long: reads the full scene)")
-    gdal.Translate(
-        interm, src, bandList=list(RGB_BANDS), outputType=gdal.GDT_Byte,
-        scaleParams=scale, noData=0,
-        creationOptions=["TILED=YES", "COMPRESS=DEFLATE", "PREDICTOR=2", "BIGTIFF=IF_SAFER"],
-        callback=gdal.TermProgress_nocb)
+    print(f"[{key}] stage 1: clamped lossless intermediate (long: reads the full scene)")
+    letters = ["A", "B", "C"]
+    calc_kwargs, calcs = {}, []
+    for letter, b in zip(letters, RGB_BANDS):
+        lo, hi = pct_by_order[primary][b]
+        calc_kwargs[letter] = src
+        calc_kwargs[f"{letter}_band"] = b
+        calcs.append(f"({letter}>0)*numpy.clip(({letter}-{lo:.1f})*254.0/({hi:.1f}-{lo:.1f})+1, 1, 255)")
+    Calc(calc=calcs, outfile=interm, type="Byte", NoDataValue=0, quiet=True, overwrite=True,
+         creation_options=["TILED=YES", "COMPRESS=DEFLATE", "PREDICTOR=2", "BIGTIFF=IF_SAFER"],
+         **calc_kwargs)
 
     # Stage 2: JPEG final with an internal mask from the data footprint.
     # NB: gdalbuildvrt -addAlpha marks mosaic COVERAGE, not nodata — it yields an
